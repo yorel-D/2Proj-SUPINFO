@@ -440,9 +440,12 @@ class TurretButton(pygame.sprite.Sprite):
         self.active = active
 
     def check_click_to_unlock(self):
-        self.towers[self.tower2] = "available"
-        self.towers[self.tower3] = "available"
-        self.towers[self.tower4] = "available"
+        for key, value in self.towers.items():
+            if value == "unavailable":
+                self.towers[key] = "available"
+                #TODO : changer le prix de la tourelle
+                break
+        
 
     def check_click(self):
         m_pos = game.mouse.get_pos()
