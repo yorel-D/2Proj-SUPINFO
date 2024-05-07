@@ -151,7 +151,7 @@ PIRATE_TURRET_ICON = game.transform.scale(PIRATE_TURRET_ICON, (7 * CELL, 7 * CEL
 WARRIOR_TURRET_ICON = game.image.load("Resources/warrior_turret_icon.png").convert_alpha()
 WARRIOR_TURRET_ICON = game.transform.scale(WARRIOR_TURRET_ICON, (7 * CELL, 7 * CELL))
 TURRET_UPGRADE_ICON = game.image.load("Resources/turret_upgrade_icon.png").convert_alpha()
-
+TURRET_UPGRADE_ICON = game.transform.scale(TURRET_UPGRADE_ICON, (7 * CELL, 7 * CELL))
 ELF_TURRET_ICON = game.image.load("Resources/elf_turret_icon.png").convert_alpha()
 ELF_TURRET_ICON = game.transform.scale(ELF_TURRET_ICON, (7 * CELL, 7 * CELL))
 PLAYER_PIRATE_TURRET = game.image.load("Resources/pirate_turret.png").convert_alpha()
