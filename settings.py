@@ -12,35 +12,35 @@ CASTLE_IMAGE = game.image.load("Resources/castle_100.png").convert_alpha()
 PLAYER_CASTLE_IMAGE = game.transform.scale(CASTLE_IMAGE, (20 * CELL, 20 * CELL))
 PLAYER_CASTLE_IMAGE = game.transform.flip(PLAYER_CASTLE_IMAGE, True, False)
 ENEMY_CASTLE_IMAGE = game.transform.scale(CASTLE_IMAGE, (20 * CELL, 20 * CELL))
-PLAYER_LIGHT_PIRATE_WALKING = [game.image.load(f"Resources/3_3-PIRATE_WALK_00{i}.png").convert_alpha() for i in
-                               range(7)]
-PLAYER_LIGHT_PIRATE_WALKING = [game.transform.scale(image, (10 * CELL, 10 * CELL)) for image in
-                               PLAYER_LIGHT_PIRATE_WALKING]
-PLAYER_LIGHT_PIRATE_ATTACKING = [game.image.load(f"Resources/3_3-PIRATE_ATTACK_00{i}.png").convert_alpha() for i in
-                                 range(7)]
-PLAYER_LIGHT_PIRATE_ATTACKING = [game.transform.scale(image, (10 * CELL, 10 * CELL)) for image in
-                                 PLAYER_LIGHT_PIRATE_ATTACKING]
+
+PLAYER_LIGHT_PIRATE_WALKING = [game.image.load(f"Resources/3_3-PIRATE_WALK_00{i}.png").convert_alpha() for i in range(7)]
+PLAYER_LIGHT_PIRATE_WALKING = [game.transform.scale(image, (10 * CELL, 10 * CELL)) for image in PLAYER_LIGHT_PIRATE_WALKING]
+PLAYER_LIGHT_PIRATE_ATTACKING = [game.image.load(f"Resources/3_3-PIRATE_ATTACK_00{i}.png").convert_alpha() for i in range(7)]
+PLAYER_LIGHT_PIRATE_ATTACKING = [game.transform.scale(image, (10 * CELL, 10 * CELL)) for image in PLAYER_LIGHT_PIRATE_ATTACKING]
 PLAYER_LIGHT_PIRATE_IDLE = [game.image.load(f"Resources/3_3-PIRATE_IDLE_00{i}.png").convert_alpha() for i in range(7)]
 PLAYER_LIGHT_PIRATE_IDLE = [game.transform.scale(image, (CELL * 10, CELL * 10)) for image in PLAYER_LIGHT_PIRATE_IDLE]
-PLAYER_HEAVY_PIRATE_WALKING = [game.image.load(f"Resources/1_entity_000_WALK_00{i}.png").convert_alpha() for i
-                               in range(7)]
-PLAYER_HEAVY_PIRATE_WALKING = [game.transform.scale(image, (CELL * 10, CELL * 10)).convert_alpha() for image in
-                               PLAYER_HEAVY_PIRATE_WALKING]
-PLAYER_HEAVY_PIRATE_ATTACKING = [game.image.load(f"Resources/1_entity_000_ATTACK_00{i}.png").convert_alpha() for
-                                 i in range(7)]
-PLAYER_HEAVY_PIRATE_ATTACKING = [game.transform.scale(image, (CELL * 10, CELL * 10)).convert_alpha() for image in
-                                 PLAYER_HEAVY_PIRATE_ATTACKING]
-PLAYER_RANGED_PIRATE_WALKING = [game.image.load(f"Resources/2_entity_000_WALK_00{i}.png").convert_alpha() for i in
-                                range(7)]
-PLAYER_RANGED_PIRATE_WALKING = [game.transform.scale(image, (CELL * 10, CELL * 10)).convert_alpha() for image in
-                                PLAYER_RANGED_PIRATE_WALKING]
-PLAYER_RANGED_PIRATE_ATTACKING = [game.image.load(f"Resources/2_entity_000_ATTACK_00{i}.png").convert_alpha() for i in
-                                  range(7)]
-PLAYER_RANGED_PIRATE_ATTACKING = [game.transform.scale(image, (CELL * 10, CELL * 10)) for image in
-                                  PLAYER_RANGED_PIRATE_ATTACKING]
-PLAYER_RANGED_PIRATE_IDLE = [game.image.load(f"Resources/2_entity_000_IDLE_00{i}.png").convert_alpha() for i in
-                             range(7)]
+
+PLAYER_HEAVY_PIRATE_WALKING = [game.image.load(f"Resources/1_entity_000_WALK_00{i}.png").convert_alpha() for i in range(7)]
+PLAYER_HEAVY_PIRATE_WALKING = [game.transform.scale(image, (CELL * 10, CELL * 10)).convert_alpha() for image in PLAYER_HEAVY_PIRATE_WALKING]
+PLAYER_HEAVY_PIRATE_ATTACKING = [game.image.load(f"Resources/1_entity_000_ATTACK_00{i}.png").convert_alpha() for i in range(7)]
+PLAYER_HEAVY_PIRATE_ATTACKING = [game.transform.scale(image, (CELL * 10, CELL * 10)).convert_alpha() for image in PLAYER_HEAVY_PIRATE_ATTACKING]
+PLAYER_HEAVY_PIRATE_IDLE = [game.image.load(f"Resources/1_entity_000_IDLE_00{i}.png").convert_alpha() for i in range(7)]
+PLAYER_HEAVY_PIRATE_IDLE = [game.transform.scale(image, (CELL * 10, CELL * 10)) for image in PLAYER_HEAVY_PIRATE_IDLE]
+
+PLAYER_RANGED_PIRATE_WALKING = [game.image.load(f"Resources/2_entity_000_WALK_00{i}.png").convert_alpha() for i in range(7)]
+PLAYER_RANGED_PIRATE_WALKING = [game.transform.scale(image, (CELL * 10, CELL * 10)).convert_alpha() for image in PLAYER_RANGED_PIRATE_WALKING]
+PLAYER_RANGED_PIRATE_ATTACKING = [game.image.load(f"Resources/2_entity_000_ATTACK_00{i}.png").convert_alpha() for i in range(7)]
+PLAYER_RANGED_PIRATE_ATTACKING = [game.transform.scale(image, (CELL * 10, CELL * 10)) for image in PLAYER_RANGED_PIRATE_ATTACKING]
+PLAYER_RANGED_PIRATE_IDLE = [game.image.load(f"Resources/2_entity_000_IDLE_00{i}.png").convert_alpha() for i in range(7)]
 PLAYER_RANGED_PIRATE_IDLE = [game.transform.scale(image, (10 * CELL, 10 * CELL)) for image in PLAYER_RANGED_PIRATE_IDLE]
+
+PLAYER_HERO_PIRATE_WALKING = [game.image.load(f"Resources/4_entity__WALK_00{i}.png").convert_alpha() for i in range(7)]
+PLAYER_HERO_PIRATE_WALKING = [game.transform.scale(image, (CELL * 10, CELL * 10)).convert_alpha() for image in PLAYER_HERO_PIRATE_WALKING]
+PLAYER_HERO_PIRATE_ATTACKING = [game.image.load(f"Resources/4_entity__ATTACK_00{i}.png").convert_alpha() for i in range(7)]
+PLAYER_HERO_PIRATE_ATTACKING = [game.transform.scale(image, (CELL * 10, CELL * 10)).convert_alpha() for image in PLAYER_HERO_PIRATE_ATTACKING]
+PLAYER_HERO_PIRATE_IDLE = [game.image.load(f"Resources/4_entity__IDLE_00{i}.png").convert_alpha() for i in range(7)]
+PLAYER_HERO_PIRATE_IDLE = [game.transform.scale(image, (CELL * 10, CELL * 10)) for image in PLAYER_HERO_PIRATE_IDLE]
+
 
 PLAYER_LIGHT_WARRIOR_WALIKNG = [game.image.load(f"Resources/Warrior_02__WALK_00{i}.png").convert_alpha() for i in range(7)]
 PLAYER_LIGHT_WARRIOR_WALIKNG = [game.transform.scale(image, (CELL * 10, CELL * 10)) for image in PLAYER_LIGHT_WARRIOR_WALIKNG]
@@ -62,6 +62,7 @@ PLAYER_RANGED_WARRIOR_ATTACKING = [game.image.load(f"Resources/Warrior_03__ATTAC
 PLAYER_RANGED_WARRIOR_ATTACKING = [game.transform.scale(image, (CELL * 10, CELL * 10)) for image in PLAYER_RANGED_WARRIOR_ATTACKING]
 PLAYER_RANGED_WARRIOR_IDLE = [game.image.load(f"Resources/Warrior_03__IDLE_00{i}.png").convert_alpha() for i in range(7)]
 PLAYER_RANGED_WARRIOR_IDLE = [game.transform.scale(image, (CELL * 10, CELL * 10)) for image in PLAYER_RANGED_WARRIOR_IDLE]
+
 
 PLAYER_RANGED_ELF_WALKING = [game.image.load(f"Resources/Elf_01__WALK_00{i}.png").convert_alpha() for i in range(7)]
 PLAYER_RANGED_ELF_WALKING = [game.transform.scale(image, (CELL * 10, CELL * 10)) for image in PLAYER_RANGED_ELF_WALKING]
@@ -88,10 +89,6 @@ PLAYER_RANGED_PIRATE_BULLET = game.image.load("Resources/shot.png")
 PLAYER_RANGED_PIRATE_BULLET = game.transform.scale(PLAYER_RANGED_PIRATE_BULLET, (1 * CELL, 0.5 * CELL))
 
 
-PLAYER_HEAVY_PIRATE_IDLE = [game.image.load(f"Resources/1_entity_000_IDLE_00{i}.png").convert_alpha() for i in
-                            range(7)]
-PLAYER_HEAVY_PIRATE_IDLE = [game.transform.scale(image, (CELL * 10, CELL * 10)) for image in PLAYER_HEAVY_PIRATE_IDLE]
-
 ENEMY_LIGHT_PIRATE_WALKING = [game.transform.flip(image, True, False) for image in PLAYER_LIGHT_PIRATE_WALKING]
 ENEMY_LIGHT_PIRATE_ATTACKING = [game.transform.flip(image, True, False) for image in PLAYER_LIGHT_PIRATE_ATTACKING]
 ENEMY_LIGHT_PIRATE_IDLE = [game.transform.flip(image, True, False) for image in PLAYER_LIGHT_PIRATE_IDLE]
@@ -99,6 +96,10 @@ ENEMY_LIGHT_PIRATE_IDLE = [game.transform.flip(image, True, False) for image in 
 ENEMY_HEAVY_PIRATE_WALKING = [game.transform.flip(image, True, False) for image in PLAYER_HEAVY_PIRATE_WALKING]
 ENEMY_HEAVY_PIRATE_ATTACKING = [game.transform.flip(image, True, False) for image in PLAYER_HEAVY_PIRATE_ATTACKING]
 ENEMY_HEAVY_PIRATE_IDLE = [game.transform.flip(image, True, False) for image in PLAYER_HEAVY_PIRATE_IDLE]
+
+ENEMY_HERO_PIRATE_WALKING = [game.transform.flip(image, True, False) for image in PLAYER_HERO_PIRATE_WALKING]
+ENEMY_HERO_PIRATE_ATTACKING = [game.transform.flip(image, True, False) for image in PLAYER_HERO_PIRATE_ATTACKING]
+ENEMY_HERO_PIRATE_IDLE = [game.transform.flip(image, True, False) for image in PLAYER_HERO_PIRATE_IDLE]
 
 ENEMY_RANGED_PIRATE_WALKING = [game.transform.flip(image, True, False) for image in PLAYER_RANGED_PIRATE_WALKING]
 ENEMY_RANGED_PIRATE_ATTACKING = [game.transform.flip(image, True, False) for image in PLAYER_RANGED_PIRATE_ATTACKING]
@@ -134,6 +135,8 @@ RANGED_PIRATE_ICON = game.image.load("Resources/ranged_pirate_icon.png").convert
 RANGED_PIRATE_ICON = game.transform.scale(RANGED_PIRATE_ICON, (7 * CELL, 7 * CELL))
 HEAVY_PIRATE_ICON = game.image.load("Resources/heavy_pirate_icon.png").convert_alpha()
 HEAVY_PIRATE_ICON = game.transform.scale(HEAVY_PIRATE_ICON, (7 * CELL, 7 * CELL))
+HERO_PIRATE_ICON = game.image.load("Resources/hero_pirate_icon.png").convert_alpha()
+HERO_PIRATE_ICON = game.transform.scale(HERO_PIRATE_ICON, (7 * CELL, 7 * CELL))
 LIGHT_WARRIOR_ICON = game.image.load("Resources/light_warrior_button.png").convert_alpha()
 LIGHT_WARRIOR_ICON = game.transform.scale(LIGHT_WARRIOR_ICON, (7 * CELL, 7 * CELL))
 HEAVY_WARRIOR_ICON = game.image.load("Resources/heavy_warrior_button.png").convert_alpha()
