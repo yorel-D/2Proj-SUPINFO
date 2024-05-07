@@ -29,13 +29,8 @@ class ActionBar(pygame.sprite.Sprite):
                                       self.elf_turret_button)
         self.upgrade_button = UpgradeButton(self)
         if self.state == "pirates":
-            self.light_unit_button = LightPirateButton(LIGHT_PIRATE_ICON, self.level,
-                                                       LIGHT_PIRATE_ICON.get_rect(topright=(95 * CELL, 1 * CELL)))
-            self.ranged_unit_button = RangedPirateButton(RANGED_PIRATE_ICON, self.level,
-                                                         RANGED_PIRATE_ICON.get_rect(topright=(115 * CELL, 1 * CELL)))
-            self.heavy_unit_button = HeavyPirateButton(HEAVY_PIRATE_ICON, self.level,
-                                                       HEAVY_PIRATE_ICON.get_rect(topright=(125 * CELL, 1 * CELL)))
-        if self.state == "pirates":
+            self.light_unit_button = LightWarriorButton(LIGHT_WARRIOR_ICON, self.level, # ici
+                                                       LIGHT_WARRIOR_ICON.get_rect(topright=(95 * CELL, 1 * CELL)))
             self.light_unit_button = LightPirateButton(LIGHT_PIRATE_ICON, self.level,
                                                        LIGHT_PIRATE_ICON.get_rect(topright=(105 * CELL, 1 * CELL)))
             self.ranged_unit_button = RangedPirateButton(RANGED_PIRATE_ICON, self.level,
