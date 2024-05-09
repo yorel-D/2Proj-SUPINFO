@@ -18,16 +18,18 @@ class Game:
         easy = font.render("EASY", True, "white")
         normal = font.render("NORMAL", True, "white")
         hard = font.render("HARD", True, "white")
+        impossible = font.render("IMPOSSIBLE", True, "white")
         normal_rect = normal.get_rect(center=(SCREEN_WIDTH/2, SCREEN_HEIGHT/2))
         easy_rect = easy.get_rect(center = (SCREEN_WIDTH/2, SCREEN_HEIGHT/2 - 100))
         hard_rect = hard.get_rect(center=(SCREEN_WIDTH/2, SCREEN_HEIGHT/2 + 100))
-
+        impossible_rect = impossible.get_rect(center=(SCREEN_WIDTH/2, SCREEN_HEIGHT/2 + 200))
         while self.starting:
             m_pos = pygame.mouse.get_pos()
             self.screen.fill("#720E00")
             self.screen.blit(easy, easy_rect)
             self.screen.blit(normal, normal_rect)
             self.screen.blit(hard, hard_rect)
+            self.screen.blit(impossible, impossible_rect)
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     sys.exit()
@@ -40,6 +42,9 @@ class Game:
             if hard_rect.collidepoint(m_pos) and pygame.mouse.get_pressed()[0]:
                 self.starting = False
                 self.run("hard")
+            if impossible_rect.collidepoint(m_pos) and pygame.mouse.get_pressed()[0]:
+                self.starting = False
+                self.run("impossible")
 
 
             pygame.display.update()

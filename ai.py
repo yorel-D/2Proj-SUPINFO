@@ -22,6 +22,7 @@ class AI(pygame.sprite.Sprite):
         self.easy_list = [1, 1, 1, 1, 1, 2, 2, 2, 3, 3]
         self.normal_list = [1, 1, 1, 2, 2, 2, 3, 3, 3, random.randint(1, 4)]
         self.hard_list = [1, 1, 2, 2, 2, 2, 3, 3, 3, 3]
+        self.impossible_list = [1, 2, 2, 2, 2, 3, 3, 3, 3, 3]
         print(self.mode)
 
     def set_mode(self, mode):
@@ -140,4 +141,40 @@ class AI(pygame.sprite.Sprite):
                 self.state = "warriors"
             elif now - self.start_time > 60 * 100 * 8:
                 self.state = "elfs"
-
+        if self.mode == "impossible":
+            if self.state == "pirates":
+                if now - self.last_update > 3000 or self.last_update == 0:
+                    print("impossible spawn")
+                    self.last_update = now
+                    num = random.choice(self.impossible_list)
+                    if num == 1:
+                        unit = EnemyLightPirate(self.level)
+                    if num == 2:
+                        unit = EnemyRangedPirate(self.level)
+                    if num == 3:
+                        unit = EnemyHeavyPirate(self.level)
+            if self.state == "warriors":
+                if now - self.last_update > 3000 or self.last_update == 0:
+                    self.last_update = now
+                    num = random.choice(self.impossible_list)
+                    if num == 1:
+                        unit = EnemyLightWarrior(self.level)
+                    if num == 2:
+                        unit = EnemyRangedWarrior(self.level)
+                    if num == 3:
+                        unit = EnemyHeavyWarrior(self.level)
+            if self.state == "elfs":
+                if now - self.last_update > 3000 or self.last_update == 0:
+                    self.last_update = now
+                    num = random.choice(self.impossible_list)
+                    if num == 1:
+                        unit = EnemyLightElf(self.level)
+                    if num == 2:
+                        unit = EnemyRangedElf(self.level)
+                    if num == 3:
+                        unit = EnemyHeavyElf(self.level)
+            if 60 * 1000 * 2 < now - self.start_time < 60 * 1000 * 4:
+                self.state = "warriors"
+            elif now - self.start_time > 60 * 100 * 4:
+                self.state = "elfs"
+            
