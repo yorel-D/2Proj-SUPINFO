@@ -433,13 +433,14 @@ class ElfTurret(pygame.sprite.Sprite):
 
 
 class TurretButton(pygame.sprite.Sprite):
-    def __init__(self, image, level, rect, race="", active=False, price=0):
+    def __init__(self, image, level, rect, race="", active=False,Unclocker=False, price=0):
         super().__init__()
         self.image = image
         self.rect = rect
         self.race = race
         self.price = price
         self.level = level
+        self.Unclocker = Unclocker
         self.level.all_sprites.add(self)
         self.turret = None
         self.level.all_sprites.add(self)
@@ -459,7 +460,11 @@ class TurretButton(pygame.sprite.Sprite):
         for key, value in self.towers.items():
             if value == "unavailable":
                 self.towers[key] = "available"
-                #TODO : changer le prix de la tourelle
+                self.level.player.money -= self.price
+                print('-------------------------------------------')
+                print('1',self.towers)
+                print('-------------------------------------------')
+                print('2',self.towers.items())
                 break
         
 
@@ -467,9 +472,13 @@ class TurretButton(pygame.sprite.Sprite):
         m_pos = game.mouse.get_pos()
         if not self.is_clicked and (self.rect.collidepoint(m_pos) and game.mouse.get_pressed()[0]):
             self.is_clicked = True
+            print('!!!!!!!!!!!!!')
+            print(self.towers)
+
             return
         if self.is_clicked and (self.tower1.rect.collidepoint(m_pos) and game.mouse.get_pressed()[0]):
-            if self.towers[self.tower1] == "available":
+            if self.towers[self.tower1] == "available" and self.level.player.money >= self.price: 
+                self.level.player.money -= self.price
                 if self.race == "pirate":
                     if self.level.player.money >= self.price:
                         self.level.player.money -= self.price
@@ -491,7 +500,8 @@ class TurretButton(pygame.sprite.Sprite):
 
             self.is_clicked = False
         if self.is_clicked and (self.tower2.rect.collidepoint(m_pos) and game.mouse.get_pressed()[0]):
-            if self.towers[self.tower2] == "available":
+            if self.towers[self.tower2] == "available"and self.level.player.money >= self.price:
+                self.level.player.money -= self.price
                 if self.race == "pirate":
                     if self.level.player.money >= self.price:
                         turret = PirateTurret(self.level, self.tower2.rect.topleft)
@@ -511,7 +521,8 @@ class TurretButton(pygame.sprite.Sprite):
 
             self.is_clicked = False
         if self.is_clicked and (self.tower3.rect.collidepoint(m_pos) and game.mouse.get_pressed()[0]):
-            if self.towers[self.tower3] == "available":
+            if self.towers[self.tower3] == "available"and self.level.player.money >= self.price:
+                self.level.player.money -= self.price
                 if self.race == "pirate":
                     if self.level.player.money >= self.price:
                         turret = PirateTurret(self.level, self.tower3.rect.topleft)
@@ -529,7 +540,8 @@ class TurretButton(pygame.sprite.Sprite):
                         self.towers[self.tower3] = "unavailable"
             self.is_clicked = False
         if self.is_clicked and (self.tower4.rect.collidepoint(m_pos) and game.mouse.get_pressed()[0]):
-            if self.towers[self.tower4] == "available":
+            if self.towers[self.tower4] == "available" and self.level.player.money >= self.price:
+                self.level.player.money -= self.price 
                 if self.race == "pirate":
                     turret = PirateTurret(self.level, self.tower4.rect.topleft)
                     self.tower4.set_turret(turret)
@@ -542,8 +554,12 @@ class TurretButton(pygame.sprite.Sprite):
             self.towers[self.tower4] = "unavailable"
             self.is_clicked = False
         elif self.is_clicked and not self.rect.collidepoint(m_pos) and game.mouse.get_pressed()[0]:
-            self.check_click_to_unlock()
-            self.is_clicked = False
+            if self.Unclocker:
+                self.check_click_to_unlock()
+                self.is_clicked = False
+            else:
+                self.is_clicked = False
+
 
     def update(self, dt):
         if not self.active:
@@ -560,7 +576,6 @@ class TurretButton(pygame.sprite.Sprite):
                 self.image.set_alpha(255)
                 for tower in self.towers.keys():
                     tower.set_invisible()
-
 
 
 
@@ -584,6 +599,109 @@ class AvailableTurretSpot(pygame.sprite.Sprite):
     def set_invisible(self):
         self.image.set_alpha(0)
 
+class TurretButton(pygame.sprite.Sprite):
+    towers = None  # Variable de classe partagée entre toutes les instances de TurretButton
+    tower1 = None
+    tower2 = None
+    tower3 = None
+    tower4 = None
+
+    def __init__(self, image, level, rect, race="", active=False, Unclocker=False, price=0):
+        super().__init__()
+        self.image = image
+        self.rect = rect
+        self.race = race
+        self.price = price
+        self.level = level
+        self.Unclocker = Unclocker
+        self.level.all_sprites.add(self)
+        self.turret = None
+
+        # Initialiser les emplacements de tourelles si ce n'est pas déjà fait
+        if not TurretButton.towers:
+            TurretButton.tower1 = AvailableTurretSpot(self.level, 55, 270, 40, 40)
+            TurretButton.tower2 = AvailableTurretSpot(self.level, 87, 295, 40, 40)
+            TurretButton.tower3 = AvailableTurretSpot(self.level, 45, 350, 40, 40)
+            TurretButton.tower4 = AvailableTurretSpot(self.level, 0, 330, 40, 40)
+
+            TurretButton.towers = {
+                TurretButton.tower1: "available",
+                TurretButton.tower2: "unavailable",
+                TurretButton.tower3: "unavailable",
+                TurretButton.tower4: "unavailable"
+            }
+
+        self.is_clicked = False
+        self.active = active
+
+    def check_click_to_unlock(self):
+        """Débloque le premier emplacement indisponible si les fonds le permettent."""
+        unlocked = False
+        if self.level.player.money >= self.price:
+            for key, value in TurretButton.towers.items():
+                if value == "unavailable":
+                    TurretButton.towers[key] = "available"
+                    key.set_visible()
+                    self.level.player.money -= self.price
+                    unlocked = True
+                    break
+            if unlocked:
+                self.print_tower_status("Towers après déblocage:")
+
+    def check_click(self):
+        """Vérifie les clics pour le déblocage et la création des tourelles."""
+        m_pos = pygame.mouse.get_pos()
+        mouse_pressed = pygame.mouse.get_pressed()[0]
+
+        if not self.is_clicked and (self.rect.collidepoint(m_pos) and mouse_pressed):
+            self.is_clicked = True
+            self.print_tower_status("Bouton cliqué, état actuel des tours:")
+            return
+
+        # Création de tourelles sur les emplacements débloqués
+        for tower, status in TurretButton.towers.items():
+            if self.is_clicked and tower.rect.collidepoint(m_pos) and mouse_pressed:
+                if status == "available" and self.level.player.money >= self.price:
+                    turret = None
+                    if self.race == "pirate":
+                        turret = PirateTurret(self.level, tower.rect.topleft)
+                    elif self.race == "warrior":
+                        turret = WarriorTurret(self.level, tower.rect.topleft)
+                    elif self.race == "elf":
+                        turret = ElfTurret(self.level, tower.rect.topleft)
+
+                    if turret:
+                        self.level.player.money -= self.price
+                        tower.set_turret(turret)
+                        TurretButton.towers[tower] = "unavailable"
+                self.is_clicked = False
+                break
+
+        if self.is_clicked and not self.rect.collidepoint(m_pos) and mouse_pressed:
+            if self.Unclocker:
+                self.check_click_to_unlock()
+            self.is_clicked = False
+
+    def print_tower_status(self, message=""):
+        print("-------------------------------------------")
+        print(message, TurretButton.towers)
+        print("-------------------------------------------")
+
+    def update(self, dt):
+        if not self.active:
+            self.image.set_alpha(100)
+        elif self.active:
+            new_mouse_pos = pygame.mouse.get_pos()
+            self.check_click()
+            if self.is_clicked:
+                self.image.set_alpha(200)
+                for key, value in TurretButton.towers.items():
+                    if value == "available":
+                        key.set_visible()
+            else:
+                self.image.set_alpha(255)
+                for tower in TurretButton.towers.keys():
+                    tower.set_invisible()
 
 class PirateTurretButton(TurretButton):
     def __init__(self, image, sprite_group, rect):
@@ -591,7 +709,9 @@ class PirateTurretButton(TurretButton):
 
 class UnlockTurretPlacemant(TurretButton):
     def __init__(self, image, sprite_group, rect):
-        super().__init__(image, sprite_group, rect, race="", active=True, price=400)
+        super().__init__(image, sprite_group, rect, race="", Unclocker=True, active=True, price=400)
+
+# Exemple d'implémentation des tourelles (à adapter selon vos besoins)
 
 class WarriorTurretButton(TurretButton):
     def __init__(self, image, sprite_group, rect):
@@ -1503,3 +1623,4 @@ class CooldownBar(pygame.sprite.Sprite):
         self.image = game.transform.scale(self.image, (self.width, self.height))
         self.rect = self.image.get_rect(bottomleft=(self.button.rect.left - 1 * CELL, self.button.rect.bottomleft[1]))
         self.image.fill((0, 255, 0))
+
