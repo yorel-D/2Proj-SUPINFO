@@ -1305,12 +1305,13 @@ class PlayerRangedElf(PlayerRangedCombatUnit):
 
 
 class UnitButton(pygame.sprite.Sprite):
-    def __init__(self, image, level, rect, cooldown=1000):
+    def __init__(self, image, level, rect, cooldown=1000,unlocked=True):
         super().__init__()
         self.level = level
         self.image = image
         self.rect = rect
         self.active = True
+        self.unlocked = unlocked
         self.lastupdate = 0
         self.cooldown = cooldown
         self.cooldown_bar = CooldownBar(self, self.level)
@@ -1318,11 +1319,12 @@ class UnitButton(pygame.sprite.Sprite):
         self.race = None
         self.unit_type = None
         self.level.all_sprites.add(self)
-
+        print(self.active)
     def click(self):
         m_pos = pygame.mouse.get_pos()
         self.now = pygame.time.get_ticks()
-        if self.active and self.rect.collidepoint(m_pos) and pygame.mouse.get_pressed()[0]:
+        if self.active==True and self.rect.collidepoint(m_pos) and pygame.mouse.get_pressed()[0]:
+            print(self.active)
             if self.race == "pirate":
                 if self.unit_type == "light":
                     if self.level.player.money >= 50:
@@ -1336,10 +1338,15 @@ class UnitButton(pygame.sprite.Sprite):
                     if self.level.player.money >= 70:
                         self.level.player.money -= 70
                         player_ranged_pirate = PlayerRangedPirate(self.level)
-                elif self.unit_type == "hero" :
+                elif self.unit_type == "hero" and self.unlocked == True:
                     if self.level.player.money >= 110:
                         self.level.player.money -= 110
                         player_hero_pirate = PlayerHeroPirate(self.level)
+                
+                elif self.unit_type == "hero" and self.unlocked == False:
+                     if self.level.player.money >= 450:
+                        self.level.player.money -= 450
+                        self.unlocked = True
                     
 
             if self.race == "warrior":
@@ -1372,12 +1379,13 @@ class UnitButton(pygame.sprite.Sprite):
 
             self.lastupdate = self.now
             self.active = False
-        if self.now - self.lastupdate >= self.cooldown or self.cooldown == 0:
-            self.active = True
+        if self.unlocked:
+            if self.now - self.lastupdate >= self.cooldown or self.cooldown == 0:
+                self.active = True
 
     def update(self, dt):
         self.click()
-        if self.active:
+        if self.active and self.unlocked:
             self.image.set_alpha(255)
         else:
             self.image.set_alpha(128)
@@ -1406,7 +1414,7 @@ class LightPirateButton(UnitButton):
 
 class HeroPirateButton(UnitButton):
     def __init__(self, image, sprite_group, rect):
-        super().__init__(image, sprite_group, rect, cooldown=4500, )
+        super().__init__(image, sprite_group, rect, cooldown=4500, unlocked=False)
         self.race = "pirate"
         self.unit_type = "hero"
 
