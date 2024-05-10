@@ -8,13 +8,13 @@ class Player(pygame.sprite.Sprite):
         super().__init__()
         self.image = PLAYER_CASTLE_IMAGE
         self.level = level
-        self.xp =0
+        self.xp =20000000
         self.money = 2000000000
         self.money_text = MoneyText(str(int(self.money)), self.level)
         self.xp_text = ExpText (str(int(self.xp)), self.level)
         self.rect = self.image.get_rect(midleft=(-8 * CELL, SCREEN_HEIGHT / 2))
         self.max_health = 5000
-        self.health = 5000
+        self.health = 2000
         self.health_text = HealthText(str(int(self.health)), str(self.max_health), self.level, 2 * CELL, 58 * CELL)
         self.defense = 100
         self.last_money = 0

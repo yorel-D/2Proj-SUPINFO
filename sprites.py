@@ -21,9 +21,6 @@ class ActionBar(pygame.sprite.Sprite):
                                                          WARRIOR_TURRET_ICON.get_rect(topright=(115 * CELL, 9 * CELL)))
         self.elf_turret_button = ElfTurretButton(ELF_TURRET_ICON, self.level,
                                                  ELF_TURRET_ICON.get_rect(topright=(125 * CELL, 9 * CELL)))
-        #self.elf_turret_button.active = True # for testing
-        #c'est ici que les tourelle sont initialis?,et le # en haut permet de debloquer une tourrelle sans etre lvl 2 ou autre
-
 
         self.sell_button = SellButton(self.level, self.pirate_turret_button, self.warrior_turret_button,
                                       self.elf_turret_button)
@@ -432,153 +429,6 @@ class ElfTurret(pygame.sprite.Sprite):
         self.shoot()
 
 
-class TurretButton(pygame.sprite.Sprite):
-    def __init__(self, image, level, rect, race="", active=False,Unclocker=False, price=0):
-        super().__init__()
-        self.image = image
-        self.rect = rect
-        self.race = race
-        self.price = price
-        self.level = level
-        self.Unclocker = Unclocker
-        self.level.all_sprites.add(self)
-        self.turret = None
-        self.level.all_sprites.add(self)
-        self.tower1 = AvailableTurretSpot(self.level, 55, 270, 40, 40)
-        self.tower2 = AvailableTurretSpot(self.level, 87, 295, 40, 40)
-        self.tower3 = AvailableTurretSpot(self.level, 45, 350, 40, 40)
-        self.tower4 = AvailableTurretSpot(self.level, 0, 330, 40, 40)
-        # c'est ici que les cadre vert apparaissent
-        # ducoup faut faire un systeme de upgrade pour qu'ils apparaissent
-        self.towers = {self.tower1: "available", self.tower2: "unavailable", self.tower3: "unavailable",
-                       self.tower4: "unavailable"}
-
-        self.is_clicked = False
-        self.active = active
-
-    def check_click_to_unlock(self):
-        for key, value in self.towers.items():
-            if value == "unavailable":
-                self.towers[key] = "available"
-                self.level.player.money -= self.price
-                print('-------------------------------------------')
-                print('1',self.towers)
-                print('-------------------------------------------')
-                print('2',self.towers.items())
-                break
-        
-
-    def check_click(self):
-        m_pos = game.mouse.get_pos()
-        if not self.is_clicked and (self.rect.collidepoint(m_pos) and game.mouse.get_pressed()[0]):
-            self.is_clicked = True
-            print('!!!!!!!!!!!!!')
-            print(self.towers)
-
-            return
-        if self.is_clicked and (self.tower1.rect.collidepoint(m_pos) and game.mouse.get_pressed()[0]):
-            if self.towers[self.tower1] == "available" and self.level.player.money >= self.price: 
-                self.level.player.money -= self.price
-                if self.race == "pirate":
-                    if self.level.player.money >= self.price:
-                        self.level.player.money -= self.price
-                        turret = PirateTurret(self.level, self.tower1.rect.topleft)
-                        self.tower1.set_turret(turret)
-                        self.towers[self.tower1] = "unavailable"
-                elif self.race == "warrior":
-                    if self.level.player.money >= self.price:
-                        self.level.player.money -= self.price
-                        turret = WarriorTurret(self.level, self.tower1.rect.topleft)
-                        self.tower1.set_turret(turret)
-                        self.towers[self.tower1] = "unavailable"
-                elif self.race == "elf":
-                    if self.level.player.money >= self.price:
-                        self.level.player.money -= self.price
-                        turret = ElfTurret(self.level, self.tower1.rect.topleft)
-                        self.tower1.set_turret(turret)
-                        self.towers[self.tower1] = "unavailable"
-
-            self.is_clicked = False
-        if self.is_clicked and (self.tower2.rect.collidepoint(m_pos) and game.mouse.get_pressed()[0]):
-            if self.towers[self.tower2] == "available"and self.level.player.money >= self.price:
-                self.level.player.money -= self.price
-                if self.race == "pirate":
-                    if self.level.player.money >= self.price:
-                        turret = PirateTurret(self.level, self.tower2.rect.topleft)
-                        self.tower2.set_turret(turret)
-                        self.towers[self.tower2] = "unavailable"
-                elif self.race == "warrior":
-                    if self.level.player.money >= self.price:
-                        turret = WarriorTurret(self.level, self.tower2.rect.topleft)
-                        self.tower2.set_turret(turret)
-                        self.towers[self.tower2] = "unavailable"
-                elif self.race == "elf":
-                    if self.level.player.money >= self.price:
-                        turret = ElfTurret(self.level, self.tower2.rect.topleft)
-                        self.tower2.set_turret(turret)
-                        self.towers[self.tower2] = "unavailable"
-
-
-            self.is_clicked = False
-        if self.is_clicked and (self.tower3.rect.collidepoint(m_pos) and game.mouse.get_pressed()[0]):
-            if self.towers[self.tower3] == "available"and self.level.player.money >= self.price:
-                self.level.player.money -= self.price
-                if self.race == "pirate":
-                    if self.level.player.money >= self.price:
-                        turret = PirateTurret(self.level, self.tower3.rect.topleft)
-                        self.tower3.set_turret(turret)
-                        self.towers[self.tower3] = "unavailable"
-                elif self.race == "warrior":
-                    if self.level.player.money >= self.price:
-                        turret = WarriorTurret(self.level, self.tower3.rect.topleft)
-                        self.tower3.set_turret(turret)
-                        self.towers[self.tower3] = "unavailable"
-                elif self.race == "elf":
-                    if self.level.player.money >= self.price:
-                        turret = ElfTurret(self.level, self.tower3.rect.topleft)
-                        self.tower3.set_turret(turret)
-                        self.towers[self.tower3] = "unavailable"
-            self.is_clicked = False
-        if self.is_clicked and (self.tower4.rect.collidepoint(m_pos) and game.mouse.get_pressed()[0]):
-            if self.towers[self.tower4] == "available" and self.level.player.money >= self.price:
-                self.level.player.money -= self.price 
-                if self.race == "pirate":
-                    turret = PirateTurret(self.level, self.tower4.rect.topleft)
-                    self.tower4.set_turret(turret)
-                elif self.race == "warrior":
-                    turret = WarriorTurret(self.level, self.tower4.rect.topleft)
-                    self.tower4.set_turret(turret)
-                elif self.race == "elf":
-                    turret = ElfTurret(self.level, self.tower4.rect.topleft)
-                    self.tower4.set_turret(turret)
-            self.towers[self.tower4] = "unavailable"
-            self.is_clicked = False
-        elif self.is_clicked and not self.rect.collidepoint(m_pos) and game.mouse.get_pressed()[0]:
-            if self.Unclocker:
-                self.check_click_to_unlock()
-                self.is_clicked = False
-            else:
-                self.is_clicked = False
-
-
-    def update(self, dt):
-        if not self.active:
-            self.image.set_alpha(100)
-        elif self.active:
-            new_mouse_pos = game.mouse.get_pos()
-            self.check_click()
-            if self.is_clicked:
-                self.image.set_alpha(200)
-                for key, value in self.towers.items():
-                    if value == "available":
-                        key.set_visible()
-            else:
-                self.image.set_alpha(255)
-                for tower in self.towers.keys():
-                    tower.set_invisible()
-
-
-
 class AvailableTurretSpot(pygame.sprite.Sprite):
     def __init__(self, level, x_pos, y_pos, width, height):
         super().__init__()
@@ -605,6 +455,7 @@ class TurretButton(pygame.sprite.Sprite):
     tower2 = None
     tower3 = None
     tower4 = None
+    count = 1
 
     def __init__(self, image, level, rect, race="", active=False, Unclocker=False, price=0):
         super().__init__()
@@ -637,13 +488,15 @@ class TurretButton(pygame.sprite.Sprite):
     def check_click_to_unlock(self):
         """Débloque le premier emplacement indisponible si les fonds le permettent."""
         unlocked = False
-        if self.level.player.money >= self.price:
-            for key, value in TurretButton.towers.items():
+
+        if self.level.player.money >= self.price and TurretButton.count < 4:
+            for key, value in list(TurretButton.towers.items())[TurretButton.count:]:
                 if value == "unavailable":
                     TurretButton.towers[key] = "available"
                     key.set_visible()
                     self.level.player.money -= self.price
                     unlocked = True
+                    TurretButton.count += 1
                     break
             if unlocked:
                 self.print_tower_status("Towers après déblocage:")
@@ -1483,10 +1336,11 @@ class UnitButton(pygame.sprite.Sprite):
                     if self.level.player.money >= 70:
                         self.level.player.money -= 70
                         player_ranged_pirate = PlayerRangedPirate(self.level)
-                elif self.unit_type == "hero":
+                elif self.unit_type == "hero" :
                     if self.level.player.money >= 110:
                         self.level.player.money -= 110
                         player_hero_pirate = PlayerHeroPirate(self.level)
+                    
 
             if self.race == "warrior":
                 if self.unit_type == "light":
@@ -1552,7 +1406,7 @@ class LightPirateButton(UnitButton):
 
 class HeroPirateButton(UnitButton):
     def __init__(self, image, sprite_group, rect):
-        super().__init__(image, sprite_group, rect, cooldown=4500)
+        super().__init__(image, sprite_group, rect, cooldown=4500, )
         self.race = "pirate"
         self.unit_type = "hero"
 

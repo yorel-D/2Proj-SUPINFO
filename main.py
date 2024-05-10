@@ -56,26 +56,27 @@ class Game:
                 if event.type == pygame.QUIT:
                     sys.exit()
 
-            if self.game_over:
+            if self.level.end_game() or self.level.game_over():
                 self.end()
                 break
-            if self.game_won:
-                self.end()
-                break
-
+            
             dt = self.clock.tick() / 1000
             self.level.run(dt, mode)
             pygame.display.update()
 
     def end(self):
+        font = pygame.font.SysFont(None, 100)
+        if self.level.game_over():
+            text = font.render("GAME OVER", True, "white")
+        else:
+            text = font.render("YOU WIN", True, "white")
+        text_rect = text.get_rect(center=(SCREEN_WIDTH/2, SCREEN_HEIGHT/2))
         while True:
+            self.screen.fill("#720E00")
+            self.screen.blit(text, text_rect)
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     sys.exit()
-            if self.game_over:
-                self.screen.blit(GAME_OVER, (0, 0))
-            elif self.game_won:
-                self.screen.blit(GAME_WON, (0, 0))
             pygame.display.update()
 
 
