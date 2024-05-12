@@ -1294,7 +1294,7 @@ class PlayerRangedWarrior(PlayerRangedCombatUnit):
 class PlayerHeroWarrior(PlayerRangedCombatUnit):
     def __init__(self, level):
         super().__init__(level, PLAYER_HERO_GOLEM_WALIKNG, PLAYER_HERO_GOLEM_ATTACKING, PLAYER_HERO_GOLEM_IDLE,
-                         220, 25, 15, 55, 3)
+                         220, 25, 20, 40, 3)
 
 
 class PlayerLightFairy(PlayerCloseCombatUnit):
@@ -1378,10 +1378,15 @@ class UnitButton(pygame.sprite.Sprite):
                     if self.level.player.money >= 120:
                         self.level.player.money -= 120
                         player_ranged_golem = PlayerRangedWarrior(self.level)
-                elif self.unit_type == "hero":
+                elif self.unit_type == "hero" and self.unlocked == True:
                     if self.level.player.money >= 180:
                         self.level.player.money -= 180
                         player_hero_golem = PlayerHeroWarrior(self.level)
+                
+                elif self.unit_type == "hero" and self.unlocked == False:
+                     if self.level.player.money >= 450:
+                        self.level.player.money -= 450
+                        self.unlocked = True
 
             if self.race == "elf":
                 if self.unit_type == "light":
@@ -1396,10 +1401,15 @@ class UnitButton(pygame.sprite.Sprite):
                     if self.level.player.money >= 180:
                         self.level.player.money -= 180
                         player_ranged_elf = PlayerRangedFairy(self.level)
-                if self.unit_type == "hero":
+                if self.unit_type == "hero" and self.unlocked == True:
                     if self.level.player.money >= 240:
                         self.level.player.money -= 240
                         player_heavy_elf = PlayerHeroFairy(self.level)
+                
+                elif self.unit_type == "hero" and self.unlocked == False:
+                     if self.level.player.money >= 450:
+                        self.level.player.money -= 450
+                        self.unlocked = True
 
             self.lastupdate = self.now
             self.active = False
@@ -1465,7 +1475,7 @@ class HeavyWarriorButton(UnitButton):
 
 class HeroWarriorButton(UnitButton):
     def __init__(self, image, sprite_group, rect):
-        super().__init__(image, sprite_group, rect, cooldown=4500)
+        super().__init__(image, sprite_group, rect, cooldown=4500, unlocked=False)
         self.race = "golem"
         self.unit_type = "hero"
 
@@ -1485,7 +1495,7 @@ class HeavyFairyButton(UnitButton):
 
 class HeroFairyButton(UnitButton):
     def __init__(self, image, sprite_group, rect):
-        super().__init__(image, sprite_group, rect, cooldown=4500)
+        super().__init__(image, sprite_group, rect, cooldown=4500, unlocked=False)
         self.race = "elf"
         self.unit_type = "hero"
 
