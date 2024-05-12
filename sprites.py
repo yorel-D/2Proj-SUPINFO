@@ -1354,10 +1354,15 @@ class UnitButton(pygame.sprite.Sprite):
                     if self.level.player.money >= 70:
                         self.level.player.money -= 70
                         player_ranged_satyr = PlayerRangedPirate(self.level)
-                elif self.unit_type == "hero":
+                elif self.unit_type == "hero" and self.unlocked == True:
                     if self.level.player.money >= 110:
                         self.level.player.money -= 110
                         player_hero_satyr = PlayerHeroPirate(self.level)
+                
+                elif self.unit_type == "hero" and self.unlocked == False:
+                     if self.level.player.money >= 450:
+                        self.level.player.money -= 450
+                        self.unlocked = True
                     
 
             if self.race == "golem":
@@ -1433,7 +1438,7 @@ class LightPirateButton(UnitButton):
 
 class HeroPirateButton(UnitButton):
     def __init__(self, image, sprite_group, rect):
-        super().__init__(image, sprite_group, rect, cooldown=4500)
+        super().__init__(image, sprite_group, rect, cooldown=4500, unlocked=False)
         self.race = "satyr"
         self.unit_type = "hero"
 
