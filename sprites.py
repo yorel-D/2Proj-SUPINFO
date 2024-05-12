@@ -50,8 +50,8 @@ class ActionBar(pygame.sprite.Sprite):
                                                       RANGED_ELF_ICON.get_rect(topright=(105 * CELL, 1 * CELL)))
             self.heavy_unit_button = HeavyFairyButton(HEAVY_ELF_ICON, self.level,
                                                     HEAVY_ELF_ICON.get_rect(topright=(115 * CELL, 1 * CELL)))
-            self.hero_unit_button = HeroPirateButton(HERO_SATYR_ICON, self.level, # ici
-                                                       HERO_SATYR_ICON.get_rect(topright=(125 * CELL, 1 * CELL)))
+            self.hero_unit_button = HeroFairyButton(HERO_ELF_ICON, self.level, # ici
+                                                       HERO_ELF_ICON.get_rect(topright=(125 * CELL, 1 * CELL)))
 
 
 
@@ -244,6 +244,9 @@ class UpgradeButton(pygame.sprite.Sprite):
                         self.action_bar.heavy_unit_button = HeavyFairyButton(HEAVY_ELF_ICON, self.action_bar.level,
                                                                            HEAVY_ELF_ICON.get_rect(
                                                                                topright=(115 * CELL, 1 * CELL)))
+                        self.action_bar.heavy_unit_button = HeroFairyButton(HERO_ELF_ICON, self.action_bar.level,
+                                                                           HERO_ELF_ICON.get_rect(
+                                                                               topright=(125 * CELL, 1 * CELL)))
                         self.action_bar.elf_turret_button.active = True
                         self.state = "elfs"
                 if self.state == "satyrs":
@@ -1311,6 +1314,11 @@ class PlayerRangedFairy(PlayerRangedCombatUnit):
         super().__init__(level, PLAYER_RANGED_ELF_WALKING, PLAYER_RANGED_ELF_ATTACKING, PLAYER_RANGED_ELF_IDLE, 130, 23,
                          14, 60, 3)
 
+class PlayerHeroFairy(PlayerCloseCombatUnit):
+    def __init__(self, level):
+        super().__init__(level, PLAYER_HERO_ELF_WALKING, PLAYER_HERO_ELF_ATTACKING, PLAYER_HERO_ELF_IDLE, 240, 23,
+                         32, 44)
+
 
 class UnitButton(pygame.sprite.Sprite):
     def __init__(self, image, level, rect, cooldown=1000,unlocked=True):
@@ -1383,6 +1391,10 @@ class UnitButton(pygame.sprite.Sprite):
                     if self.level.player.money >= 180:
                         self.level.player.money -= 180
                         player_ranged_elf = PlayerRangedFairy(self.level)
+                if self.unit_type == "hero":
+                    if self.level.player.money >= 240:
+                        self.level.player.money -= 240
+                        player_heavy_elf = PlayerHeroFairy(self.level)
 
             self.lastupdate = self.now
             self.active = False
@@ -1465,6 +1477,12 @@ class HeavyFairyButton(UnitButton):
         super().__init__(image, sprite_group, rect, cooldown=4500)
         self.race = "elf"
         self.unit_type = "heavy"
+
+class HeroFairyButton(UnitButton):
+    def __init__(self, image, sprite_group, rect):
+        super().__init__(image, sprite_group, rect, cooldown=4500)
+        self.race = "elf"
+        self.unit_type = "hero"
 
 
 class RangedFairyButton(UnitButton):

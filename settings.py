@@ -94,6 +94,13 @@ PLAYER_LIGHT_ELF_ATTACKING = [game.transform.scale(image, (CELL * 10, CELL * 10)
 PLAYER_LIGHT_ELF_IDLE = [game.image.load(f"Resources/Fairy_03__IDLE_00{i}.png").convert_alpha() for i in range(10)]
 PLAYER_LIGHT_ELF_IDLE = [game.transform.scale(image, (CELL * 10, CELL * 10)) for image in PLAYER_LIGHT_ELF_IDLE]
 
+PLAYER_HERO_ELF_WALKING = [game.image.load(f"Resources/Knight_03__WALK_00{i}.png").convert_alpha() for i in range(10)]
+PLAYER_HERO_ELF_WALKING = [game.transform.scale(image, (CELL * 10, CELL * 10)) for image in PLAYER_HERO_ELF_WALKING]
+PLAYER_HERO_ELF_ATTACKING = [game.image.load(f"Resources/Knight_03__ATTACK_00{i}.png").convert_alpha() for i in range(10)]
+PLAYER_HERO_ELF_ATTACKING = [game.transform.scale(image, (CELL * 10, CELL * 10)) for image in PLAYER_HERO_ELF_ATTACKING]
+PLAYER_HERO_ELF_IDLE = [game.image.load(f"Resources/Knight_03__IDLE_00{i}.png").convert_alpha() for i in range(10)]
+PLAYER_HERO_ELF_IDLE = [game.transform.scale(image, (CELL * 10, CELL * 10)) for image in PLAYER_HERO_ELF_IDLE]
+
 
 
 PLAYER_RANGED_SATYR_BULLET = game.image.load("Resources/shot.png")
@@ -166,6 +173,8 @@ HEAVY_ELF_ICON = game.image.load("Resources/heavy_fairy_icon.png").convert_alpha
 HEAVY_ELF_ICON = game.transform.scale(HEAVY_ELF_ICON, (7 * CELL, 7 * CELL))
 RANGED_ELF_ICON = game.image.load("Resources/light_fairy_icon.png").convert_alpha()
 RANGED_ELF_ICON = game.transform.scale(RANGED_ELF_ICON, (7 * CELL, 7 * CELL))
+HERO_ELF_ICON = game.image.load("Resources/hero_elf_icon.png").convert_alpha()
+HERO_ELF_ICON = game.transform.scale(HERO_ELF_ICON, (7 * CELL, 7 * CELL))
 SATYR_TURRET_ICON = game.image.load("Resources/satyr_turret_icon.png").convert_alpha()
 SATYR_TURRET_ICON = game.transform.scale(SATYR_TURRET_ICON, (7 * CELL, 7 * CELL))
 GOLEM_TURRET_ICON = game.image.load("Resources/golem_turret_icon.png").convert_alpha()
