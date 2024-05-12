@@ -46,6 +46,8 @@ class AI(pygame.sprite.Sprite):
                         unit = EnemyRangedPirate(self.level)
                     if num == 3:
                         unit = EnemyHeavyPirate(self.level)
+                    if num == 4:
+                        unit = EnemyHeroPirate(self.level)
             elif self.state == "golems":
                 if now - self.last_update > 6500 or self.last_update == 0:
                     self.last_update = now
@@ -56,6 +58,8 @@ class AI(pygame.sprite.Sprite):
                         unit = EnemyRangedWarrior(self.level)
                     if num == 3:
                         unit = EnemyHeavyWarrior(self.level)
+                    if num == 4:
+                        unit = EnemyHeroWarrior(self.level)
             elif self.state == "elfs":
                 if now - self.last_update > 6500 or self.last_update == 0:
                     self.last_update = now

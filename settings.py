@@ -64,11 +64,11 @@ PLAYER_RANGED_GOLEM_ATTACKING = [game.transform.scale(image, (CELL * 10, CELL * 
 PLAYER_RANGED_GOLEM_IDLE = [game.image.load(f"Resources/2_Golem_Idle_{i:03d}.png").convert_alpha() for i in range(18)]
 PLAYER_RANGED_GOLEM_IDLE = [game.transform.scale(image, (CELL * 10, CELL * 10)) for image in PLAYER_RANGED_GOLEM_IDLE]
 
-PLAYER_HERO_GOLEM_WALIKNG = [game.image.load(f"Resources/0_Golem_Walking_{i:03d}.png").convert_alpha() for i in range(24)]
+PLAYER_HERO_GOLEM_WALIKNG = [game.image.load(f"Resources/Knight_01__WALK_{i:03d}.png").convert_alpha() for i in range(10)]
 PLAYER_HERO_GOLEM_WALIKNG = [game.transform.scale(image, (CELL * 10, CELL * 10)) for image in PLAYER_HERO_GOLEM_WALIKNG]
-PLAYER_HERO_GOLEM_ATTACKING = [game.image.load(f"Resources/2_Golem_Slashing_{i:03d}.png").convert_alpha() for i in range(12)]
+PLAYER_HERO_GOLEM_ATTACKING = [game.image.load(f"Resources/Knight_01__ATTACK_{i:03d}.png").convert_alpha() for i in range(10)]
 PLAYER_HERO_GOLEM_ATTACKING = [game.transform.scale(image, (CELL * 10, CELL * 10)) for image in PLAYER_HERO_GOLEM_ATTACKING]
-PLAYER_HERO_GOLEM_IDLE = [game.image.load(f"Resources/2_Golem_Idle_{i:03d}.png").convert_alpha() for i in range(18)]
+PLAYER_HERO_GOLEM_IDLE = [game.image.load(f"Resources/Knight_01__IDLE_{i:03d}.png").convert_alpha() for i in range(10)]
 PLAYER_HERO_GOLEM_IDLE = [game.transform.scale(image, (CELL * 10, CELL * 10)) for image in PLAYER_HERO_GOLEM_IDLE]
 
 
@@ -128,6 +128,10 @@ ENEMY_RANGED_GOLEM_WALKING = [game.transform.flip(image, True, False) for image 
 ENEMY_RANGED_GOLEM_ATTACKING = [game.transform.flip(image, True, False) for image in PLAYER_RANGED_GOLEM_ATTACKING]
 ENEMY_RANGED_GOLEM_IDLE = [game.transform.flip(image, True, False) for image in PLAYER_RANGED_GOLEM_IDLE]
 
+ENEMY_HERO_GOLEM_WALKING = [game.transform.flip(image, True, False) for image in PLAYER_HERO_GOLEM_WALIKNG]
+ENEMY_HERO_GOLEM_ATTACKING = [game.transform.flip(image, True, False) for image in PLAYER_HERO_GOLEM_ATTACKING]
+ENEMY_HERO_GOLEM_IDLE = [game.transform.flip(image, True, False) for image in PLAYER_HERO_GOLEM_IDLE]
+
 ENEMY_LIGHT_ELF_WALKING = [game.transform.flip(image, True, False) for image in PLAYER_LIGHT_ELF_WALKING]
 ENEMY_LIGHT_ELF_ATTACKING = [game.transform.flip(image, True, False) for image in PLAYER_LIGHT_ELF_ATTACKING]
 ENEMY_LIGHT_ELF_IDLE = [game.transform.flip(image, True, False) for image in PLAYER_LIGHT_ELF_IDLE]
@@ -154,6 +158,8 @@ HEAVY_GOLEM_ICON = game.image.load("Resources/heavy_golem_icon.png").convert_alp
 HEAVY_GOLEM_ICON = game.transform.scale(HEAVY_GOLEM_ICON, (7 * CELL, 7 * CELL))
 RANGED_GOLEM_ICON = game.image.load("Resources/ranged_golem_icon.png").convert_alpha()
 RANGED_GOLEM_ICON = game.transform.scale(RANGED_GOLEM_ICON, (7 * CELL, 7 * CELL))
+HERO_GOLEM_ICON = game.image.load("Resources/hero_golem_icon.png").convert_alpha()
+HERO_GOLEM_ICON = game.transform.scale(HERO_GOLEM_ICON, (7 * CELL, 7 * CELL))
 LIGHT_ELF_ICON = game.image.load("Resources/ranged_fairy_icon.png").convert_alpha()
 LIGHT_ELF_ICON = game.transform.scale(LIGHT_ELF_ICON, (7 * CELL, 7 * CELL))
 HEAVY_ELF_ICON = game.image.load("Resources/heavy_fairy_icon.png").convert_alpha()
