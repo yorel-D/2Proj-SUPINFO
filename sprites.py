@@ -1421,7 +1421,7 @@ class LightPirateButton(UnitButton):
 
 class HeroPirateButton(UnitButton):
     def __init__(self, image, sprite_group, rect):
-        super().__init__(image, sprite_group, rect, cooldown=4500, unlocked=False)
+        super().__init__(image, sprite_group, rect, cooldown=4500)
         self.race = "satyr"
         self.unit_type = "hero"
 
