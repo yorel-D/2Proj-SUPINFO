@@ -20,7 +20,7 @@ class Level:
         self.ai = AI(self)
         self.ai_sprites.add(self.ai)
         self.all_sprites.add(self.player, self.ai)
-        self.action_bar = ActionBar(self, "pirates")
+        self.action_bar = ActionBar(self, "satyrs")
 
 
     def run(self, dt, mode):

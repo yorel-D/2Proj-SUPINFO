@@ -16,7 +16,7 @@ class AI(pygame.sprite.Sprite):
         self.max_health = 5000
         self.health_text = HealthText(str(int(self.health)), str(self.max_health), self.level, 120*CELL, 58 * CELL)
         self.defense = 100
-        self.state = "pirates"
+        self.state = "satyrs"
         self.start_time = pygame.time.get_ticks()
         self.last_update = 0
         self.easy_list = [1, 1, 1, 1, 1, 2, 2, 2, 3, 3]
@@ -36,7 +36,7 @@ class AI(pygame.sprite.Sprite):
         # Log current state and mode for debugging
         
         if self.mode == "easy":
-            if self.state == "pirates":
+            if self.state == "satyrs":
                 if now - self.last_update > 6500 or self.last_update == 0:
                     self.last_update = now
                     num = random.choice(self.easy_list)
@@ -46,7 +46,7 @@ class AI(pygame.sprite.Sprite):
                         unit = EnemyRangedPirate(self.level)
                     if num == 3:
                         unit = EnemyHeavyPirate(self.level)
-            elif self.state == "warriors":
+            elif self.state == "golems":
                 if now - self.last_update > 6500 or self.last_update == 0:
                     self.last_update = now
                     num = random.choice(self.easy_list)
@@ -56,7 +56,7 @@ class AI(pygame.sprite.Sprite):
                         unit = EnemyRangedWarrior(self.level)
                     if num == 3:
                         unit = EnemyHeavyWarrior(self.level)
-            elif self.state == "elfs":
+            elif self.state == "fairys":
                 if now - self.last_update > 6500 or self.last_update == 0:
                     self.last_update = now
                     num = random.choice(self.easy_list)
@@ -67,12 +67,12 @@ class AI(pygame.sprite.Sprite):
                     if num == 3:
                         unit = EnemyHeavyElf(self.level)
             if 60 * 1000 * 8 < now - self.start_time < 60 * 1000 * 16:
-                self.state = "warriors"
+                self.state = "golems"
             elif now - self.start_time >= 60 * 1000 * 16:
-                self.state = "elfs"
+                self.state = "fairys"
         
         elif self.mode == "normal":
-            if self.state == "pirates":
+            if self.state == "satyrs":
                 if now - self.last_update > 5000 or self.last_update == 0:
                     self.last_update = now
                     num = random.choice(self.normal_list)
@@ -82,7 +82,7 @@ class AI(pygame.sprite.Sprite):
                         unit = EnemyRangedPirate(self.level)
                     if num == 3:
                         unit = EnemyHeavyPirate(self.level)
-            elif self.state == "warriors":
+            elif self.state == "golems":
                 if now - self.last_update > 5000 or self.last_update == 0:
                     self.last_update = now
                     num = random.choice(self.normal_list)
@@ -92,7 +92,7 @@ class AI(pygame.sprite.Sprite):
                         unit = EnemyRangedWarrior(self.level)
                     if num == 3:
                         unit = EnemyHeavyWarrior(self.level)
-            elif self.state == "elfs":
+            elif self.state == "fairys":
                 if now - self.last_update > 5000 or self.last_update == 0:
                     self.last_update = now
                     num = random.choice(self.normal_list)
@@ -103,12 +103,12 @@ class AI(pygame.sprite.Sprite):
                     if num == 3:
                         unit = EnemyHeavyElf(self.level)
             if 60 * 1000 * 6 < now - self.start_time < 60 * 1000 * 12:
-                self.state = "warriors"
+                self.state = "golems"
             elif now - self.start_time >= 60 * 1000 * 12:
-                self.state = "elfs"
+                self.state = "fairys"
         
         elif self.mode == "hard":
-            if self.state == "pirates":
+            if self.state == "satyrs":
                 if now - self.last_update > 4000 or self.last_update == 0:
                     self.last_update = now
                     num = random.choice(self.hard_list)
@@ -118,7 +118,7 @@ class AI(pygame.sprite.Sprite):
                         unit = EnemyRangedPirate(self.level)
                     if num == 3:
                         unit = EnemyHeavyPirate(self.level)
-            elif self.state == "warriors":
+            elif self.state == "golems":
                 if now - self.last_update > 4000 or self.last_update == 0:
                     self.last_update = now
                     num = random.choice(self.hard_list)
@@ -128,7 +128,7 @@ class AI(pygame.sprite.Sprite):
                         unit = EnemyRangedWarrior(self.level)
                     if num == 3:
                         unit = EnemyHeavyWarrior(self.level)
-            elif self.state == "elfs":
+            elif self.state == "fairys":
                 if now - self.last_update > 4000 or self.last_update == 0:
                     self.last_update = now
                     num = random.choice(self.hard_list)
@@ -139,12 +139,12 @@ class AI(pygame.sprite.Sprite):
                     if num == 3:
                         unit = EnemyHeavyElf(self.level)
             if 60 * 1000 * 4 < now - self.start_time < 60 * 1000 * 8:
-                self.state = "warriors"
+                self.state = "golems"
             elif now - self.start_time >= 60 * 1000 * 8:
-                self.state = "elfs"
+                self.state = "fairys"
         
         elif self.mode == "impossible":
-            if self.state == "pirates":
+            if self.state == "satyrs":
                 if now - self.last_update > 3000 or self.last_update == 0:
                     self.last_update = now
                     num = random.choice(self.impossible_list)
@@ -154,7 +154,7 @@ class AI(pygame.sprite.Sprite):
                         unit = EnemyRangedPirate(self.level)
                     if num == 3:
                         unit = EnemyHeavyPirate(self.level)
-            elif self.state == "warriors":
+            elif self.state == "golems":
                 if now - self.last_update > 3000 or self.last_update == 0:
                     self.last_update = now
                     num = random.choice(self.impossible_list)
@@ -164,7 +164,7 @@ class AI(pygame.sprite.Sprite):
                         unit = EnemyRangedWarrior(self.level)
                     if num == 3:
                         unit = EnemyHeavyWarrior(self.level)
-            elif self.state == "elfs":
+            elif self.state == "fairys":
                 if now - self.last_update > 3000 or self.last_update == 0:
                     self.last_update = now
                     num = random.choice(self.impossible_list)
@@ -175,6 +175,6 @@ class AI(pygame.sprite.Sprite):
                     if num == 3:
                         unit = EnemyHeavyElf(self.level)
             if 60 * 1000 * 2 < now - self.start_time < 60 * 1000 * 4:
-                self.state = "warriors"
+                self.state = "golems"
             elif now - self.start_time >= 60 * 1000 * 4:
-                self.state = "elfs"
+                self.state = "fairys"

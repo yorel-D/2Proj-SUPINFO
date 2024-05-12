@@ -15,43 +15,43 @@ class ActionBar(pygame.sprite.Sprite):
         self.level.all_sprites.add(self)
         self.unlock_turret_placemant = UnlockTurretPlacemant(TURRET_UPGRADE_ICON, self.level,
                                                              TURRET_UPGRADE_ICON.get_rect(topright=(95 * CELL, 9 * CELL)))
-        self.pirate_turret_button = PirateTurretButton(PIRATE_TURRET_ICON, self.level,
-                                                       PIRATE_TURRET_ICON.get_rect(topright=(105 * CELL, 9 * CELL)))
-        self.warrior_turret_button = WarriorTurretButton(WARRIOR_TURRET_ICON, self.level,
-                                                         WARRIOR_TURRET_ICON.get_rect(topright=(115 * CELL, 9 * CELL)))
-        self.elf_turret_button = ElfTurretButton(ELF_TURRET_ICON, self.level,
-                                                 ELF_TURRET_ICON.get_rect(topright=(125 * CELL, 9 * CELL)))
+        self.satyr_turret_button = PirateTurretButton(SATYR_TURRET_ICON, self.level,
+                                                       SATYR_TURRET_ICON.get_rect(topright=(105 * CELL, 9 * CELL)))
+        self.golem_turret_button = WarriorTurretButton(GOLEM_TURRET_ICON, self.level,
+                                                         GOLEM_TURRET_ICON.get_rect(topright=(115 * CELL, 9 * CELL)))
+        self.fairy_turret_button = ElfTurretButton(FAIRY_TURRET_ICON, self.level,
+                                                 FAIRY_TURRET_ICON.get_rect(topright=(125 * CELL, 9 * CELL)))
 
-        self.sell_button = SellButton(self.level, self.pirate_turret_button, self.warrior_turret_button,
-                                      self.elf_turret_button)
+        self.sell_button = SellButton(self.level, self.satyr_turret_button, self.golem_turret_button,
+                                      self.fairy_turret_button)
         self.upgrade_button = UpgradeButton(self)
-        if self.state == "pirates":
-            self.light_unit_button = LightPirateButton(LIGHT_PIRATE_ICON, self.level,
-                                                       LIGHT_PIRATE_ICON.get_rect(topright=(95 * CELL, 1 * CELL)))
-            self.ranged_unit_button = RangedPirateButton(RANGED_PIRATE_ICON, self.level,
-                                                         RANGED_PIRATE_ICON.get_rect(topright=(105 * CELL, 1 * CELL)))
-            self.heavy_unit_button = HeavyPirateButton(HEAVY_PIRATE_ICON, self.level,
-                                                       HEAVY_PIRATE_ICON.get_rect(topright=(115 * CELL, 1 * CELL)))
-            self.hero_unit_button = HeroPirateButton(HERO_PIRATE_ICON, self.level, # ici
-                                                       HERO_PIRATE_ICON.get_rect(topright=(125 * CELL, 1 * CELL)))
-        elif self.state == "warriors":
-            self.light_unit_button = LightWarriorButton(LIGHT_WARRIOR_ICON, self.level,
-                                                        LIGHT_WARRIOR_ICON.get_rect(topright=(95 * CELL, 1 * CELL)))
-            self.ranged_unit_button = RangedWarriorButton(RANGED_WARRIOR_ICON, self.level,
-                                                          RANGED_WARRIOR_ICON.get_rect(topright=(105 * CELL, 1 * CELL)))
-            self.heavy_unit_button = HeavyWarriorButton(HEAVY_WARRIOR_ICON, self.level,
-                                                        HEAVY_WARRIOR_ICON.get_rect(topright=(115 * CELL, 1 * CELL)))
-            self.hero_unit_button = HeroPirateButton(HERO_PIRATE_ICON, self.level, # ici
-                                                       HERO_PIRATE_ICON.get_rect(topright=(125 * CELL, 1 * CELL)))
-        elif self.state == "elfs":
-            self.light_unit_button = LightElfButton(LIGHT_ELF_ICON, self.level,
-                                                    LIGHT_ELF_ICON.get_rect(topright=(95 * CELL, 1 * CELL)))
-            self.ranged_unit_button = RangedElfButton(RANGED_ELF_ICON, self.level,
-                                                      RANGED_ELF_ICON.get_rect(topright=(105 * CELL, 1 * CELL)))
-            self.heavy_unit_button = HeavyElfButton(HEAVY_ELF_ICON, self.level,
-                                                    HEAVY_ELF_ICON.get_rect(topright=(115 * CELL, 1 * CELL)))
-            self.hero_unit_button = HeroPirateButton(HERO_PIRATE_ICON, self.level, # ici
-                                                       HERO_PIRATE_ICON.get_rect(topright=(125 * CELL, 1 * CELL)))
+        if self.state == "satyrs":
+            self.light_unit_button = LightPirateButton(LIGHT_SATYR_ICON, self.level,
+                                                       LIGHT_SATYR_ICON.get_rect(topright=(95 * CELL, 1 * CELL)))
+            self.ranged_unit_button = RangedPirateButton(RANGED_SATYR_ICON, self.level,
+                                                         RANGED_SATYR_ICON.get_rect(topright=(105 * CELL, 1 * CELL)))
+            self.heavy_unit_button = HeavyPirateButton(HEAVY_SATYR_ICON, self.level,
+                                                       HEAVY_SATYR_ICON.get_rect(topright=(115 * CELL, 1 * CELL)))
+            self.hero_unit_button = HeroPirateButton(HERO_SATYR_ICON, self.level, # ici
+                                                       HERO_SATYR_ICON.get_rect(topright=(125 * CELL, 1 * CELL)))
+        elif self.state == "golems":
+            self.light_unit_button = LightWarriorButton(LIGHT_GOLEM_ICON, self.level,
+                                                        LIGHT_GOLEM_ICON.get_rect(topright=(95 * CELL, 1 * CELL)))
+            self.ranged_unit_button = RangedWarriorButton(RANGED_GOLEM_ICON, self.level,
+                                                          RANGED_GOLEM_ICON.get_rect(topright=(105 * CELL, 1 * CELL)))
+            self.heavy_unit_button = HeavyWarriorButton(HEAVY_GOLEM_ICON, self.level,
+                                                        HEAVY_GOLEM_ICON.get_rect(topright=(115 * CELL, 1 * CELL)))
+            self.hero_unit_button = HeroPirateButton(HERO_SATYR_ICON, self.level, # ici
+                                                       HERO_SATYR_ICON.get_rect(topright=(125 * CELL, 1 * CELL)))
+        elif self.state == "fairys":
+            self.light_unit_button = LightElfButton(LIGHT_FAIRY_ICON, self.level,
+                                                    LIGHT_FAIRY_ICON.get_rect(topright=(95 * CELL, 1 * CELL)))
+            self.ranged_unit_button = RangedElfButton(RANGED_FAIRY_ICON, self.level,
+                                                      RANGED_FAIRY_ICON.get_rect(topright=(105 * CELL, 1 * CELL)))
+            self.heavy_unit_button = HeavyElfButton(HEAVY_FAIRY_ICON, self.level,
+                                                    HEAVY_FAIRY_ICON.get_rect(topright=(115 * CELL, 1 * CELL)))
+            self.hero_unit_button = HeroPirateButton(HERO_SATYR_ICON, self.level, # ici
+                                                       HERO_SATYR_ICON.get_rect(topright=(125 * CELL, 1 * CELL)))
 
 
 
@@ -213,17 +213,17 @@ class UpgradeButton(pygame.sprite.Sprite):
         self.image = UPGRADE_BUTTON
         self.rect = self.image.get_rect(topleft=(60 * CELL, 3 * CELL))
         self.action_bar.level.all_sprites.add(self)
-        self.state = "pirates"
+        self.state = "satyrs"
         self.active = True
         self.last_update = 0
 
     def check_click(self):
-        if not self.state == "elfs":
+        if not self.state == "fairys":
             m_pos = pygame.mouse.get_pos()
             now = game.time.get_ticks()
             if now - self.last_update > 5000:
                 self.last_update = now
-                if self.state == "warriors":
+                if self.state == "golems":
                     if self.active and self.rect.collidepoint(m_pos) and pygame.mouse.get_pressed()[0]:
                         self.action_bar.level.player.xp -= 5000
                         self.active = False
@@ -235,21 +235,21 @@ class UpgradeButton(pygame.sprite.Sprite):
                         self.action_bar.ranged_unit_button.kill()
                         self.action_bar.heavy_unit_button.kill()
                         self.action_bar.hero_unit_button.kill()
-                        self.action_bar.light_unit_button = LightElfButton(LIGHT_ELF_ICON, self.action_bar.level,
-                                                                           LIGHT_ELF_ICON.get_rect(
+                        self.action_bar.light_unit_button = LightElfButton(LIGHT_FAIRY_ICON, self.action_bar.level,
+                                                                           LIGHT_FAIRY_ICON.get_rect(
                                                                                topright=(95 * CELL, 1 * CELL)))
-                        self.action_bar.ranged_unit_button = RangedElfButton(RANGED_ELF_ICON, self.action_bar.level,
-                                                                             RANGED_ELF_ICON.get_rect(
+                        self.action_bar.ranged_unit_button = RangedElfButton(RANGED_FAIRY_ICON, self.action_bar.level,
+                                                                             RANGED_FAIRY_ICON.get_rect(
                                                                                  topright=(105 * CELL, 1 * CELL)))
-                        self.action_bar.heavy_unit_button = HeavyElfButton(HEAVY_ELF_ICON, self.action_bar.level,
-                                                                           HEAVY_ELF_ICON.get_rect(
+                        self.action_bar.heavy_unit_button = HeavyElfButton(HEAVY_FAIRY_ICON, self.action_bar.level,
+                                                                           HEAVY_FAIRY_ICON.get_rect(
                                                                                topright=(115 * CELL, 1 * CELL)))
-                        self.action_bar.hero_unit_button = HeavyElfButton(HEAVY_ELF_ICON, self.action_bar.level,
-                                                                           HEAVY_ELF_ICON.get_rect(
+                        self.action_bar.hero_unit_button = HeavyElfButton(HEAVY_FAIRY_ICON, self.action_bar.level,
+                                                                           HEAVY_FAIRY_ICON.get_rect(
                                                                                topright=(115 * CELL, 1 * CELL)))
-                        self.action_bar.elf_turret_button.active = True
-                        self.state = "elfs"
-                if self.state == "pirates":
+                        self.action_bar.fairy_turret_button.active = True
+                        self.state = "fairys"
+                if self.state == "satyrs":
                     if self.active and self.rect.collidepoint(m_pos) and pygame.mouse.get_pressed()[0]:
                         #print("clicked")
                         self.active = False
@@ -262,20 +262,20 @@ class UpgradeButton(pygame.sprite.Sprite):
                         self.action_bar.ranged_unit_button.kill()
                         self.action_bar.heavy_unit_button.kill()
                         self.action_bar.hero_unit_button.kill()
-                        self.action_bar.light_unit_button = LightWarriorButton(LIGHT_WARRIOR_ICON, self.action_bar.level,
-                                                                               LIGHT_WARRIOR_ICON.get_rect(
+                        self.action_bar.light_unit_button = LightWarriorButton(LIGHT_GOLEM_ICON, self.action_bar.level,
+                                                                               LIGHT_GOLEM_ICON.get_rect(
                                                                                    topright=(95 * CELL, 1 * CELL)))
-                        self.action_bar.ranged_unit_button = RangedWarriorButton(RANGED_WARRIOR_ICON, self.action_bar.level,
-                                                                                 RANGED_WARRIOR_ICON.get_rect(
+                        self.action_bar.ranged_unit_button = RangedWarriorButton(RANGED_GOLEM_ICON, self.action_bar.level,
+                                                                                 RANGED_GOLEM_ICON.get_rect(
                                                                                      topright=(105 * CELL, 1 * CELL)))
-                        self.action_bar.heavy_unit_button = HeavyWarriorButton(HEAVY_WARRIOR_ICON, self.action_bar.level,
-                                                                               HEAVY_WARRIOR_ICON.get_rect(
+                        self.action_bar.heavy_unit_button = HeavyWarriorButton(HEAVY_GOLEM_ICON, self.action_bar.level,
+                                                                               HEAVY_GOLEM_ICON.get_rect(
                                                                                    topright=(115 * CELL, 1 * CELL)))
-                        self.action_bar.hero_unit_button = HeavyWarriorButton(HEAVY_WARRIOR_ICON, self.action_bar.level,
-                                                                               HEAVY_WARRIOR_ICON.get_rect(
+                        self.action_bar.hero_unit_button = HeavyWarriorButton(HEAVY_GOLEM_ICON, self.action_bar.level,
+                                                                               HEAVY_GOLEM_ICON.get_rect(
                                                                                    topright=(125 * CELL, 1 * CELL)))
-                        self.action_bar.warrior_turret_button.active = True
-                        self.state = "warriors"
+                        self.action_bar.golem_turret_button.active = True
+                        self.state = "golems"
 
             if not self.active and not self.rect.collidepoint(m_pos) and pygame.mouse.get_pressed()[0]:
                 self.active = True
@@ -298,7 +298,7 @@ class PirateTurret(pygame.sprite.Sprite):
     def __init__(self, level, topleft):
         super().__init__()
         self.level = level
-        self.image = PLAYER_PIRATE_TURRET
+        self.image = PLAYER_SATYR_TURRET
         self.rect = self.image.get_rect(topleft=topleft)
         self.range_point = (48 * CELL, 44 * CELL)
         self.shooting_speed = 600
@@ -332,7 +332,7 @@ class PirateTurret(pygame.sprite.Sprite):
 class WarriorTurret(pygame.sprite.Sprite):
     def __init__(self, level, topleft):
         super().__init__()
-        self.image = PLAYER_WARRIOR_TURRET
+        self.image = PLAYER_GOLEM_TURRET
         self.level = level
         self.rect = self.image.get_rect(topleft=topleft)
         self.range_point = (55 * CELL, 44 * CELL)
@@ -397,7 +397,7 @@ class HealthBar(pygame.sprite.Sprite):
 class ElfTurret(pygame.sprite.Sprite):
     def __init__(self, level, topleft):
         super().__init__()
-        self.image = PLAYER_ELF_TURRET
+        self.image = PLAYER_FAIRY_TURRET
         self.level = level
         self.rect = self.image.get_rect(topleft=topleft)
         self.range_point = (62 * CELL, 44 * CELL)
@@ -516,11 +516,11 @@ class TurretButton(pygame.sprite.Sprite):
             if self.is_clicked and tower.rect.collidepoint(m_pos) and mouse_pressed:
                 if status == "available" and self.level.player.money >= self.price:
                     turret = None
-                    if self.race == "pirate":
+                    if self.race == "satyr":
                         turret = PirateTurret(self.level, tower.rect.topleft)
-                    elif self.race == "warrior":
+                    elif self.race == "golem":
                         turret = WarriorTurret(self.level, tower.rect.topleft)
-                    elif self.race == "elf":
+                    elif self.race == "fairy":
                         turret = ElfTurret(self.level, tower.rect.topleft)
 
                     if turret:
@@ -558,7 +558,7 @@ class TurretButton(pygame.sprite.Sprite):
 
 class PirateTurretButton(TurretButton):
     def __init__(self, image, sprite_group, rect):
-        super().__init__(image, sprite_group, rect, race="pirate", active=True, price=400)
+        super().__init__(image, sprite_group, rect, race="satyr", active=True, price=400)
 
 class UnlockTurretPlacemant(TurretButton):
     def __init__(self, image, sprite_group, rect):
@@ -568,7 +568,7 @@ class UnlockTurretPlacemant(TurretButton):
 
 class WarriorTurretButton(TurretButton):
     def __init__(self, image, sprite_group, rect):
-        super().__init__(image, sprite_group, rect, race="warrior", price=1500)
+        super().__init__(image, sprite_group, rect, race="golem", price=1500)
 
 
 class CannonBall(pygame.sprite.Sprite):
@@ -603,22 +603,22 @@ class CannonBall(pygame.sprite.Sprite):
 
 class PirateCannonBall(CannonBall):
     def __init__(self, turret, angle):
-        super().__init__(turret, PIRATE_CANNONBALL, angle, 8, 250)
+        super().__init__(turret, SATYR_CANNONBALL, angle, 8, 250)
 
 
 class WarriorCannonBall(CannonBall):
     def __init__(self, turret, angle):
-        super().__init__(turret, WARRIOR_CANNONBALL, angle, 10, 280)
+        super().__init__(turret, GOLEM_CANNONBALL, angle, 10, 280)
 
 
 class ElfCannonBall(CannonBall):
     def __init__(self, turret, angle):
-        super().__init__(turret, ELF_CANNONBALL, angle, 17, 340)
+        super().__init__(turret, FAIRY_CANNONBALL, angle, 17, 340)
 
 
 class ElfTurretButton(TurretButton):
     def __init__(self, image, sprite_group, rect):
-        super().__init__(image, sprite_group, rect, race="elf", price=2400)
+        super().__init__(image, sprite_group, rect, race="fairy", price=2400)
 
 
 class EnemyRangedCombatUnit(pygame.sprite.Sprite):
@@ -1005,61 +1005,61 @@ class EnemyCloseCombatUnit(pygame.sprite.Sprite):
 
 class EnemyLightPirate(EnemyCloseCombatUnit):
     def __init__(self, level):
-        super().__init__(level, ENEMY_LIGHT_PIRATE_WALKING, ENEMY_LIGHT_PIRATE_ATTACKING, ENEMY_LIGHT_PIRATE_IDLE, 100,
+        super().__init__(level, ENEMY_LIGHT_SATYR_WALKING, ENEMY_LIGHT_SATYR_ATTACKING, ENEMY_LIGHT_SATYR_IDLE, 100,
                          10, 10, 60)
 
 
 class EnemyHeavyPirate(EnemyCloseCombatUnit):
     def __init__(self, level):
-        super().__init__(level, ENEMY_HEAVY_PIRATE_WALKING, ENEMY_HEAVY_PIRATE_ATTACKING, ENEMY_HEAVY_PIRATE_IDLE, 160,
+        super().__init__(level, ENEMY_HEAVY_SATYR_WALKING, ENEMY_HEAVY_SATYR_ATTACKING, ENEMY_HEAVY_SATYR_IDLE, 160,
                          8, 15, 40)
 
 
 class EnemyHeroPirate(EnemyCloseCombatUnit):
     def __init__(self, level):
-        super().__init__(level, ENEMY_HERO_PIRATE_WALKING, ENEMY_HERO_PIRATE_ATTACKING, ENEMY_HERO_PIRATE_IDLE, 190,
+        super().__init__(level, ENEMY_HERO_SATYR_WALKING, ENEMY_HERO_SATYR_ATTACKING, ENEMY_HERO_SATYR_IDLE, 190,
                          13, 15, 40)
 
 
 class EnemyRangedPirate(EnemyRangedCombatUnit):
     def __init__(self, level):
-        super().__init__(level, ENEMY_RANGED_PIRATE_WALKING, ENEMY_RANGED_PIRATE_ATTACKING, ENEMY_RANGED_PIRATE_IDLE,
+        super().__init__(level, ENEMY_RANGED_SATYR_WALKING, ENEMY_RANGED_SATYR_ATTACKING, ENEMY_RANGED_SATYR_IDLE,
                          80, 15, 8, 50, 3)
 
 
 class EnemyLightWarrior(EnemyCloseCombatUnit):
     def __init__(self, level):
-        super().__init__(level, ENEMY_LIGHT_WARRIOR_WALKING, ENEMY_LIGHT_WARRIOR_ATTACKING, ENEMY_LIGHT_WARRIOR_IDLE,
+        super().__init__(level, ENEMY_LIGHT_GOLEM_WALKING, ENEMY_LIGHT_GOLEM_ATTACKING, ENEMY_LIGHT_GOLEM_IDLE,
                          130, 13, 15, 65)
 
 
 class EnemyHeavyWarrior(EnemyCloseCombatUnit):
     def __init__(self, level):
-        super().__init__(level, ENEMY_HEAVY_WARRIOR_WALKING, ENEMY_HEAVY_WARRIOR_ATTACKING, ENEMY_HEAVY_WARRIOR_IDLE,
+        super().__init__(level, ENEMY_HEAVY_GOLEM_WALKING, ENEMY_HEAVY_GOLEM_ATTACKING, ENEMY_HEAVY_GOLEM_IDLE,
                          190, 11, 20, 40)
 
 
 class EnemyRangedWarrior(EnemyRangedCombatUnit):
     def __init__(self, level):
-        super().__init__(level, ENEMY_RANGED_WARRIOR_WALKING, ENEMY_RANGED_WARRIOR_ATTACKING,
-                         ENEMY_RANGED_WARRIOR_IDLE, 100, 18, 10, 55, 3)
+        super().__init__(level, ENEMY_RANGED_GOLEM_WALKING, ENEMY_RANGED_GOLEM_ATTACKING,
+                         ENEMY_RANGED_GOLEM_IDLE, 100, 18, 10, 55, 3)
 
 
 class EnemyLightElf(EnemyCloseCombatUnit):
     def __init__(self, level):
-        super().__init__(level, ENEMY_LIGHT_ELF_WALKING, ENEMY_LIGHT_ELF_ATTACKING, ENEMY_LIGHT_ELF_IDLE, 150, 18,
+        super().__init__(level, ENEMY_LIGHT_FAIRY_WALKING, ENEMY_LIGHT_FAIRY_ATTACKING, ENEMY_LIGHT_FAIRY_IDLE, 150, 18,
                          20, 70)
 
 
 class EnemyHeavyElf(EnemyCloseCombatUnit):
     def __init__(self, level):
-        super().__init__(level, ENEMY_HEAVY_ELF_WALKING, ENEMY_HEAVY_ELF_ATTACKING, ENEMY_HEAVY_ELF_IDLE, 240, 14,
+        super().__init__(level, ENEMY_HEAVY_FAIRY_WALKING, ENEMY_HEAVY_FAIRY_ATTACKING, ENEMY_HEAVY_FAIRY_IDLE, 240, 14,
                          28, 44)
 
 
 class EnemyRangedElf(EnemyRangedCombatUnit):
     def __init__(self, level):
-        super().__init__(level, ENEMY_RANGED_ELF_WALKING, ENEMY_RANGED_ELF_ATTACKING, ENEMY_RANGED_ELF_IDLE, 130, 23,
+        super().__init__(level, ENEMY_RANGED_FAIRY_WALKING, ENEMY_RANGED_FAIRY_ATTACKING, ENEMY_RANGED_FAIRY_IDLE, 130, 23,
                          14, 60, 3)
 
 
@@ -1247,60 +1247,60 @@ class PlayerRangedCombatUnit(pygame.sprite.Sprite):
 
 class PlayerRangedPirate(PlayerRangedCombatUnit):
     def __init__(self, level):
-        super().__init__(level, PLAYER_RANGED_PIRATE_WALKING, PLAYER_RANGED_PIRATE_ATTACKING, PLAYER_RANGED_PIRATE_IDLE,
+        super().__init__(level, PLAYER_RANGED_SATYR_WALKING, PLAYER_RANGED_SATYR_ATTACKING, PLAYER_RANGED_SATYR_IDLE,
                          80, 15, 8, 50, 3)
 
 
 class PlayerLightPirate(PlayerCloseCombatUnit):
     def __init__(self, level):
-        super().__init__(level, PLAYER_LIGHT_PIRATE_WALKING, PLAYER_LIGHT_PIRATE_ATTACKING, PLAYER_LIGHT_PIRATE_IDLE,
+        super().__init__(level, PLAYER_LIGHT_SATYR_WALKING, PLAYER_LIGHT_SATYR_ATTACKING, PLAYER_LIGHT_SATYR_IDLE,
                          100, 10, 10, 60)
 
 
 class PlayerHeavyPirate(PlayerCloseCombatUnit):
     def __init__(self, level):
-        super().__init__(level, PLAYER_HEAVY_PIRATE_WALKING, PLAYER_HEAVY_PIRATE_ATTACKING, PLAYER_HEAVY_PIRATE_IDLE,
+        super().__init__(level, PLAYER_HEAVY_SATYR_WALKING, PLAYER_HEAVY_SATYR_ATTACKING, PLAYER_HEAVY_SATYR_IDLE,
                          160, 8, 15, 40)
 
 class PlayerHeroPirate(PlayerCloseCombatUnit):
     def __init__(self, level):
-        super().__init__(level, PLAYER_HERO_PIRATE_WALKING, PLAYER_HERO_PIRATE_ATTACKING, PLAYER_HERO_PIRATE_IDLE,
+        super().__init__(level, PLAYER_HERO_SATYR_WALKING, PLAYER_HERO_SATYR_ATTACKING, PLAYER_HERO_SATYR_IDLE,
                          190, 13, 20, 40)
 
 
 class PlayerLightWarrior(PlayerCloseCombatUnit):
     def __init__(self, level):
-        super().__init__(level, PLAYER_LIGHT_WARRIOR_WALIKNG, PLAYER_LIGHT_WARRIOR_ATTACKING, PLAYER_LIGHT_WARRIOR_IDLE,
+        super().__init__(level, PLAYER_LIGHT_GOLEM_WALIKNG, PLAYER_LIGHT_GOLEM_ATTACKING, PLAYER_LIGHT_GOLEM_IDLE,
                          130, 13, 15, 65)
 
 
 class PlayerHeavyWarrior(PlayerCloseCombatUnit):
     def __init__(self, level):
-        super().__init__(level, PLAYER_HEAVY_WARRIOR_WALIKNG, PLAYER_HEAVY_WARRIOR_ATTACKING, PLAYER_HEAVY_WARRIOR_IDLE,
+        super().__init__(level, PLAYER_HEAVY_GOLEM_WALIKNG, PLAYER_HEAVY_GOLEM_ATTACKING, PLAYER_HEAVY_GOLEM_IDLE,
                          190, 11, 20, 40)
 
 
 class PlayerRangedWarrior(PlayerRangedCombatUnit):
     def __init__(self, level):
-        super().__init__(level, PLAYER_RANGED_WARRIOR_WALIKNG, PLAYER_RANGED_WARRIOR_ATTACKING,
-                         PLAYER_RANGED_WARRIOR_IDLE, 100, 18, 10, 55, 3)
+        super().__init__(level, PLAYER_RANGED_GOLEM_WALIKNG, PLAYER_RANGED_GOLEM_ATTACKING,
+                         PLAYER_RANGED_GOLEM_IDLE, 100, 18, 10, 55, 3)
 
 
 class PlayerLightElf(PlayerCloseCombatUnit):
     def __init__(self, level):
-        super().__init__(level, PLAYER_LIGHT_ELF_WALKING, PLAYER_LIGHT_ELF_ATTACKING, PLAYER_LIGHT_ELF_IDLE, 150, 18,
+        super().__init__(level, PLAYER_LIGHT_FAIRY_WALKING, PLAYER_LIGHT_FAIRY_ATTACKING, PLAYER_LIGHT_FAIRY_IDLE, 150, 18,
                          20, 70)
 
 
 class PlayerHeavyElf(PlayerCloseCombatUnit):
     def __init__(self, level):
-        super().__init__(level, PLAYER_HEAVY_ELF_WALKING, PLAYER_HEAVY_ELF_ATTACKING, PLAYER_HEAVY_ELF_IDLE, 240, 14,
+        super().__init__(level, PLAYER_HEAVY_FAIRY_WALKING, PLAYER_HEAVY_FAIRY_ATTACKING, PLAYER_HEAVY_FAIRY_IDLE, 240, 14,
                          28, 44)
 
 
 class PlayerRangedElf(PlayerRangedCombatUnit):
     def __init__(self, level):
-        super().__init__(level, PLAYER_RANGED_ELF_WALKING, PLAYER_RANGED_ELF_ATTACKING, PLAYER_RANGED_ELF_IDLE, 130, 23,
+        super().__init__(level, PLAYER_RANGED_FAIRY_WALKING, PLAYER_RANGED_FAIRY_ATTACKING, PLAYER_RANGED_FAIRY_IDLE, 130, 23,
                          14, 60, 3)
 
 
@@ -1325,23 +1325,23 @@ class UnitButton(pygame.sprite.Sprite):
         self.now = pygame.time.get_ticks()
         if self.active==True and self.rect.collidepoint(m_pos) and pygame.mouse.get_pressed()[0]:
             print(self.active)
-            if self.race == "pirate":
+            if self.race == "satyr":
                 if self.unit_type == "light":
                     if self.level.player.money >= 50:
                         self.level.player.money -= 50
-                        player_light_pirate = PlayerLightPirate(self.level)
+                        player_light_satyr = PlayerLightPirate(self.level)
                 elif self.unit_type == "heavy":
                     if self.level.player.money >= 90:
                         self.level.player.money -= 90
-                        player_heavy_pirate = PlayerHeavyPirate(self.level)
+                        player_heavy_satyr = PlayerHeavyPirate(self.level)
                 elif self.unit_type == "ranged":
                     if self.level.player.money >= 70:
                         self.level.player.money -= 70
-                        player_ranged_pirate = PlayerRangedPirate(self.level)
+                        player_ranged_satyr = PlayerRangedPirate(self.level)
                 elif self.unit_type == "hero" and self.unlocked == True:
                     if self.level.player.money >= 110:
                         self.level.player.money -= 110
-                        player_hero_pirate = PlayerHeroPirate(self.level)
+                        player_hero_satyr = PlayerHeroPirate(self.level)
                 
                 elif self.unit_type == "hero" and self.unlocked == False:
                      if self.level.player.money >= 450:
@@ -1349,33 +1349,33 @@ class UnitButton(pygame.sprite.Sprite):
                         self.unlocked = True
                     
 
-            if self.race == "warrior":
+            if self.race == "golem":
                 if self.unit_type == "light":
                     if self.level.player.money >= 90:
                         self.level.player.money -= 90
-                    player_light_warrior = PlayerLightWarrior(self.level)
+                    player_light_golem = PlayerLightWarrior(self.level)
                 elif self.unit_type == "heavy":
                     if self.level.player.money >= 150:
                         self.level.player.money -= 150
-                        player_heavy_warrior = PlayerHeavyWarrior(self.level)
+                        player_heavy_golem = PlayerHeavyWarrior(self.level)
                 elif self.unit_type == "ranged":
                     if self.level.player.money >= 120:
                         self.level.player.money -= 120
-                        player_ranged_warrior = PlayerRangedWarrior(self.level)
+                        player_ranged_golem = PlayerRangedWarrior(self.level)
 
-            if self.race == "elf":
+            if self.race == "fairy":
                 if self.unit_type == "light":
                     if self.level.player.money >= 150:
                         self.level.player.money -= 150
-                        player_light_elf = PlayerLightElf(self.level)
+                        player_light_fairy = PlayerLightElf(self.level)
                 if self.unit_type == "heavy":
                     if self.level.player.money >= 240:
                         self.level.player.money -= 240
-                        player_heavy_elf = PlayerHeavyElf(self.level)
+                        player_heavy_fairy = PlayerHeavyElf(self.level)
                 if self.unit_type == "ranged":
                     if self.level.player.money >= 180:
                         self.level.player.money -= 180
-                        player_ranged_elf = PlayerRangedElf(self.level)
+                        player_ranged_fairy = PlayerRangedElf(self.level)
 
             self.lastupdate = self.now
             self.active = False
@@ -1394,70 +1394,70 @@ class UnitButton(pygame.sprite.Sprite):
 class RangedPirateButton(UnitButton):
     def __init__(self, image, sprite_group, rect):
         super().__init__(image, sprite_group, rect, cooldown=2000)
-        self.race = "pirate"
+        self.race = "satyr"
         self.unit_type = "ranged"
 
 
 class HeavyPirateButton(UnitButton):
     def __init__(self, image, sprite_group, rect):
         super().__init__(image, sprite_group, rect, cooldown=3500)
-        self.race = "pirate"
+        self.race = "satyr"
         self.unit_type = "heavy"
 
 
 class LightPirateButton(UnitButton):
     def __init__(self, image, sprite_group, rect):
         super().__init__(image, sprite_group, rect, cooldown=1500)
-        self.race = "pirate"
+        self.race = "satyr"
         self.unit_type = "light"
 
 
 class HeroPirateButton(UnitButton):
     def __init__(self, image, sprite_group, rect):
         super().__init__(image, sprite_group, rect, cooldown=4500, unlocked=False)
-        self.race = "pirate"
+        self.race = "satyr"
         self.unit_type = "hero"
 
 
 class LightWarriorButton(UnitButton):
     def __init__(self, image, sprite_group, rect):
         super().__init__(image, sprite_group, rect, cooldown=1800)
-        self.race = "warrior"
+        self.race = "golem"
         self.unit_type = "light"
 
 
 class RangedWarriorButton(UnitButton):
     def __init__(self, image, sprite_group, rect):
         super().__init__(image, sprite_group, rect, cooldown=2200)
-        self.race = "warrior"
+        self.race = "golem"
         self.unit_type = "ranged"
 
 
 class HeavyWarriorButton(UnitButton):
     def __init__(self, image, sprite_group, rect):
         super().__init__(image, sprite_group, rect, cooldown=4000)
-        self.race = "warrior"
+        self.race = "golem"
         self.unit_type = "heavy"
 
 
 class LightElfButton(UnitButton):
     def __init__(self, image, sprite_group, rect):
         super().__init__(image, sprite_group, rect, cooldown=2100)
-        self.race = "elf"
+        self.race = "fairy"
         self.unit_type = "light"
 
 
 class HeavyElfButton(UnitButton):
     def __init__(self, image, sprite_group, rect):
         super().__init__(image, sprite_group, rect, cooldown=4500)
-        self.race = "elf"
+        self.race = "fairy"
         self.unit_type = "heavy"
 
 
 class RangedElfButton(UnitButton):
     def __init__(self, image, sprite_group, rect):
         super().__init__(image, sprite_group, rect, cooldown=2600)
-        self.race = "elf"
+        self.race = "fairy"
         self.unit_type = "ranged"
 
 
