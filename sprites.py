@@ -52,6 +52,15 @@ class ActionBar(pygame.sprite.Sprite):
                                                     HEAVY_ELF_ICON.get_rect(topright=(115 * CELL, 1 * CELL)))
             self.hero_unit_button = HeroFairyButton(HERO_ELF_ICON, self.level, # ici
                                                        HERO_ELF_ICON.get_rect(topright=(125 * CELL, 1 * CELL)))
+        elif self.state == "angel":
+            self.light_unit_button = LightAngelButton(LIGHT_ANGEL_ICON, self.level,
+                                                    LIGHT_ANGEL_ICON.get_rect(topright=(95 * CELL, 1 * CELL)))
+            self.ranged_unit_button = RangedAngelButton(RANGED_ANGEL_ICON, self.level,
+                                                    RANGED_ANGEL_ICON.get_rect(topright=(105 * CELL, 1 * CELL)))
+            self.heavy_unit_button = HeavyAngelButton(HEAVY_ANGEL_ICON, self.level,
+                                                    HEAVY_ANGEL_ICON.get_rect(topright=(115 * CELL, 1 * CELL)))
+            self.hero_unit_button = HeroAngelButton(HERO_ANGEL_ICON, self.level,
+                                                    HERO_ANGEL_ICON.get_rect(topright=(125 * CELL, 1 * CELL)))
 
 
 
@@ -218,42 +227,15 @@ class UpgradeButton(pygame.sprite.Sprite):
         self.last_update = 0
 
     def check_click(self):
-        if not self.state == "elfs":
+        if not self.state == "angel":
             m_pos = pygame.mouse.get_pos()
             now = game.time.get_ticks()
             if now - self.last_update > 5000:
-                self.last_update = now
-                if self.state == "golems":
-                    if self.active and self.rect.collidepoint(m_pos) and pygame.mouse.get_pressed()[0]:
-                        self.action_bar.level.player.xp -= 5000
-                        self.active = False
-                        self.action_bar.light_unit_button.cooldown_bar.kill()
-                        self.action_bar.ranged_unit_button.cooldown_bar.kill()
-                        self.action_bar.heavy_unit_button.cooldown_bar.kill()
-                        self.action_bar.hero_unit_button.cooldown_bar.kill()
-                        self.action_bar.light_unit_button.kill()
-                        self.action_bar.ranged_unit_button.kill()
-                        self.action_bar.heavy_unit_button.kill()
-                        self.action_bar.hero_unit_button.kill()
-                        self.action_bar.light_unit_button = LightFairyButton(LIGHT_ELF_ICON, self.action_bar.level,
-                                                                           LIGHT_ELF_ICON.get_rect(
-                                                                               topright=(95 * CELL, 1 * CELL)))
-                        self.action_bar.ranged_unit_button = RangedFairyButton(RANGED_ELF_ICON, self.action_bar.level,
-                                                                             RANGED_ELF_ICON.get_rect(
-                                                                                 topright=(105 * CELL, 1 * CELL)))
-                        self.action_bar.heavy_unit_button = HeavyFairyButton(HEAVY_ELF_ICON, self.action_bar.level,
-                                                                           HEAVY_ELF_ICON.get_rect(
-                                                                               topright=(115 * CELL, 1 * CELL)))
-                        self.action_bar.heavy_unit_button = HeroFairyButton(HERO_ELF_ICON, self.action_bar.level,
-                                                                           HERO_ELF_ICON.get_rect(
-                                                                               topright=(125 * CELL, 1 * CELL)))
-                        self.action_bar.elf_turret_button.active = True
-                        self.state = "elfs"
+                self.last_update = 0
                 if self.state == "satyrs":
                     if self.active and self.rect.collidepoint(m_pos) and pygame.mouse.get_pressed()[0]:
-                        #print("clicked")
-                        self.active = False
                         self.action_bar.level.player.xp -= 5000
+                        self.active = False
                         self.action_bar.light_unit_button.cooldown_bar.kill()
                         self.action_bar.ranged_unit_button.cooldown_bar.kill()
                         self.action_bar.heavy_unit_button.cooldown_bar.kill()
@@ -276,6 +258,59 @@ class UpgradeButton(pygame.sprite.Sprite):
                                                                                    topright=(125 * CELL, 1 * CELL)))
                         self.action_bar.golem_turret_button.active = True
                         self.state = "golems"
+                elif self.state == "golems":
+                    if self.active and self.rect.collidepoint(m_pos) and pygame.mouse.get_pressed()[0]:
+                        #print("clicked")
+                        self.active = False
+                        self.action_bar.level.player.xp -= 5000
+                        self.action_bar.light_unit_button.cooldown_bar.kill()
+                        self.action_bar.ranged_unit_button.cooldown_bar.kill()
+                        self.action_bar.heavy_unit_button.cooldown_bar.kill()
+                        self.action_bar.hero_unit_button.cooldown_bar.kill()
+                        self.action_bar.light_unit_button.kill()
+                        self.action_bar.ranged_unit_button.kill()
+                        self.action_bar.heavy_unit_button.kill()
+                        self.action_bar.hero_unit_button.kill()
+                        self.action_bar.light_unit_button = LightFairyButton(LIGHT_ELF_ICON, self.action_bar.level,
+                                                                           LIGHT_ELF_ICON.get_rect(
+                                                                               topright=(95 * CELL, 1 * CELL)))
+                        self.action_bar.ranged_unit_button = RangedFairyButton(RANGED_ELF_ICON, self.action_bar.level,
+                                                                             RANGED_ELF_ICON.get_rect(
+                                                                                 topright=(105 * CELL, 1 * CELL)))
+                        self.action_bar.heavy_unit_button = HeavyFairyButton(HEAVY_ELF_ICON, self.action_bar.level,
+                                                                           HEAVY_ELF_ICON.get_rect(
+                                                                               topright=(115 * CELL, 1 * CELL)))
+                        self.action_bar.hero_unit_button = HeroFairyButton(HERO_ELF_ICON, self.action_bar.level,
+                                                                           HERO_ELF_ICON.get_rect(
+                                                                               topright=(125 * CELL, 1 * CELL)))
+                        self.action_bar.elf_turret_button.active = True
+                        self.state = "elfs"
+                elif self.state == "elfs":
+                    if self.active and self.rect.collidepoint(m_pos) and pygame.mouse.get_pressed()[0]:
+                        #print("clicked")
+                        self.active = False
+                        self.action_bar.level.player.xp -= 5000
+                        self.action_bar.light_unit_button.cooldown_bar.kill()
+                        self.action_bar.ranged_unit_button.cooldown_bar.kill()
+                        self.action_bar.heavy_unit_button.cooldown_bar.kill()
+                        self.action_bar.hero_unit_button.cooldown_bar.kill()
+                        self.action_bar.light_unit_button.kill()
+                        self.action_bar.ranged_unit_button.kill()
+                        self.action_bar.heavy_unit_button.kill()
+                        self.action_bar.hero_unit_button.kill()
+                        self.action_bar.light_unit_button = LightAngelButton(LIGHT_ANGEL_ICON, self.action_bar.level,
+                                                                           LIGHT_ANGEL_ICON.get_rect(
+                                                                               topright=(95 * CELL, 1 * CELL)))
+                        self.action_bar.ranged_unit_button = RangedAngelButton(RANGED_ANGEL_ICON, self.action_bar.level,
+                                                                           RANGED_ANGEL_ICON.get_rect(
+                                                                               topright=(105 * CELL, 1 * CELL)))
+                        self.action_bar.heavy_unit_button = HeavyAngelButton(HEAVY_ANGEL_ICON, self.action_bar.level,
+                                                                           HEAVY_ANGEL_ICON.get_rect(
+                                                                               topright=(115 * CELL, 1 * CELL)))
+                        self.action_bar.hero_unit_button = HeroAngelButton(HERO_ANGEL_ICON, self.action_bar.level,
+                                                                           HERO_ANGEL_ICON.get_rect(
+                                                                               topright=(125 * CELL, 1 * CELL)))
+                        self.state = "angel"
 
             if not self.active and not self.rect.collidepoint(m_pos) and pygame.mouse.get_pressed()[0]:
                 self.active = True
@@ -1250,10 +1285,10 @@ class PlayerRangedCombatUnit(pygame.sprite.Sprite):
         self.check_health()
 
 
-class PlayerRangedPirate(PlayerRangedCombatUnit):
+class PlayerRangedPirate(PlayerCloseCombatUnit):
     def __init__(self, level):
         super().__init__(level, PLAYER_RANGED_SATYR_WALKING, PLAYER_RANGED_SATYR_ATTACKING, PLAYER_RANGED_SATYR_IDLE,
-                         80, 15, 8, 50, 3)
+                         80, 15, 8, 50)
 
 
 class PlayerLightPirate(PlayerCloseCombatUnit):
@@ -1267,10 +1302,10 @@ class PlayerHeavyPirate(PlayerCloseCombatUnit):
         super().__init__(level, PLAYER_HEAVY_SATYR_WALKING, PLAYER_HEAVY_SATYR_ATTACKING, PLAYER_HEAVY_SATYR_IDLE,
                          160, 8, 15, 40)
 
-class PlayerHeroPirate(PlayerCloseCombatUnit):
+class PlayerHeroPirate(PlayerRangedCombatUnit):
     def __init__(self, level):
         super().__init__(level, PLAYER_HERO_SATYR_WALKING, PLAYER_HERO_SATYR_ATTACKING, PLAYER_HERO_SATYR_IDLE,
-                         190, 13, 20, 40)
+                         190, 13, 20, 40, 3)
 
 
 class PlayerLightWarrior(PlayerCloseCombatUnit):
@@ -1285,10 +1320,10 @@ class PlayerHeavyWarrior(PlayerCloseCombatUnit):
                          190, 11, 20, 40)
 
 
-class PlayerRangedWarrior(PlayerRangedCombatUnit):
+class PlayerRangedWarrior(PlayerCloseCombatUnit):
     def __init__(self, level):
         super().__init__(level, PLAYER_RANGED_GOLEM_WALIKNG, PLAYER_RANGED_GOLEM_ATTACKING,
-                         PLAYER_RANGED_GOLEM_IDLE, 100, 18, 10, 55, 3)
+                         PLAYER_RANGED_GOLEM_IDLE, 100, 18, 10, 55)
         
         
 class PlayerHeroWarrior(PlayerRangedCombatUnit):
@@ -1314,10 +1349,32 @@ class PlayerRangedFairy(PlayerRangedCombatUnit):
         super().__init__(level, PLAYER_RANGED_ELF_WALKING, PLAYER_RANGED_ELF_ATTACKING, PLAYER_RANGED_ELF_IDLE, 130, 23,
                          14, 60, 3)
 
-class PlayerHeroFairy(PlayerCloseCombatUnit):
+class PlayerHeroFairy(PlayerRangedCombatUnit):
     def __init__(self, level):
         super().__init__(level, PLAYER_HERO_ELF_WALKING, PLAYER_HERO_ELF_ATTACKING, PLAYER_HERO_ELF_IDLE, 240, 23,
-                         32, 44)
+                         32, 44, 3)
+
+class PlayerLightAngel(PlayerCloseCombatUnit):
+    def __init__(self, level):
+        super().__init__(level, PLAYER_LIGHT_ANGEL_WALKING, PLAYER_LIGHT_ANGEL_ATTACKING, PLAYER_LIGHT_ANGEL_IDLE, 150, 30,
+                         20, 70)
+        
+class PlayerHeavyAngel(PlayerCloseCombatUnit):
+    def __init__(self, level):
+        super().__init__(level, PLAYER_HEAVY_ANGEL_WALKING, PLAYER_HEAVY_ANGEL_ATTACKING, PLAYER_HEAVY_ANGEL_IDLE, 150, 30,
+                         20, 75)
+
+class PlayerRangedAngel(PlayerCloseCombatUnit):
+    def __init__(self, level):
+        super().__init__(level, PLAYER_RANGED_ANGEL_WALKING, PLAYER_RANGED_ANGEL_ATTACKING, PLAYER_RANGED_ANGEL_IDLE, 150, 30,
+                         20, 80)
+
+
+class PlayerHeroAngel(PlayerCloseCombatUnit):
+    def __init__(self, level):
+        super().__init__(level, PLAYER_HERO_ANGEL_WALKING, PLAYER_HERO_ANGEL_ATTACKING, PLAYER_HERO_ANGEL_IDLE, 150, 30,
+                         20, 90)
+
 
 
 class UnitButton(pygame.sprite.Sprite):
@@ -1363,7 +1420,7 @@ class UnitButton(pygame.sprite.Sprite):
                      if self.level.player.money >= 450:
                         self.level.player.money -= 450
                         self.unlocked = True
-                    
+
 
             if self.race == "golem":
                 if self.unit_type == "light":
@@ -1405,6 +1462,30 @@ class UnitButton(pygame.sprite.Sprite):
                     if self.level.player.money >= 240:
                         self.level.player.money -= 240
                         player_heavy_elf = PlayerHeroFairy(self.level)
+                
+                elif self.unit_type == "hero" and self.unlocked == False:
+                     if self.level.player.money >= 450:
+                        self.level.player.money -= 450
+                        self.unlocked = True
+
+
+            if self.race == "angel":
+                if self.unit_type == "light":
+                    if self.level.player.money >= 150:
+                        self.level.player.money -= 150
+                        player_light_angel = PlayerLightAngel(self.level)
+                if self.unit_type == "heavy":
+                    if self.level.player.money >= 240:
+                        self.level.player.money -= 240
+                        player_heavy_angel = PlayerHeavyAngel(self.level)
+                if self.unit_type == "ranged":
+                    if self.level.player.money >= 180:
+                        self.level.player.money -= 180
+                        player_ranged_angel = PlayerRangedAngel(self.level)
+                if self.unit_type == "hero" and self.unlocked == True:
+                    if self.level.player.money >= 240:
+                        self.level.player.money -= 240
+                        player_hero_angel = PlayerHeroAngel(self.level)
                 
                 elif self.unit_type == "hero" and self.unlocked == False:
                      if self.level.player.money >= 450:
@@ -1505,6 +1586,31 @@ class RangedFairyButton(UnitButton):
         super().__init__(image, sprite_group, rect, cooldown=2600)
         self.race = "elf"
         self.unit_type = "ranged"
+
+
+class LightAngelButton(UnitButton):
+    def __init__(self, image, sprite_group, rect):
+        super().__init__(image, sprite_group, rect, cooldown=2100)
+        self.race = "angel"
+        self.unit_type = "light"
+
+class RangedAngelButton(UnitButton):
+    def __init__(self, image, sprite_group, rect):
+        super().__init__(image, sprite_group, rect, cooldown=2600)
+        self.race = "angel"
+        self.unit_type = "ranged"
+
+class HeavyAngelButton(UnitButton):
+    def __init__(self, image, sprite_group, rect):
+        super().__init__(image, sprite_group, rect, cooldown=4500)
+        self.race = "angel"
+        self.unit_type = "heavy"
+
+class HeroAngelButton(UnitButton):
+    def __init__(self, image, sprite_group, rect):
+        super().__init__(image, sprite_group, rect, cooldown=4500, unlocked=False)
+        self.race = "angel"
+        self.unit_type = "hero"
 
 
 class CooldownBar(pygame.sprite.Sprite):
