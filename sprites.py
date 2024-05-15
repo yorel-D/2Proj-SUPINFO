@@ -61,7 +61,15 @@ class ActionBar(pygame.sprite.Sprite):
                                                     HEAVY_ANGEL_ICON.get_rect(topright=(115 * CELL, 1 * CELL)))
             self.hero_unit_button = HeroAngelButton(HERO_ANGEL_ICON, self.level,
                                                     HERO_ANGEL_ICON.get_rect(topright=(125 * CELL, 1 * CELL)))
-
+        elif self.state == "wraith":
+            self.light_unit_button = LightWraithButton(LIGHT_WRAITH_ICON, self.level,
+                                                    LIGHT_WRAITH_ICON.get_rect(topright=(95 * CELL, 1 * CELL)))
+            self.ranged_unit_button = RangedWraithButton(RANGED_WRAITH_ICON, self.level,
+                                                    RANGED_WRAITH_ICON.get_rect(topright=(105 * CELL, 1 * CELL)))
+            self.heavy_unit_button = HeavyWraithButton(HEAVY_WRAITH_ICON, self.level,
+                                                    HEAVY_WRAITH_ICON.get_rect(topright=(115 * CELL, 1 * CELL)))
+            self.hero_unit_button = HeroWraithButton(HERO_WRAITH_ICON, self.level,
+                                                    HERO_WRAITH_ICON.get_rect(topright=(125 * CELL, 1 * CELL)))
 
 
 class HealthText(pygame.sprite.Sprite):
@@ -227,7 +235,7 @@ class UpgradeButton(pygame.sprite.Sprite):
         self.last_update = 0
 
     def check_click(self):
-        if not self.state == "angel":
+        if not self.state == "wraith":
             m_pos = pygame.mouse.get_pos()
             now = game.time.get_ticks()
             if now - self.last_update > 5000:
@@ -260,7 +268,6 @@ class UpgradeButton(pygame.sprite.Sprite):
                         self.state = "golems"
                 elif self.state == "golems":
                     if self.active and self.rect.collidepoint(m_pos) and pygame.mouse.get_pressed()[0]:
-                        #print("clicked")
                         self.active = False
                         self.action_bar.level.player.xp -= 5000
                         self.action_bar.light_unit_button.cooldown_bar.kill()
@@ -287,7 +294,6 @@ class UpgradeButton(pygame.sprite.Sprite):
                         self.state = "elfs"
                 elif self.state == "elfs":
                     if self.active and self.rect.collidepoint(m_pos) and pygame.mouse.get_pressed()[0]:
-                        #print("clicked")
                         self.active = False
                         self.action_bar.level.player.xp -= 5000
                         self.action_bar.light_unit_button.cooldown_bar.kill()
@@ -311,6 +317,32 @@ class UpgradeButton(pygame.sprite.Sprite):
                                                                            HERO_ANGEL_ICON.get_rect(
                                                                                topright=(125 * CELL, 1 * CELL)))
                         self.state = "angel"
+                elif self.state == "angel":
+                    if self.active and self.rect.collidepoint(m_pos) and pygame.mouse.get_pressed()[0]:
+                        #print("clicked")
+                        self.active = False
+                        self.action_bar.level.player.xp -= 5000
+                        self.action_bar.light_unit_button.cooldown_bar.kill()
+                        self.action_bar.ranged_unit_button.cooldown_bar.kill()
+                        self.action_bar.heavy_unit_button.cooldown_bar.kill()
+                        self.action_bar.hero_unit_button.cooldown_bar.kill()
+                        self.action_bar.light_unit_button.kill()
+                        self.action_bar.ranged_unit_button.kill()
+                        self.action_bar.heavy_unit_button.kill()
+                        self.action_bar.hero_unit_button.kill()
+                        self.action_bar.light_unit_button = LightWraithButton(LIGHT_WRAITH_ICON, self.action_bar.level,
+                                                                           LIGHT_WRAITH_ICON.get_rect(
+                                                                               topright=(95 * CELL, 1 * CELL)))
+                        self.action_bar.ranged_unit_button = RangedWraithButton(RANGED_WRAITH_ICON, self.action_bar.level,
+                                                                           RANGED_WRAITH_ICON.get_rect(
+                                                                               topright=(105 * CELL, 1 * CELL)))
+                        self.action_bar.heavy_unit_button = HeavyWraithButton(HEAVY_WRAITH_ICON, self.action_bar.level,
+                                                                           HEAVY_WRAITH_ICON.get_rect(
+                                                                               topright=(115 * CELL, 1 * CELL)))
+                        self.action_bar.hero_unit_button = HeroWraithButton(HERO_WRAITH_ICON, self.action_bar.level,
+                                                                           HERO_WRAITH_ICON.get_rect(
+                                                                               topright=(125 * CELL, 1 * CELL)))
+                        self.state = "wraith"
 
             if not self.active and not self.rect.collidepoint(m_pos) and pygame.mouse.get_pressed()[0]:
                 self.active = True
@@ -1361,19 +1393,40 @@ class PlayerLightAngel(PlayerCloseCombatUnit):
         
 class PlayerHeavyAngel(PlayerCloseCombatUnit):
     def __init__(self, level):
-        super().__init__(level, PLAYER_HEAVY_ANGEL_WALKING, PLAYER_HEAVY_ANGEL_ATTACKING, PLAYER_HEAVY_ANGEL_IDLE, 150, 30,
+        super().__init__(level, PLAYER_HEAVY_ANGEL_WALKING, PLAYER_HEAVY_ANGEL_ATTACKING, PLAYER_HEAVY_ANGEL_IDLE, 150, 35,
                          20, 75)
 
 class PlayerRangedAngel(PlayerCloseCombatUnit):
     def __init__(self, level):
-        super().__init__(level, PLAYER_RANGED_ANGEL_WALKING, PLAYER_RANGED_ANGEL_ATTACKING, PLAYER_RANGED_ANGEL_IDLE, 150, 30,
+        super().__init__(level, PLAYER_RANGED_ANGEL_WALKING, PLAYER_RANGED_ANGEL_ATTACKING, PLAYER_RANGED_ANGEL_IDLE, 150, 40,
                          20, 80)
-
 
 class PlayerHeroAngel(PlayerCloseCombatUnit):
     def __init__(self, level):
-        super().__init__(level, PLAYER_HERO_ANGEL_WALKING, PLAYER_HERO_ANGEL_ATTACKING, PLAYER_HERO_ANGEL_IDLE, 150, 30,
+        super().__init__(level, PLAYER_HERO_ANGEL_WALKING, PLAYER_HERO_ANGEL_ATTACKING, PLAYER_HERO_ANGEL_IDLE, 150, 50,
                          20, 90)
+
+
+class PlayerLightWraith(PlayerRangedCombatUnit):
+    def __init__(self, level):
+        super().__init__(level, PLAYER_LIGHT_WRAITH_WALKING, PLAYER_LIGHT_WRAITH_ATTACKING, PLAYER_LIGHT_WRAITH_IDLE, 150, 50,
+                         20, 85, 3)
+        
+class PlayerHeavyWraith(PlayerRangedCombatUnit):
+    def __init__(self, level):
+        super().__init__(level, PLAYER_HEAVY_WRAITH_WALKING, PLAYER_HEAVY_WRAITH_ATTACKING, PLAYER_HEAVY_WRAITH_IDLE, 150, 55,
+                         20, 90, 3)
+
+class PlayerRangedWraith(PlayerRangedCombatUnit):
+    def __init__(self, level):
+        super().__init__(level, PLAYER_RANGED_WRAITH_WALKING, PLAYER_RANGED_WRAITH_ATTACKING, PLAYER_RANGED_WRAITH_IDLE, 150, 60,
+                         20, 95, 3)
+
+class PlayerHeroWraith(PlayerRangedCombatUnit):
+    def __init__(self, level):
+        super().__init__(level, PLAYER_HERO_WRAITH_WALKING, PLAYER_HERO_WRAITH_ATTACKING, PLAYER_HERO_WRAITH_IDLE, 150, 70,
+                         20, 105, 3)
+
 
 
 
@@ -1486,6 +1539,29 @@ class UnitButton(pygame.sprite.Sprite):
                     if self.level.player.money >= 240:
                         self.level.player.money -= 240
                         player_hero_angel = PlayerHeroAngel(self.level)
+                
+                elif self.unit_type == "hero" and self.unlocked == False:
+                     if self.level.player.money >= 450:
+                        self.level.player.money -= 450
+                        self.unlocked = True
+
+            if self.race == "wraith":
+                if self.unit_type == "light":
+                    if self.level.player.money >= 150:
+                        self.level.player.money -= 150
+                        player_light_wraith = PlayerLightWraith(self.level)
+                if self.unit_type == "heavy":
+                    if self.level.player.money >= 240:
+                        self.level.player.money -= 240
+                        player_heavy_wraith = PlayerHeavyWraith(self.level)
+                if self.unit_type == "ranged":
+                    if self.level.player.money >= 180:
+                        self.level.player.money -= 180
+                        player_ranged_wraith = PlayerRangedWraith(self.level)
+                if self.unit_type == "hero" and self.unlocked == True:
+                    if self.level.player.money >= 240:
+                        self.level.player.money -= 240
+                        player_hero_wraith = PlayerHeroWraith(self.level)
                 
                 elif self.unit_type == "hero" and self.unlocked == False:
                      if self.level.player.money >= 450:
@@ -1611,6 +1687,32 @@ class HeroAngelButton(UnitButton):
         super().__init__(image, sprite_group, rect, cooldown=4500, unlocked=False)
         self.race = "angel"
         self.unit_type = "hero"
+
+
+class LightWraithButton(UnitButton):
+    def __init__(self, image, sprite_group, rect):
+        super().__init__(image, sprite_group, rect, cooldown=2100)
+        self.race = "wraith"
+        self.unit_type = "light"
+
+class RangedWraithButton(UnitButton):
+    def __init__(self, image, sprite_group, rect):
+        super().__init__(image, sprite_group, rect, cooldown=2600)
+        self.race = "wraith"
+        self.unit_type = "ranged"
+
+class HeavyWraithButton(UnitButton):
+    def __init__(self, image, sprite_group, rect):
+        super().__init__(image, sprite_group, rect, cooldown=4500)
+        self.race = "wraith"
+        self.unit_type = "heavy"
+
+class HeroWraithButton(UnitButton):
+    def __init__(self, image, sprite_group, rect):
+        super().__init__(image, sprite_group, rect, cooldown=4500, unlocked=False)
+        self.race = "wraith"
+        self.unit_type = "hero"
+
 
 
 class CooldownBar(pygame.sprite.Sprite):

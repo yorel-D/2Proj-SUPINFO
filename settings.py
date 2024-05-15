@@ -132,6 +132,36 @@ PLAYER_HERO_ANGEL_IDLE = [game.image.load(f"Resources/0_Reaper_Man_Idle_{i:03d}.
 PLAYER_HERO_ANGEL_IDLE = [game.transform.scale(image, (CELL * 10, CELL * 10)) for image in PLAYER_HERO_ANGEL_IDLE]
 
 
+
+PLAYER_LIGHT_WRAITH_WALKING = [game.image.load(f"Resources/Wraith_01_Moving Forward_{i:03d}.png").convert_alpha() for i in range(12)]
+PLAYER_LIGHT_WRAITH_WALKING = [game.transform.scale(image, (CELL * 10, CELL * 10)) for image in PLAYER_LIGHT_WRAITH_WALKING]
+PLAYER_LIGHT_WRAITH_ATTACKING = [game.image.load(f"Resources/Wraith_01_Attack_{i:03d}.png").convert_alpha() for i in range(12)]
+PLAYER_LIGHT_WRAITH_ATTACKING = [game.transform.scale(image, (CELL * 10, CELL * 10)) for image in PLAYER_LIGHT_WRAITH_ATTACKING]
+PLAYER_LIGHT_WRAITH_IDLE = [game.image.load(f"Resources/Wraith_01_Idle_{i:03d}.png").convert_alpha() for i in range(12)]
+PLAYER_LIGHT_WRAITH_IDLE = [game.transform.scale(image, (CELL * 10, CELL * 10)) for image in PLAYER_LIGHT_WRAITH_IDLE]
+
+PLAYER_HEAVY_WRAITH_WALKING = [game.image.load(f"Resources/Wraith_02_Moving Forward_{i:03d}.png").convert_alpha() for i in range(12)]
+PLAYER_HEAVY_WRAITH_WALKING = [game.transform.scale(image, (CELL * 10, CELL * 10)) for image in PLAYER_HEAVY_WRAITH_WALKING]
+PLAYER_HEAVY_WRAITH_ATTACKING = [game.image.load(f"Resources/Wraith_02_Attack_{i:03d}.png").convert_alpha() for i in range(12)]
+PLAYER_HEAVY_WRAITH_ATTACKING = [game.transform.scale(image, (CELL * 10, CELL * 10)) for image in PLAYER_HEAVY_WRAITH_ATTACKING]
+PLAYER_HEAVY_WRAITH_IDLE = [game.image.load(f"Resources/Wraith_02_Idle_{i:03d}.png").convert_alpha() for i in range(12)]
+PLAYER_HEAVY_WRAITH_IDLE = [game.transform.scale(image, (CELL * 10, CELL * 10)) for image in PLAYER_HEAVY_WRAITH_IDLE]
+
+PLAYER_RANGED_WRAITH_WALKING = [game.image.load(f"Resources/Wraith_03_Moving Forward_{i:03d}.png").convert_alpha() for i in range(12)]
+PLAYER_RANGED_WRAITH_WALKING = [game.transform.scale(image, (CELL * 10, CELL * 10)) for image in PLAYER_RANGED_WRAITH_WALKING]
+PLAYER_RANGED_WRAITH_ATTACKING = [game.image.load(f"Resources/Wraith_03_Attack_{i:03d}.png").convert_alpha() for i in range(12)]
+PLAYER_RANGED_WRAITH_ATTACKING = [game.transform.scale(image, (CELL * 10, CELL * 10)) for image in PLAYER_RANGED_WRAITH_ATTACKING]
+PLAYER_RANGED_WRAITH_IDLE = [game.image.load(f"Resources/Wraith_03_Idle_{i:03d}.png").convert_alpha() for i in range(12)]
+PLAYER_RANGED_WRAITH_IDLE = [game.transform.scale(image, (CELL * 10, CELL * 10)) for image in PLAYER_RANGED_WRAITH_IDLE]
+
+PLAYER_HERO_WRAITH_WALKING = [game.image.load(f"Resources/3_Reaper_Man_Walking_{i:03d}.png").convert_alpha() for i in range(24)]
+PLAYER_HERO_WRAITH_WALKING = [game.transform.scale(image, (CELL * 10, CELL * 10)) for image in PLAYER_HERO_WRAITH_WALKING]
+PLAYER_HERO_WRAITH_ATTACKING = [game.image.load(f"Resources/3_Reaper_Man_Slashing_{i:03d}.png").convert_alpha() for i in range(12)]
+PLAYER_HERO_WRAITH_ATTACKING = [game.transform.scale(image, (CELL * 10, CELL * 10)) for image in PLAYER_HERO_WRAITH_ATTACKING]
+PLAYER_HERO_WRAITH_IDLE = [game.image.load(f"Resources/3_Reaper_Man_Idle_{i:03d}.png").convert_alpha() for i in range(18)]
+PLAYER_HERO_WRAITH_IDLE = [game.transform.scale(image, (CELL * 10, CELL * 10)) for image in PLAYER_HERO_WRAITH_IDLE]
+
+
 PLAYER_RANGED_SATYR_BULLET = game.image.load("Resources/shot.png")
 PLAYER_RANGED_SATYR_BULLET = game.transform.scale(PLAYER_RANGED_SATYR_BULLET, (1 * CELL, 0.5 * CELL))
 
@@ -213,6 +243,14 @@ HEAVY_ANGEL_ICON = game.transform.scale(HEAVY_ANGEL_ICON, (7 * CELL, 7 * CELL))
 HERO_ANGEL_ICON = game.image.load("Resources/hero_angel_icon.png").convert_alpha()
 HERO_ANGEL_ICON = game.transform.scale(HERO_ANGEL_ICON, (7 * CELL, 7 * CELL))
 
+LIGHT_WRAITH_ICON = game.image.load("Resources/light_wraith_icon.png").convert_alpha()
+LIGHT_WRAITH_ICON = game.transform.scale(LIGHT_WRAITH_ICON, (7 * CELL, 7 * CELL))
+RANGED_WRAITH_ICON = game.image.load("Resources/heavy_wraith_icon.png").convert_alpha()
+RANGED_WRAITH_ICON = game.transform.scale(RANGED_WRAITH_ICON, (7 * CELL, 7 * CELL))
+HEAVY_WRAITH_ICON = game.image.load("Resources/ranged_wraith_icon.png").convert_alpha()
+HEAVY_WRAITH_ICON = game.transform.scale(HEAVY_WRAITH_ICON, (7 * CELL, 7 * CELL))
+HERO_WRAITH_ICON = game.image.load("Resources/hero_wraith_icon.png").convert_alpha()
+HERO_WRAITH_ICON = game.transform.scale(HERO_WRAITH_ICON, (7 * CELL, 7 * CELL))
 
 SATYR_TURRET_ICON = game.image.load("Resources/satyr_turret_icon.png").convert_alpha()
 SATYR_TURRET_ICON = game.transform.scale(SATYR_TURRET_ICON, (7 * CELL, 7 * CELL))
