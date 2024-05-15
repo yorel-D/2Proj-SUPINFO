@@ -162,6 +162,36 @@ PLAYER_HERO_WRAITH_IDLE = [game.image.load(f"Resources/3_Reaper_Man_Idle_{i:03d}
 PLAYER_HERO_WRAITH_IDLE = [game.transform.scale(image, (CELL * 10, CELL * 10)) for image in PLAYER_HERO_WRAITH_IDLE]
 
 
+
+PLAYER_LIGHT_VILLAGER_WALKING = [game.image.load(f"Resources/0_Zombie_Villager_Walking_{i:03d}.png").convert_alpha() for i in range(24)]
+PLAYER_LIGHT_VILLAGER_WALKING = [game.transform.scale(image, (CELL * 10, CELL * 10)) for image in PLAYER_LIGHT_VILLAGER_WALKING]
+PLAYER_LIGHT_VILLAGER_ATTACKING = [game.image.load(f"Resources/0_Zombie_Villager_Slashing_{i:03d}.png").convert_alpha() for i in range(12)]
+PLAYER_LIGHT_VILLAGER_ATTACKING = [game.transform.scale(image, (CELL * 10, CELL * 10)) for image in PLAYER_LIGHT_VILLAGER_ATTACKING]
+PLAYER_LIGHT_VILLAGER_IDLE = [game.image.load(f"Resources/0_Zombie_Villager_Idle_{i:03d}.png").convert_alpha() for i in range(18)]
+PLAYER_LIGHT_VILLAGER_IDLE = [game.transform.scale(image, (CELL * 10, CELL * 10)) for image in PLAYER_LIGHT_VILLAGER_IDLE]
+
+PLAYER_HEAVY_VILLAGER_WALKING = [game.image.load(f"Resources/1_Zombie_Villager_Walking_{i:03d}.png").convert_alpha() for i in range(12)]
+PLAYER_HEAVY_VILLAGER_WALKING = [game.transform.scale(image, (CELL * 10, CELL * 10)) for image in PLAYER_HEAVY_VILLAGER_WALKING]
+PLAYER_HEAVY_VILLAGER_ATTACKING = [game.image.load(f"Resources/1_Zombie_Villager_Slashing_{i:03d}.png").convert_alpha() for i in range(12)]
+PLAYER_HEAVY_VILLAGER_ATTACKING = [game.transform.scale(image, (CELL * 10, CELL * 10)) for image in PLAYER_HEAVY_VILLAGER_ATTACKING]
+PLAYER_HEAVY_VILLAGER_IDLE = [game.image.load(f"Resources/1_Zombie_Villager_Idle_{i:03d}.png").convert_alpha() for i in range(12)]
+PLAYER_HEAVY_VILLAGER_IDLE = [game.transform.scale(image, (CELL * 10, CELL * 10)) for image in PLAYER_HEAVY_VILLAGER_IDLE]
+
+PLAYER_RANGED_VILLAGER_WALKING = [game.image.load(f"Resources/2_Zombie_Villager_Walking_{i:03d}.png").convert_alpha() for i in range(12)]
+PLAYER_RANGED_VILLAGER_WALKING = [game.transform.scale(image, (CELL * 10, CELL * 10)) for image in PLAYER_RANGED_VILLAGER_WALKING]
+PLAYER_RANGED_VILLAGER_ATTACKING = [game.image.load(f"Resources/2_Zombie_Villager_Slashing_{i:03d}.png").convert_alpha() for i in range(12)]
+PLAYER_RANGED_VILLAGER_ATTACKING = [game.transform.scale(image, (CELL * 10, CELL * 10)) for image in PLAYER_RANGED_VILLAGER_ATTACKING]
+PLAYER_RANGED_VILLAGER_IDLE = [game.image.load(f"Resources/2_Zombie_Villager_Idle_{i:03d}.png").convert_alpha() for i in range(12)]
+PLAYER_RANGED_VILLAGER_IDLE = [game.transform.scale(image, (CELL * 10, CELL * 10)) for image in PLAYER_RANGED_VILLAGER_IDLE]
+
+PLAYER_HERO_VILLAGER_WALKING = [game.image.load(f"Resources/2_Reaper_Man_Walking_{i:03d}.png").convert_alpha() for i in range(24)]
+PLAYER_HERO_VILLAGER_WALKING = [game.transform.scale(image, (CELL * 10, CELL * 10)) for image in PLAYER_HERO_VILLAGER_WALKING]
+PLAYER_HERO_VILLAGER_ATTACKING = [game.image.load(f"Resources/2_Reaper_Man_Slashing_{i:03d}.png").convert_alpha() for i in range(12)]
+PLAYER_HERO_VILLAGER_ATTACKING = [game.transform.scale(image, (CELL * 10, CELL * 10)) for image in PLAYER_HERO_VILLAGER_ATTACKING]
+PLAYER_HERO_VILLAGER_IDLE = [game.image.load(f"Resources/2_Reaper_Man_Idle_{i:03d}.png").convert_alpha() for i in range(18)]
+PLAYER_HERO_VILLAGER_IDLE = [game.transform.scale(image, (CELL * 10, CELL * 10)) for image in PLAYER_HERO_VILLAGER_IDLE]
+
+
 PLAYER_RANGED_SATYR_BULLET = game.image.load("Resources/shot.png")
 PLAYER_RANGED_SATYR_BULLET = game.transform.scale(PLAYER_RANGED_SATYR_BULLET, (1 * CELL, 0.5 * CELL))
 
@@ -218,6 +248,7 @@ HEAVY_SATYR_ICON = game.image.load("Resources/heavy_Satyr_icon.png").convert_alp
 HEAVY_SATYR_ICON = game.transform.scale(HEAVY_SATYR_ICON, (7 * CELL, 7 * CELL))
 HERO_SATYR_ICON = game.image.load("Resources/hero_satyr_icon.png").convert_alpha()
 HERO_SATYR_ICON = game.transform.scale(HERO_SATYR_ICON, (7 * CELL, 7 * CELL))
+
 LIGHT_GOLEM_ICON = game.image.load("Resources/light_golem_icon.png").convert_alpha()
 LIGHT_GOLEM_ICON = game.transform.scale(LIGHT_GOLEM_ICON, (7 * CELL, 7 * CELL))
 HEAVY_GOLEM_ICON = game.image.load("Resources/heavy_golem_icon.png").convert_alpha()
@@ -226,6 +257,7 @@ RANGED_GOLEM_ICON = game.image.load("Resources/ranged_golem_icon.png").convert_a
 RANGED_GOLEM_ICON = game.transform.scale(RANGED_GOLEM_ICON, (7 * CELL, 7 * CELL))
 HERO_GOLEM_ICON = game.image.load("Resources/hero_golem_icon.png").convert_alpha()
 HERO_GOLEM_ICON = game.transform.scale(HERO_GOLEM_ICON, (7 * CELL, 7 * CELL))
+
 LIGHT_ELF_ICON = game.image.load("Resources/ranged_fairy_icon.png").convert_alpha()
 LIGHT_ELF_ICON = game.transform.scale(LIGHT_ELF_ICON, (7 * CELL, 7 * CELL))
 HEAVY_ELF_ICON = game.image.load("Resources/heavy_fairy_icon.png").convert_alpha()
@@ -234,6 +266,7 @@ RANGED_ELF_ICON = game.image.load("Resources/light_fairy_icon.png").convert_alph
 RANGED_ELF_ICON = game.transform.scale(RANGED_ELF_ICON, (7 * CELL, 7 * CELL))
 HERO_ELF_ICON = game.image.load("Resources/hero_elf_icon.png").convert_alpha()
 HERO_ELF_ICON = game.transform.scale(HERO_ELF_ICON, (7 * CELL, 7 * CELL))
+
 LIGHT_ANGEL_ICON = game.image.load("Resources/light_angel_icon.png").convert_alpha()
 LIGHT_ANGEL_ICON = game.transform.scale(LIGHT_ANGEL_ICON, (7 * CELL, 7 * CELL))
 RANGED_ANGEL_ICON = game.image.load("Resources/heavy_angel_icon.png").convert_alpha()
@@ -251,6 +284,16 @@ HEAVY_WRAITH_ICON = game.image.load("Resources/ranged_wraith_icon.png").convert_
 HEAVY_WRAITH_ICON = game.transform.scale(HEAVY_WRAITH_ICON, (7 * CELL, 7 * CELL))
 HERO_WRAITH_ICON = game.image.load("Resources/hero_wraith_icon.png").convert_alpha()
 HERO_WRAITH_ICON = game.transform.scale(HERO_WRAITH_ICON, (7 * CELL, 7 * CELL))
+
+LIGHT_VILLAGER_ICON = game.image.load("Resources/light_zombie_icon.png").convert_alpha()
+LIGHT_VILLAGER_ICON = game.transform.scale(LIGHT_VILLAGER_ICON, (7 * CELL, 7 * CELL))
+RANGED_VILLAGER_ICON = game.image.load("Resources/ranged_zombie_icon.png").convert_alpha()
+RANGED_VILLAGER_ICON = game.transform.scale(RANGED_VILLAGER_ICON, (7 * CELL, 7 * CELL))
+HEAVY_VILLAGER_ICON = game.image.load("Resources/heavy_zombie_icon.png").convert_alpha()
+HEAVY_VILLAGER_ICON = game.transform.scale(HEAVY_VILLAGER_ICON, (7 * CELL, 7 * CELL))
+HERO_VILLAGER_ICON = game.image.load("Resources/hero_zombie_icon.png").convert_alpha()
+HERO_VILLAGER_ICON = game.transform.scale(HERO_VILLAGER_ICON, (7 * CELL, 7 * CELL))
+
 
 SATYR_TURRET_ICON = game.image.load("Resources/satyr_turret_icon.png").convert_alpha()
 SATYR_TURRET_ICON = game.transform.scale(SATYR_TURRET_ICON, (7 * CELL, 7 * CELL))

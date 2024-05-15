@@ -70,6 +70,15 @@ class ActionBar(pygame.sprite.Sprite):
                                                     HEAVY_WRAITH_ICON.get_rect(topright=(115 * CELL, 1 * CELL)))
             self.hero_unit_button = HeroWraithButton(HERO_WRAITH_ICON, self.level,
                                                     HERO_WRAITH_ICON.get_rect(topright=(125 * CELL, 1 * CELL)))
+        elif self.state == "villager":
+            self.light_unit_button = LightVillagerButton(LIGHT_VILLAGER_ICON, self.level,
+                                                    LIGHT_VILLAGER_ICON.get_rect(topright=(95 * CELL, 1 * CELL)))
+            self.ranged_unit_button = RangedVillagerButton(RANGED_VILLAGER_ICON, self.level,
+                                                    RANGED_VILLAGER_ICON.get_rect(topright=(105 * CELL, 1 * CELL)))
+            self.heavy_unit_button = HeavyVillagerButton(HEAVY_VILLAGER_ICON, self.level,
+                                                    HEAVY_VILLAGER_ICON.get_rect(topright=(115 * CELL, 1 * CELL)))
+            self.hero_unit_button = HeroVillagerButton(HERO_VILLAGER_ICON, self.level,
+                                                    HERO_VILLAGER_ICON.get_rect(topright=(125 * CELL, 1 * CELL)))
 
 
 class HealthText(pygame.sprite.Sprite):
@@ -235,7 +244,7 @@ class UpgradeButton(pygame.sprite.Sprite):
         self.last_update = 0
 
     def check_click(self):
-        if not self.state == "wraith":
+        if not self.state == "villager":
             m_pos = pygame.mouse.get_pos()
             now = game.time.get_ticks()
             if now - self.last_update > 5000:
@@ -343,6 +352,32 @@ class UpgradeButton(pygame.sprite.Sprite):
                                                                            HERO_WRAITH_ICON.get_rect(
                                                                                topright=(125 * CELL, 1 * CELL)))
                         self.state = "wraith"
+                elif self.state == "wraith":
+                    if self.active and self.rect.collidepoint(m_pos) and pygame.mouse.get_pressed()[0]:
+                        #print("clicked")
+                        self.active = False
+                        self.action_bar.level.player.xp -= 5000
+                        self.action_bar.light_unit_button.cooldown_bar.kill()
+                        self.action_bar.ranged_unit_button.cooldown_bar.kill()
+                        self.action_bar.heavy_unit_button.cooldown_bar.kill()
+                        self.action_bar.hero_unit_button.cooldown_bar.kill()
+                        self.action_bar.light_unit_button.kill()
+                        self.action_bar.ranged_unit_button.kill()
+                        self.action_bar.heavy_unit_button.kill()
+                        self.action_bar.hero_unit_button.kill()
+                        self.action_bar.light_unit_button = LightVillagerButton(LIGHT_VILLAGER_ICON, self.action_bar.level,
+                                                                           LIGHT_VILLAGER_ICON.get_rect(
+                                                                               topright=(95 * CELL, 1 * CELL)))
+                        self.action_bar.ranged_unit_button = RangedVillagerButton(RANGED_VILLAGER_ICON, self.action_bar.level,
+                                                                           RANGED_VILLAGER_ICON.get_rect(
+                                                                               topright=(105 * CELL, 1 * CELL)))
+                        self.action_bar.heavy_unit_button = HeavyVillagerButton(HEAVY_VILLAGER_ICON, self.action_bar.level,
+                                                                           HEAVY_VILLAGER_ICON.get_rect(
+                                                                               topright=(115 * CELL, 1 * CELL)))
+                        self.action_bar.hero_unit_button = HeroVillagerButton(HERO_VILLAGER_ICON, self.action_bar.level,
+                                                                           HERO_VILLAGER_ICON.get_rect(
+                                                                               topright=(125 * CELL, 1 * CELL)))
+                        self.state = "villager"
 
             if not self.active and not self.rect.collidepoint(m_pos) and pygame.mouse.get_pressed()[0]:
                 self.active = True
@@ -1428,7 +1463,25 @@ class PlayerHeroWraith(PlayerRangedCombatUnit):
                          20, 105, 3)
 
 
+class PlayerLightVillager(PlayerCloseCombatUnit):
+    def __init__(self, level):
+        super().__init__(level, PLAYER_LIGHT_VILLAGER_WALKING, PLAYER_LIGHT_VILLAGER_ATTACKING, PLAYER_LIGHT_VILLAGER_IDLE, 150, 50,
+                         20, 105)
+        
+class PlayerHeavyVillager(PlayerCloseCombatUnit):
+    def __init__(self, level):
+        super().__init__(level, PLAYER_HEAVY_VILLAGER_WALKING, PLAYER_HEAVY_VILLAGER_ATTACKING, PLAYER_HEAVY_VILLAGER_IDLE, 150, 55,
+                         20, 115)
 
+class PlayerRangedVillager(PlayerCloseCombatUnit):
+    def __init__(self, level):
+        super().__init__(level, PLAYER_RANGED_VILLAGER_WALKING, PLAYER_RANGED_VILLAGER_ATTACKING, PLAYER_RANGED_VILLAGER_IDLE, 150, 60,
+                         20, 130)
+
+class PlayerHeroVillager(PlayerCloseCombatUnit):
+    def __init__(self, level):
+        super().__init__(level, PLAYER_HERO_VILLAGER_WALKING, PLAYER_HERO_VILLAGER_ATTACKING, PLAYER_HERO_VILLAGER_IDLE, 150, 70,
+                         20, 150)
 
 class UnitButton(pygame.sprite.Sprite):
     def __init__(self, image, level, rect, cooldown=1000,unlocked=True):
@@ -1562,6 +1615,29 @@ class UnitButton(pygame.sprite.Sprite):
                     if self.level.player.money >= 240:
                         self.level.player.money -= 240
                         player_hero_wraith = PlayerHeroWraith(self.level)
+                
+                elif self.unit_type == "hero" and self.unlocked == False:
+                     if self.level.player.money >= 450:
+                        self.level.player.money -= 450
+                        self.unlocked = True
+
+            if self.race == "villager":
+                if self.unit_type == "light":
+                    if self.level.player.money >= 150:
+                        self.level.player.money -= 150
+                        player_light_villager = PlayerLightVillager(self.level)
+                if self.unit_type == "heavy":
+                    if self.level.player.money >= 240:
+                        self.level.player.money -= 240
+                        player_heavy_villager = PlayerHeavyVillager(self.level)
+                if self.unit_type == "ranged":
+                    if self.level.player.money >= 180:
+                        self.level.player.money -= 180
+                        player_ranged_villager = PlayerRangedVillager(self.level)
+                if self.unit_type == "hero" and self.unlocked == True:
+                    if self.level.player.money >= 240:
+                        self.level.player.money -= 240
+                        player_hero_villager = PlayerHeroVillager(self.level)
                 
                 elif self.unit_type == "hero" and self.unlocked == False:
                      if self.level.player.money >= 450:
@@ -1714,6 +1790,29 @@ class HeroWraithButton(UnitButton):
         self.unit_type = "hero"
 
 
+class LightVillagerButton(UnitButton):
+    def __init__(self, image, sprite_group, rect):
+        super().__init__(image, sprite_group, rect, cooldown=2100)
+        self.race = "villager"
+        self.unit_type = "light"
+
+class RangedVillagerButton(UnitButton):
+    def __init__(self, image, sprite_group, rect):
+        super().__init__(image, sprite_group, rect, cooldown=2600)
+        self.race = "villager"
+        self.unit_type = "ranged"
+
+class HeavyVillagerButton(UnitButton):
+    def __init__(self, image, sprite_group, rect):
+        super().__init__(image, sprite_group, rect, cooldown=4500)
+        self.race = "villager"
+        self.unit_type = "heavy"
+
+class HeroVillagerButton(UnitButton):
+    def __init__(self, image, sprite_group, rect):
+        super().__init__(image, sprite_group, rect, cooldown=4500, unlocked=False)
+        self.race = "villager"
+        self.unit_type = "hero"
 
 class CooldownBar(pygame.sprite.Sprite):
     def __init__(self, button, level):
