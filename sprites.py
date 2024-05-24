@@ -899,7 +899,7 @@ class special(pygame.sprite.Sprite):
         self.current = 0
         self.damage = damage
         self.image = self.walking_frames[self.current]
-        self.rect = self.image.get_rect(midtop=(12 * CELL, 0))
+        self.rect = self.image.get_rect(midtop=(randrange(0, SCREEN_WIDTH - self.image.get_width()), randrange(-CELL * 30, CELL * 15)))
         self.starting_point = self.rect.centery
         self.walking = True
         self.attacking = False
@@ -916,30 +916,10 @@ class special(pygame.sprite.Sprite):
     def check_collision(self):
         self.enemy_collisions = pygame.sprite.spritecollide(self, self.level.ai_sprites, False)
         if self.enemy_collisions:
-            closest_enemy = self.enemy_collisions[0]
-            if not self.attacking:
-                self.idle = False
-                self.attacking = True
-                self.walking = False
-                if self.current == 6:
-                    closest_enemy.health -= (self.damage + 2) / (closest_enemy.defense + 2) * randrange(10, 13)
-                    self.current = 0
-        else:
-            self.idle = False
-            self.walking = True
-            self.attacking = False
-
-        p_sprites_list = [sprite for sprite in self.level.player_sprites if sprite is not self.level.player]
-        if len(p_sprites_list) > 1:
-            for i in range(1, len(p_sprites_list)):
-                if p_sprites_list[i].rect.bottom - p_sprites_list[i - 1].rect.top >= -10:
-                    p_sprites_list[i].idle = True
-                    p_sprites_list[i].walking = False
-                    p_sprites_list[i].attacking = False
-                else:
-                    p_sprites_list[i].idle = False
-                    p_sprites_list[i].walking = True
-                    p_sprites_list[i].attacking = False
+            for enemy in self.enemy_collisions:
+                enemy.health -= self.damage
+                self.kill()
+                break
 
     def check_state(self):
         if self.walking:
@@ -984,8 +964,7 @@ class special(pygame.sprite.Sprite):
 
     def move(self, dt):
         self.image = self.current_frames[self.current]
-        self.rect = self.current_frames[self.current].get_rect(
-            midtop=(self.rect.midtop[0], int(self.starting_point + self.movement_speed * dt)))
+        self.rect.midtop = (self.rect.midtop[0], self.starting_point)
         self.starting_point += self.movement_speed * dt
         if self.rect.top > SCREEN_HEIGHT:
             self.kill()
@@ -1001,7 +980,7 @@ class Special(special):
         walking_frames = SPECIAL_SATYR
         attacking_frames = SPECIAL_SATYR
         super().__init__(level, walking_frames, attacking_frames, 40, 150)
-        self.defense = 5 
+        self.defense = 5
 
 
 
