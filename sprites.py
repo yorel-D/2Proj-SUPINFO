@@ -2,6 +2,7 @@ from settings import *
 from random import randrange
 import math
 import pygame
+from random import randrange
 
 
 class ActionBar(pygame.sprite.Sprite):
@@ -32,8 +33,10 @@ class ActionBar(pygame.sprite.Sprite):
                                                          RANGED_SATYR_ICON.get_rect(topright=(105 * CELL, 1 * CELL)))
             self.heavy_unit_button = HeavyPirateButton(HEAVY_SATYR_ICON, self.level,
                                                        HEAVY_SATYR_ICON.get_rect(topright=(115 * CELL, 1 * CELL)))
-            self.hero_unit_button = HeroPirateButton(HERO_SATYR_ICON, self.level, # ici
+            self.hero_unit_button = HeroPirateButton(HERO_SATYR_ICON, self.level,
                                                        HERO_SATYR_ICON.get_rect(topright=(125 * CELL, 1 * CELL)))
+            self.special_button = SpecialButton(SPECIAL_ICON, self.level,
+                                                       SPECIAL_ICON.get_rect(topright=(85 * CELL, 5* CELL)))
         elif self.state == "golems":
             self.light_unit_button = LightWarriorButton(LIGHT_GOLEM_ICON, self.level,
                                                         LIGHT_GOLEM_ICON.get_rect(topright=(95 * CELL, 1 * CELL)))
@@ -248,7 +251,7 @@ class UpgradeButton(pygame.sprite.Sprite):
             m_pos = pygame.mouse.get_pos()
             now = game.time.get_ticks()
             if now - self.last_update > 5000:
-                self.last_update = 0
+                self.last_update = now
                 if self.state == "satyrs":
                     if self.active and self.rect.collidepoint(m_pos) and pygame.mouse.get_pressed()[0]:
                         self.action_bar.level.player.xp -= 5000
@@ -273,6 +276,9 @@ class UpgradeButton(pygame.sprite.Sprite):
                         self.action_bar.hero_unit_button = HeroWarriorButton(HERO_GOLEM_ICON, self.action_bar.level,
                                                                                HERO_GOLEM_ICON.get_rect(
                                                                                    topright=(125 * CELL, 1 * CELL)))
+                        self.action_bar.special_button = SpecialButton(SPECIAL_ICON, self.action_bar.level,
+                                                                               SPECIAL_ICON.get_rect(
+                                                                                   topright=(85 * CELL, 5 * CELL)))
                         self.action_bar.golem_turret_button.active = True
                         self.state = "golems"
                 elif self.state == "golems":
@@ -874,6 +880,130 @@ class EnemyRangedCombatUnit(pygame.sprite.Sprite):
         self.move(dt)
         self.check_health()
 
+class HealthSpecial(pygame.sprite.Sprite):
+    def __init__(self, parent, bar_type, x, y):
+        super().__init__()
+        self.parent = parent
+        self.bar_type = bar_type
+        self.image = pygame.Surface((50, 10))
+        self.rect = self.image.get_rect(topleft=(x, y))
+
+class special(pygame.sprite.Sprite):
+    def __init__(self, level, walking_frames, attacking_frames, damage, movementspeed):
+        super().__init__()
+        self.level = level
+        self.walking_frames = walking_frames
+        self.attacking_frames = attacking_frames
+        self.idle_frames = walking_frames
+        self.current_frames = walking_frames
+        self.current = 0
+        self.damage = damage
+        self.image = self.walking_frames[self.current]
+        self.rect = self.image.get_rect(midtop=(12 * CELL, 0))
+        self.starting_point = self.rect.centery
+        self.walking = True
+        self.attacking = False
+        self.idle = False
+        self.movement_speed = movementspeed
+        self.orig_movement_speed = self.movement_speed
+        self.lastupdate = 0
+        self.health = 100
+        self.back_health_bar = HealthSpecial(self, "back", self.rect.centerx, self.rect.top)
+        self.front_health_bar = HealthSpecial(self, "front", self.rect.centerx, self.rect.top)
+        self.level.all_sprites.add(self)
+        self.level.player_sprites.add(self)
+
+    def check_collision(self):
+        self.enemy_collisions = pygame.sprite.spritecollide(self, self.level.ai_sprites, False)
+        if self.enemy_collisions:
+            closest_enemy = self.enemy_collisions[0]
+            if not self.attacking:
+                self.idle = False
+                self.attacking = True
+                self.walking = False
+                if self.current == 6:
+                    closest_enemy.health -= (self.damage + 2) / (closest_enemy.defense + 2) * randrange(10, 13)
+                    self.current = 0
+        else:
+            self.idle = False
+            self.walking = True
+            self.attacking = False
+
+        p_sprites_list = [sprite for sprite in self.level.player_sprites if sprite is not self.level.player]
+        if len(p_sprites_list) > 1:
+            for i in range(1, len(p_sprites_list)):
+                if p_sprites_list[i].rect.bottom - p_sprites_list[i - 1].rect.top >= -10:
+                    p_sprites_list[i].idle = True
+                    p_sprites_list[i].walking = False
+                    p_sprites_list[i].attacking = False
+                else:
+                    p_sprites_list[i].idle = False
+                    p_sprites_list[i].walking = True
+                    p_sprites_list[i].attacking = False
+
+    def check_state(self):
+        if self.walking:
+            self.movement_speed = self.orig_movement_speed
+            self.load_walk()
+        elif self.attacking:
+            self.movement_speed = 0
+            self.load_attack()
+        elif self.idle:
+            self.movement_speed = 0
+            self.load_idle()
+
+    def check_health(self):
+        if self.health <= 0:
+            self.health = 0
+            self.back_health_bar.kill()
+            self.front_health_bar.kill()
+            self.level.player.money += 20
+            self.level.player.xp += 70
+            self.kill()
+
+    def load_idle(self):
+        now = pygame.time.get_ticks()
+        if now - self.lastupdate > 70:
+            self.lastupdate = now
+            self.current_frames = self.idle_frames
+            self.current = (self.current + 1) % len(self.current_frames)
+
+    def load_walk(self):
+        now = pygame.time.get_ticks()
+        if now - self.lastupdate > 70:
+            self.lastupdate = now
+            self.current_frames = self.walking_frames
+            self.current = (self.current + 1) % len(self.current_frames)
+
+    def load_attack(self):
+        now = pygame.time.get_ticks()
+        if now - self.lastupdate > 100:
+            self.lastupdate = now
+            self.current_frames = self.attacking_frames
+            self.current = (self.current + 1) % len(self.current_frames)
+
+    def move(self, dt):
+        self.image = self.current_frames[self.current]
+        self.rect = self.current_frames[self.current].get_rect(
+            midtop=(self.rect.midtop[0], int(self.starting_point + self.movement_speed * dt)))
+        self.starting_point += self.movement_speed * dt
+        if self.rect.top > SCREEN_HEIGHT:
+            self.kill()
+
+    def update(self, dt):
+        self.check_collision()
+        self.check_state()
+        self.move(dt)
+        self.check_health()
+
+class Special(special):
+    def __init__(self, level):
+        walking_frames = SPECIAL_SATYR
+        attacking_frames = SPECIAL_SATYR
+        super().__init__(level, walking_frames, attacking_frames, 40, 150)
+        self.defense = 5 
+
+
 
 class PlayerCloseCombatUnit(pygame.sprite.Sprite):
     def __init__(self, level, walking_frames, attacking_frames, idle_frames, health, damage, defense, movementspeed):
@@ -1374,6 +1504,7 @@ class PlayerHeroPirate(PlayerRangedCombatUnit):
         super().__init__(level, PLAYER_HERO_SATYR_WALKING, PLAYER_HERO_SATYR_ATTACKING, PLAYER_HERO_SATYR_IDLE,
                          190, 13, 20, 40, 3)
 
+#ici
 
 class PlayerLightWarrior(PlayerCloseCombatUnit):
     def __init__(self, level):
@@ -1484,7 +1615,7 @@ class PlayerHeroVillager(PlayerCloseCombatUnit):
                          20, 150)
 
 class UnitButton(pygame.sprite.Sprite):
-    def __init__(self, image, level, rect, cooldown=1000,unlocked=True):
+    def __init__(self, image, level, rect, cooldown=1000, unlocked=True):
         super().__init__()
         self.level = level
         self.image = image
@@ -1499,10 +1630,11 @@ class UnitButton(pygame.sprite.Sprite):
         self.unit_type = None
         self.level.all_sprites.add(self)
         print(self.active)
+
     def click(self):
         m_pos = pygame.mouse.get_pos()
         self.now = pygame.time.get_ticks()
-        if self.active==True and self.rect.collidepoint(m_pos) and pygame.mouse.get_pressed()[0]:
+        if self.active and self.rect.collidepoint(m_pos) and pygame.mouse.get_pressed()[0]:
             print(self.active)
             if self.race == "satyr":
                 if self.unit_type == "light":
@@ -1517,16 +1649,22 @@ class UnitButton(pygame.sprite.Sprite):
                     if self.level.player.money >= 70:
                         self.level.player.money -= 70
                         player_ranged_satyr = PlayerRangedPirate(self.level)
-                elif self.unit_type == "hero" and self.unlocked == True:
+                elif self.unit_type == "hero" and self.unlocked:
                     if self.level.player.money >= 110:
                         self.level.player.money -= 110
                         player_hero_satyr = PlayerHeroPirate(self.level)
-                
-                elif self.unit_type == "hero" and self.unlocked == False:
-                     if self.level.player.money >= 450:
+                elif self.unit_type == "special":
+                    if self.level.player.money >= 70:
+                        self.level.player.money -= 70
+                        for _ in range(15):
+                            special_satyr = Special(self.level)
+                            special_satyr.rect.topleft = (randrange(0, SCREEN_WIDTH - special_satyr.rect.width), 0)
+                            self.level.all_sprites.add(special_satyr)
+                            self.level.player_sprites.add(special_satyr)
+                elif self.unit_type == "hero" and not self.unlocked:
+                    if self.level.player.money >= 450:
                         self.level.player.money -= 450
                         self.unlocked = True
-
 
             if self.race == "golem":
                 if self.unit_type == "light":
@@ -1685,6 +1823,11 @@ class HeroPirateButton(UnitButton):
         self.race = "satyr"
         self.unit_type = "hero"
 
+class SpecialButton(UnitButton):
+    def __init__(self, image, sprite_group, rect):
+        super().__init__(image, sprite_group, rect, cooldown=7000)
+        self.race = "satyr"
+        self.unit_type = "special"
 
 class LightWarriorButton(UnitButton):
     def __init__(self, image, sprite_group, rect):

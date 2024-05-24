@@ -13,6 +13,13 @@ PLAYER_CASTLE_IMAGE = game.transform.scale(CASTLE_IMAGE, (20 * CELL, 20 * CELL))
 PLAYER_CASTLE_IMAGE = game.transform.flip(PLAYER_CASTLE_IMAGE, True, False)
 ENEMY_CASTLE_IMAGE = game.transform.scale(CASTLE_IMAGE, (20 * CELL, 20 * CELL))
 
+CASTLE_IMAGE1 = game.image.load("Resources/castle_50.png").convert_alpha()
+PLAYER_CASTLE_IMAGE1 = game.transform.scale(CASTLE_IMAGE1, (20 * CELL, 20 * CELL))
+PLAYER_CASTLE_IMAGE1 = game.transform.flip(PLAYER_CASTLE_IMAGE1, True, False)
+ENEMY_CASTLE_IMAGE1 = game.transform.scale(CASTLE_IMAGE1, (20 * CELL, 20 * CELL))
+
+
+
 PLAYER_LIGHT_SATYR_WALKING = [game.image.load(f"Resources/Satyr_03_Walking_{i:03d}.png").convert_alpha() for i in range(18)]
 PLAYER_LIGHT_SATYR_WALKING = [game.transform.scale(image, (CELL * 10, CELL * 10)).convert_alpha() for image in PLAYER_LIGHT_SATYR_WALKING]
 PLAYER_LIGHT_SATYR_ATTACKING = [game.image.load(f"Resources/Satyr_03_Attacking_{i:03d}.png").convert_alpha() for i in range(12)]
@@ -41,6 +48,8 @@ PLAYER_HERO_SATYR_ATTACKING = [game.transform.scale(image, (CELL * 10, CELL * 10
 PLAYER_HERO_SATYR_IDLE = [game.image.load(f"Resources/4_entity__IDLE_00{i}.png").convert_alpha() for i in range(10)]
 PLAYER_HERO_SATYR_IDLE = [game.transform.scale(image, (CELL * 10, CELL * 10)) for image in PLAYER_HERO_SATYR_IDLE]
 
+SPECIAL_SATYR = [game.image.load("Resources/fireball.png").convert_alpha()]
+SPECIAL_SATYR = [game.transform.scale(image, (CELL * 3, CELL * 3)).convert_alpha() for image in SPECIAL_SATYR]
 
 
 PLAYER_LIGHT_GOLEM_WALIKNG = [game.image.load(f"Resources/0_Golem_Walking_{i:03d}.png").convert_alpha() for i in range(24)]
@@ -323,3 +332,7 @@ ELF_CANNONBALL = game.transform.scale(ELF_CANNONBALL, (1 * CELL, 1 * CELL))
 UPGRADE_BUTTON = game.image.load("Resources/upgrade_button.png").convert_alpha()
 GAME_OVER = game.image.load("Resources/game_over.png").convert_alpha()
 GAME_WON = game.image.load("Resources/game_won.png").convert_alpha()
+
+
+SPECIAL_ICON = game.image.load("Resources/special.png").convert_alpha()
+SPECIAL_ICON = game.transform.scale(SPECIAL_ICON, (11 * CELL, 7 * CELL))

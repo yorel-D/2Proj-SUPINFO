@@ -8,7 +8,7 @@ class Player(pygame.sprite.Sprite):
         super().__init__()
         self.image = PLAYER_CASTLE_IMAGE
         self.level = level
-        self.xp =20000000
+        self.xp =9999
         self.money = 2000000000
         self.money_text = MoneyText(str(int(self.money)), self.level)
         self.xp_text = ExpText (str(int(self.xp)), self.level)
