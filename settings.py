@@ -51,6 +51,23 @@ PLAYER_HERO_SATYR_IDLE = [game.transform.scale(image, (CELL * 10, CELL * 10)) fo
 SPECIAL_SATYR = [game.image.load("Resources/fireball.png").convert_alpha()]
 SPECIAL_SATYR = [game.transform.scale(image, (CELL * 3, CELL * 3)).convert_alpha() for image in SPECIAL_SATYR]
 
+SPECIAL1 = [game.image.load("Resources/bombe.png").convert_alpha()]
+SPECIAL1 = [game.transform.scale(image, (CELL * 3, CELL * 3)).convert_alpha() for image in SPECIAL1]
+
+SPECIAL2 = [game.image.load("Resources/Asteroid.png").convert_alpha()]
+SPECIAL2 = [game.transform.scale(image, (CELL * 3, CELL * 3)).convert_alpha() for image in SPECIAL2]
+
+SPECIAL3 = [game.image.load("Resources/Aislado.png").convert_alpha()]
+SPECIAL3 = [game.transform.scale(image, (CELL * 3, CELL * 3)).convert_alpha() for image in SPECIAL3]
+
+SPECIAL4 = [game.image.load("Resources/elf_cannonball.png").convert_alpha()]
+SPECIAL4 = [game.transform.scale(image, (CELL * 3, CELL * 3)).convert_alpha() for image in SPECIAL4]
+
+SPECIAL5 = [game.image.load("Resources/satyr_cannonball.png").convert_alpha()]
+SPECIAL5 = [game.transform.scale(image, (CELL * 3, CELL * 3)).convert_alpha() for image in SPECIAL5]
+
+
+
 
 PLAYER_LIGHT_GOLEM_WALIKNG = [game.image.load(f"Resources/0_Golem_Walking_{i:03d}.png").convert_alpha() for i in range(24)]
 PLAYER_LIGHT_GOLEM_WALIKNG = [game.transform.scale(image, (CELL * 10, CELL * 10)) for image in PLAYER_LIGHT_GOLEM_WALIKNG]
@@ -336,3 +353,13 @@ GAME_WON = game.image.load("Resources/game_won.png").convert_alpha()
 
 SPECIAL_ICON = game.image.load("Resources/special.png").convert_alpha()
 SPECIAL_ICON = game.transform.scale(SPECIAL_ICON, (11 * CELL, 7 * CELL))
+SPECIAL1_ICON = game.image.load("Resources/special1.jpg").convert_alpha()
+SPECIAL1_ICON = game.transform.scale(SPECIAL1_ICON, (11 * CELL, 7 * CELL))
+SPECIAL2_ICON = game.image.load("Resources/special2.jpg").convert_alpha()
+SPECIAL2_ICON = game.transform.scale(SPECIAL2_ICON, (11 * CELL, 7 * CELL))
+SPECIAL3_ICON = game.image.load("Resources/special3.jpg").convert_alpha()
+SPECIAL3_ICON = game.transform.scale(SPECIAL3_ICON, (11 * CELL, 7 * CELL))
+SPECIAL4_ICON = game.image.load("Resources/special4.jpg").convert_alpha()
+SPECIAL4_ICON = game.transform.scale(SPECIAL4_ICON, (11 * CELL, 7 * CELL))
+SPECIAL5_ICON = game.image.load("Resources/bombe_icon.png").convert_alpha()
+SPECIAL5_ICON = game.transform.scale(SPECIAL5_ICON, (11 * CELL, 7 * CELL))
