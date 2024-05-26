@@ -8,17 +8,35 @@ LOADING_SCREEN = game.image.load("Resources/LOADING.png").convert_alpha()
 DISPLAY.blit(LOADING_SCREEN, (0, 0))
 game.display.update()
 BACKGROUND = game.image.load("Resources/bck2.png").convert_alpha()
-CASTLE_IMAGE = game.image.load("Resources/castle_100.png").convert_alpha()
+CASTLE_IMAGE = game.image.load("Resources/castle_25.png").convert_alpha()
 PLAYER_CASTLE_IMAGE = game.transform.scale(CASTLE_IMAGE, (20 * CELL, 20 * CELL))
 PLAYER_CASTLE_IMAGE = game.transform.flip(PLAYER_CASTLE_IMAGE, True, False)
 ENEMY_CASTLE_IMAGE = game.transform.scale(CASTLE_IMAGE, (20 * CELL, 20 * CELL))
 
-CASTLE_IMAGE1 = game.image.load("Resources/castle_50.png").convert_alpha()
+CASTLE_IMAGE1 = game.image.load("Resources/castle_100.png").convert_alpha()
 PLAYER_CASTLE_IMAGE1 = game.transform.scale(CASTLE_IMAGE1, (20 * CELL, 20 * CELL))
 PLAYER_CASTLE_IMAGE1 = game.transform.flip(PLAYER_CASTLE_IMAGE1, True, False)
 ENEMY_CASTLE_IMAGE1 = game.transform.scale(CASTLE_IMAGE1, (20 * CELL, 20 * CELL))
 
+CASTLE_IMAGE2 = game.image.load("Resources/castle1_25.png").convert_alpha()
+PLAYER_CASTLE_IMAGE2 = game.transform.scale(CASTLE_IMAGE2, (20 * CELL, 20 * CELL))
+PLAYER_CASTLE_IMAGE2 = game.transform.flip(PLAYER_CASTLE_IMAGE2, True, False)
+ENEMY_CASTLE_IMAGE2 = game.transform.scale(CASTLE_IMAGE2, (20 * CELL, 20 * CELL))
 
+CASTLE_IMAGE3 = game.image.load("Resources/castle1_100.png").convert_alpha()
+PLAYER_CASTLE_IMAGE3 = game.transform.scale(CASTLE_IMAGE3, (20 * CELL, 20 * CELL))
+PLAYER_CASTLE_IMAGE3 = game.transform.flip(PLAYER_CASTLE_IMAGE3, True, False)
+ENEMY_CASTLE_IMAGE3 = game.transform.scale(CASTLE_IMAGE3, (20 * CELL, 20 * CELL))
+
+CASTLE_IMAGE4 = game.image.load("Resources/castle2_25.png").convert_alpha()
+PLAYER_CASTLE_IMAGE4 = game.transform.scale(CASTLE_IMAGE4, (20 * CELL, 20 * CELL))
+PLAYER_CASTLE_IMAGE4 = game.transform.flip(PLAYER_CASTLE_IMAGE4, True, False)
+ENEMY_CASTLE_IMAGE4 = game.transform.scale(CASTLE_IMAGE4, (20 * CELL, 20 * CELL))
+
+CASTLE_IMAGE5 = game.image.load("Resources/castle2_100.png").convert_alpha()
+PLAYER_CASTLE_IMAGE5 = game.transform.scale(CASTLE_IMAGE5, (20 * CELL, 20 * CELL))
+PLAYER_CASTLE_IMAGE5 = game.transform.flip(PLAYER_CASTLE_IMAGE5, True, False)
+ENEMY_CASTLE_IMAGE5 = game.transform.scale(CASTLE_IMAGE5, (20 * CELL, 20 * CELL))
 
 PLAYER_LIGHT_SATYR_WALKING = [game.image.load(f"Resources/Satyr_03_Walking_{i:03d}.png").convert_alpha() for i in range(18)]
 PLAYER_LIGHT_SATYR_WALKING = [game.transform.scale(image, (CELL * 10, CELL * 10)).convert_alpha() for image in PLAYER_LIGHT_SATYR_WALKING]

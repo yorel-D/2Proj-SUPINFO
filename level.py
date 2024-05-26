@@ -6,7 +6,7 @@ from ai import AI
 
 
 class Level:
-    def __init__(self):
+    def __init__(self, state="satyrs"):
         self.mode = None
         self.game = game
         self.display_surface = pygame.display.get_surface()
@@ -15,13 +15,12 @@ class Level:
         self.all_sprites = pygame.sprite.Group()
         self.player_sprites = pygame.sprite.Group()
         self.ai_sprites = pygame.sprite.Group()
-        self.player = Player(self)
+        self.player = Player(self, state)
         self.player_sprites.add(self.player)
         self.ai = AI(self)
         self.ai_sprites.add(self.ai)
         self.all_sprites.add(self.player, self.ai)
-        self.action_bar = ActionBar(self, "satyrs")
-
+        self.action_bar = ActionBar(self, state)
 
     def run(self, dt, mode):
         self.mode = mode
