@@ -44,7 +44,7 @@ class ActionBar(pygame.sprite.Sprite):
                                                           RANGED_GOLEM_ICON.get_rect(topright=(105 * CELL, 1 * CELL)))
             self.heavy_unit_button = HeavyWarriorButton(HEAVY_GOLEM_ICON, self.level,
                                                         HEAVY_GOLEM_ICON.get_rect(topright=(115 * CELL, 1 * CELL)))
-            self.hero_unit_button = HeroWarriorButton(HERO_GOLEM_ICON, self.level, # ici
+            self.hero_unit_button = HeroWarriorButton(HERO_GOLEM_ICON, self.level,
                                                        HERO_GOLEM_ICON.get_rect(topright=(125 * CELL, 1 * CELL)))
             self.special_button = Special1Button(SPECIAL1_ICON, self.level,
                                                        SPECIAL1_ICON.get_rect(topright=(85 * CELL, 5* CELL)))
@@ -55,7 +55,7 @@ class ActionBar(pygame.sprite.Sprite):
                                                       RANGED_ELF_ICON.get_rect(topright=(105 * CELL, 1 * CELL)))
             self.heavy_unit_button = HeavyFairyButton(HEAVY_ELF_ICON, self.level,
                                                     HEAVY_ELF_ICON.get_rect(topright=(115 * CELL, 1 * CELL)))
-            self.hero_unit_button = HeroFairyButton(HERO_ELF_ICON, self.level, # ici
+            self.hero_unit_button = HeroFairyButton(HERO_ELF_ICON, self.level,
                                                        HERO_ELF_ICON.get_rect(topright=(125 * CELL, 1 * CELL)))
             self.special_button = Special2Button(SPECIAL2_ICON, self.level,
                                                        SPECIAL2_ICON.get_rect(topright=(85 * CELL, 5* CELL)))
@@ -957,41 +957,12 @@ class special(pygame.sprite.Sprite):
         if self.walking:
             self.movement_speed = self.orig_movement_speed
             self.load_walk()
-        elif self.attacking:
-            self.movement_speed = 0
-            self.load_attack()
-        elif self.idle:
-            self.movement_speed = 0
-            self.load_idle()
-
-    def check_health(self):
-        if self.health <= 0:
-            self.health = 0
-            self.back_health_bar.kill()
-            self.front_health_bar.kill()
-            self.level.player.money += 20
-            self.level.player.xp += 70
-            self.kill()
-
-    def load_idle(self):
-        now = pygame.time.get_ticks()
-        if now - self.lastupdate > 70:
-            self.lastupdate = now
-            self.current_frames = self.idle_frames
-            self.current = (self.current + 1) % len(self.current_frames)
 
     def load_walk(self):
         now = pygame.time.get_ticks()
         if now - self.lastupdate > 70:
             self.lastupdate = now
             self.current_frames = self.walking_frames
-            self.current = (self.current + 1) % len(self.current_frames)
-
-    def load_attack(self):
-        now = pygame.time.get_ticks()
-        if now - self.lastupdate > 100:
-            self.lastupdate = now
-            self.current_frames = self.attacking_frames
             self.current = (self.current + 1) % len(self.current_frames)
 
     def move(self, dt):
@@ -1005,7 +976,6 @@ class special(pygame.sprite.Sprite):
         self.check_collision()
         self.check_state()
         self.move(dt)
-        self.check_health()
 
 class PlayerCloseCombatUnit(pygame.sprite.Sprite):
     def __init__(self, level, walking_frames, attacking_frames, idle_frames, health, damage, defense, movementspeed):
@@ -1044,7 +1014,7 @@ class PlayerCloseCombatUnit(pygame.sprite.Sprite):
             self.walking = False
             if self.current == 6:
                 closest_enemy = self.enemy_collisions[0]
-                closest_enemy.health -= (self.damage + 2) / (closest_enemy.defense + 2) * randrange(10, 13)
+                closest_enemy.health -= self.damage
                 self.current = 0
         else:
             self.idle = False
@@ -1484,175 +1454,173 @@ class PlayerRangedCombatUnit(pygame.sprite.Sprite):
         self.check_health()
 
 
-class PlayerRangedPirate(PlayerCloseCombatUnit):
-    def __init__(self, level):
-        super().__init__(level, PLAYER_RANGED_SATYR_WALKING, PLAYER_RANGED_SATYR_ATTACKING, PLAYER_RANGED_SATYR_IDLE,
-                         80, 15, 8, 50)
-
-
 class PlayerLightPirate(PlayerCloseCombatUnit):
     def __init__(self, level):
         super().__init__(level, PLAYER_LIGHT_SATYR_WALKING, PLAYER_LIGHT_SATYR_ATTACKING, PLAYER_LIGHT_SATYR_IDLE,
-                         100, 10, 10, 60)
-
+                         100, 8, 8, 55)
 
 class PlayerHeavyPirate(PlayerCloseCombatUnit):
     def __init__(self, level):
         super().__init__(level, PLAYER_HEAVY_SATYR_WALKING, PLAYER_HEAVY_SATYR_ATTACKING, PLAYER_HEAVY_SATYR_IDLE,
-                         160, 8, 15, 40)
+                         160, 10, 10, 55)
+
+class PlayerRangedPirate(PlayerCloseCombatUnit):
+    def __init__(self, level):
+        super().__init__(level, PLAYER_RANGED_SATYR_WALKING, PLAYER_RANGED_SATYR_ATTACKING, PLAYER_RANGED_SATYR_IDLE,
+                         80, 15, 15, 55)
 
 class PlayerHeroPirate(PlayerRangedCombatUnit):
     def __init__(self, level):
         super().__init__(level, PLAYER_HERO_SATYR_WALKING, PLAYER_HERO_SATYR_ATTACKING, PLAYER_HERO_SATYR_IDLE,
-                         190, 13, 20, 40, 3)
+                         190, 20, 20, 55, 3)
 
 class Special(special):
     def __init__(self, level):
         walking_frames = SPECIAL_SATYR
         attacking_frames = SPECIAL_SATYR
-        super().__init__(level, walking_frames, attacking_frames, 40, 150)
+        super().__init__(level, walking_frames, attacking_frames, 100, 550)
         self.defense = 5
 
 class PlayerLightWarrior(PlayerCloseCombatUnit):
     def __init__(self, level):
         super().__init__(level, PLAYER_LIGHT_GOLEM_WALIKNG, PLAYER_LIGHT_GOLEM_ATTACKING, PLAYER_LIGHT_GOLEM_IDLE,
-                         130, 13, 15, 65)
+                         130, 20, 15, 60)
 
 
 class PlayerHeavyWarrior(PlayerCloseCombatUnit):
     def __init__(self, level):
         super().__init__(level, PLAYER_HEAVY_GOLEM_WALIKNG, PLAYER_HEAVY_GOLEM_ATTACKING, PLAYER_HEAVY_GOLEM_IDLE,
-                         190, 11, 20, 40)
+                         190, 35, 20, 60)
 
 
 class PlayerRangedWarrior(PlayerCloseCombatUnit):
     def __init__(self, level):
         super().__init__(level, PLAYER_RANGED_GOLEM_WALIKNG, PLAYER_RANGED_GOLEM_ATTACKING,
-                         PLAYER_RANGED_GOLEM_IDLE, 100, 18, 10, 55)
+                         PLAYER_RANGED_GOLEM_IDLE, 100, 40, 10, 60)
         
         
 class PlayerHeroWarrior(PlayerRangedCombatUnit):
     def __init__(self, level):
         super().__init__(level, PLAYER_HERO_GOLEM_WALIKNG, PLAYER_HERO_GOLEM_ATTACKING, PLAYER_HERO_GOLEM_IDLE,
-                         220, 25, 20, 40, 3)
+                         220, 50, 20, 60, 3)
 
 class Special1(special):
     def __init__(self, level):
         walking_frames = SPECIAL1
         attacking_frames = SPECIAL1
-        super().__init__(level, walking_frames, attacking_frames, 40, 150)
+        super().__init__(level, walking_frames, attacking_frames, 100, 550)
         self.defense = 5
 
 
 class PlayerLightFairy(PlayerCloseCombatUnit):
     def __init__(self, level):
-        super().__init__(level, PLAYER_LIGHT_ELF_WALKING, PLAYER_LIGHT_ELF_ATTACKING, PLAYER_LIGHT_ELF_IDLE, 150, 18,
-                         20, 70)
+        super().__init__(level, PLAYER_LIGHT_ELF_WALKING, PLAYER_LIGHT_ELF_ATTACKING, PLAYER_LIGHT_ELF_IDLE, 150, 50,
+                         20, 65)
 
 
 class PlayerHeavyFairy(PlayerCloseCombatUnit):
     def __init__(self, level):
-        super().__init__(level, PLAYER_HEAVY_ELF_WALKING, PLAYER_HEAVY_ELF_ATTACKING, PLAYER_HEAVY_ELF_IDLE, 240, 14,
-                         28, 44)
+        super().__init__(level, PLAYER_HEAVY_ELF_WALKING, PLAYER_HEAVY_ELF_ATTACKING, PLAYER_HEAVY_ELF_IDLE, 240, 75,
+                         28, 65)
 
 
 class PlayerRangedFairy(PlayerRangedCombatUnit):
     def __init__(self, level):
-        super().__init__(level, PLAYER_RANGED_ELF_WALKING, PLAYER_RANGED_ELF_ATTACKING, PLAYER_RANGED_ELF_IDLE, 130, 23,
-                         14, 60, 3)
+        super().__init__(level, PLAYER_RANGED_ELF_WALKING, PLAYER_RANGED_ELF_ATTACKING, PLAYER_RANGED_ELF_IDLE, 130, 100,
+                         14, 65, 3)
 
 class PlayerHeroFairy(PlayerRangedCombatUnit):
     def __init__(self, level):
-        super().__init__(level, PLAYER_HERO_ELF_WALKING, PLAYER_HERO_ELF_ATTACKING, PLAYER_HERO_ELF_IDLE, 240, 23,
-                         32, 44, 3)
+        super().__init__(level, PLAYER_HERO_ELF_WALKING, PLAYER_HERO_ELF_ATTACKING, PLAYER_HERO_ELF_IDLE, 240, 150,
+                         32, 65, 3)
 
 class Special2(special):
     def __init__(self, level):
         walking_frames = SPECIAL2
         attacking_frames = SPECIAL2
-        super().__init__(level, walking_frames, attacking_frames, 40, 150)
+        super().__init__(level, walking_frames, attacking_frames, 100, 550)
         self.defense = 5
 
 class PlayerLightAngel(PlayerCloseCombatUnit):
     def __init__(self, level):
-        super().__init__(level, PLAYER_LIGHT_ANGEL_WALKING, PLAYER_LIGHT_ANGEL_ATTACKING, PLAYER_LIGHT_ANGEL_IDLE, 150, 30,
+        super().__init__(level, PLAYER_LIGHT_ANGEL_WALKING, PLAYER_LIGHT_ANGEL_ATTACKING, PLAYER_LIGHT_ANGEL_IDLE, 150, 150,
                          20, 70)
         
 class PlayerHeavyAngel(PlayerCloseCombatUnit):
     def __init__(self, level):
-        super().__init__(level, PLAYER_HEAVY_ANGEL_WALKING, PLAYER_HEAVY_ANGEL_ATTACKING, PLAYER_HEAVY_ANGEL_IDLE, 150, 35,
-                         20, 75)
+        super().__init__(level, PLAYER_HEAVY_ANGEL_WALKING, PLAYER_HEAVY_ANGEL_ATTACKING, PLAYER_HEAVY_ANGEL_IDLE, 150, 175,
+                         20, 70)
 
 class PlayerRangedAngel(PlayerCloseCombatUnit):
     def __init__(self, level):
-        super().__init__(level, PLAYER_RANGED_ANGEL_WALKING, PLAYER_RANGED_ANGEL_ATTACKING, PLAYER_RANGED_ANGEL_IDLE, 150, 40,
-                         20, 80)
+        super().__init__(level, PLAYER_RANGED_ANGEL_WALKING, PLAYER_RANGED_ANGEL_ATTACKING, PLAYER_RANGED_ANGEL_IDLE, 150, 200,
+                         20, 70)
 
 class PlayerHeroAngel(PlayerCloseCombatUnit):
     def __init__(self, level):
-        super().__init__(level, PLAYER_HERO_ANGEL_WALKING, PLAYER_HERO_ANGEL_ATTACKING, PLAYER_HERO_ANGEL_IDLE, 150, 50,
-                         20, 90)
+        super().__init__(level, PLAYER_HERO_ANGEL_WALKING, PLAYER_HERO_ANGEL_ATTACKING, PLAYER_HERO_ANGEL_IDLE, 150, 250,
+                         20, 70)
 
 class Special3(special):
     def __init__(self, level):
         walking_frames = SPECIAL3
         attacking_frames = SPECIAL3
-        super().__init__(level, walking_frames, attacking_frames, 40, 150)
+        super().__init__(level, walking_frames, attacking_frames, 100, 550)
         self.defense = 5
 
 class PlayerLightWraith(PlayerRangedCombatUnit):
     def __init__(self, level):
-        super().__init__(level, PLAYER_LIGHT_WRAITH_WALKING, PLAYER_LIGHT_WRAITH_ATTACKING, PLAYER_LIGHT_WRAITH_IDLE, 150, 50,
-                         20, 85, 3)
+        super().__init__(level, PLAYER_LIGHT_WRAITH_WALKING, PLAYER_LIGHT_WRAITH_ATTACKING, PLAYER_LIGHT_WRAITH_IDLE, 150, 250,
+                         20, 75, 3)
         
 class PlayerHeavyWraith(PlayerRangedCombatUnit):
     def __init__(self, level):
-        super().__init__(level, PLAYER_HEAVY_WRAITH_WALKING, PLAYER_HEAVY_WRAITH_ATTACKING, PLAYER_HEAVY_WRAITH_IDLE, 150, 55,
-                         20, 90, 3)
+        super().__init__(level, PLAYER_HEAVY_WRAITH_WALKING, PLAYER_HEAVY_WRAITH_ATTACKING, PLAYER_HEAVY_WRAITH_IDLE, 150, 275,
+                         20, 75, 3)
 
 class PlayerRangedWraith(PlayerRangedCombatUnit):
     def __init__(self, level):
-        super().__init__(level, PLAYER_RANGED_WRAITH_WALKING, PLAYER_RANGED_WRAITH_ATTACKING, PLAYER_RANGED_WRAITH_IDLE, 150, 60,
-                         20, 95, 3)
+        super().__init__(level, PLAYER_RANGED_WRAITH_WALKING, PLAYER_RANGED_WRAITH_ATTACKING, PLAYER_RANGED_WRAITH_IDLE, 150, 300,
+                         20, 75, 3)
 
 class PlayerHeroWraith(PlayerRangedCombatUnit):
     def __init__(self, level):
-        super().__init__(level, PLAYER_HERO_WRAITH_WALKING, PLAYER_HERO_WRAITH_ATTACKING, PLAYER_HERO_WRAITH_IDLE, 150, 70,
-                         20, 105, 3)
+        super().__init__(level, PLAYER_HERO_WRAITH_WALKING, PLAYER_HERO_WRAITH_ATTACKING, PLAYER_HERO_WRAITH_IDLE, 150, 350,
+                         20, 75, 3)
 
 class Special4(special):
     def __init__(self, level):
         walking_frames = SPECIAL4
         attacking_frames = SPECIAL4
-        super().__init__(level, walking_frames, attacking_frames, 40, 150)
+        super().__init__(level, walking_frames, attacking_frames, 400, 550)
         self.defense = 5
 
 
 class PlayerLightVillager(PlayerCloseCombatUnit):
     def __init__(self, level):
-        super().__init__(level, PLAYER_LIGHT_VILLAGER_WALKING, PLAYER_LIGHT_VILLAGER_ATTACKING, PLAYER_LIGHT_VILLAGER_IDLE, 150, 50,
-                         20, 105)
+        super().__init__(level, PLAYER_LIGHT_VILLAGER_WALKING, PLAYER_LIGHT_VILLAGER_ATTACKING, PLAYER_LIGHT_VILLAGER_IDLE, 150, 350,
+                         20, 80)
         
 class PlayerHeavyVillager(PlayerCloseCombatUnit):
     def __init__(self, level):
-        super().__init__(level, PLAYER_HEAVY_VILLAGER_WALKING, PLAYER_HEAVY_VILLAGER_ATTACKING, PLAYER_HEAVY_VILLAGER_IDLE, 150, 55,
-                         20, 115)
+        super().__init__(level, PLAYER_HEAVY_VILLAGER_WALKING, PLAYER_HEAVY_VILLAGER_ATTACKING, PLAYER_HEAVY_VILLAGER_IDLE, 150, 375,
+                         20, 80)
 
 class PlayerRangedVillager(PlayerCloseCombatUnit):
     def __init__(self, level):
-        super().__init__(level, PLAYER_RANGED_VILLAGER_WALKING, PLAYER_RANGED_VILLAGER_ATTACKING, PLAYER_RANGED_VILLAGER_IDLE, 150, 60,
-                         20, 130)
+        super().__init__(level, PLAYER_RANGED_VILLAGER_WALKING, PLAYER_RANGED_VILLAGER_ATTACKING, PLAYER_RANGED_VILLAGER_IDLE, 150, 400,
+                         20, 80)
 
 class PlayerHeroVillager(PlayerCloseCombatUnit):
     def __init__(self, level):
-        super().__init__(level, PLAYER_HERO_VILLAGER_WALKING, PLAYER_HERO_VILLAGER_ATTACKING, PLAYER_HERO_VILLAGER_IDLE, 150, 70,
-                         20, 150)
+        super().__init__(level, PLAYER_HERO_VILLAGER_WALKING, PLAYER_HERO_VILLAGER_ATTACKING, PLAYER_HERO_VILLAGER_IDLE, 150, 500,
+                         20, 80)
 
 class Special5(special):
     def __init__(self, level):
         walking_frames = SPECIAL5
         attacking_frames = SPECIAL5
-        super().__init__(level, walking_frames, attacking_frames, 40, 150)
+        super().__init__(level, walking_frames, attacking_frames, 500, 550)
         self.defense = 5
 
 class UnitButton(pygame.sprite.Sprite):

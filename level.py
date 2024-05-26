@@ -33,10 +33,12 @@ class Level:
         self.all_sprites.update(dt)
         
     def end_game(self):
-        if self.player.health <= 0:
-            return False
         if self.ai.health <= 0:
-            return True
+            return "win"
+        elif self.player.health <= 0:
+            return "lose"
+        return None
+
     def game_over(self):
         if self.player.health <= 0 or self.ai.health <= 0:
             return True

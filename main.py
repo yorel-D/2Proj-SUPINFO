@@ -12,6 +12,8 @@ class Game:
         self.running = False
         self.game_over = False
         self.game_won = False
+        self.game_won_image = pygame.image.load("Resources/game_won.png").convert_alpha()
+        self.game_over_image = pygame.image.load("Resources/game_over.png").convert_alpha()
 
     def start_menu(self):
         font = pygame.font.SysFont(None, 100)
@@ -53,32 +55,31 @@ class Game:
         self.level = level.Level()
         while True:
             for event in pygame.event.get():
-                if event.type == pygame.QUIT:
+                if event.type is pygame.QUIT:
+                    pygame.quit()
                     sys.exit()
-
-            if self.level.end_game() or self.level.game_over():
-                self.end()
+            game_outcome = self.level.end_game()
+            if game_outcome:
+                self.end(game_outcome)
                 break
-            
             dt = self.clock.tick() / 1000
             self.level.run(dt, mode)
             pygame.display.update()
 
-    def end(self):
-        font = pygame.font.SysFont(None, 100)
-        if self.level.game_over():
-            text = font.render("GAME OVER", True, "white")
-        else:
-            text = font.render("YOU WIN", True, "white")
-        text_rect = text.get_rect(center=(SCREEN_WIDTH/2, SCREEN_HEIGHT/2))
+    def end(self, outcome):
+        self.display_end_message(outcome)
+
+    def display_end_message(self, outcome):
+        image = self.game_won_image if outcome == "win" else self.game_over_image
+        image_rect = image.get_rect(center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2))
         while True:
             self.screen.fill("#720E00")
-            self.screen.blit(text, text_rect)
+            self.screen.blit(image, image_rect)
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
+                    pygame.quit()
                     sys.exit()
             pygame.display.update()
-
 
 if __name__ == "__main__":
     game = Game()
