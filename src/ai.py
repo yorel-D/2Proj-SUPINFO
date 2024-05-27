@@ -1,7 +1,7 @@
 import random
 import pygame
-from settings import *
-from sprites import *
+from src.settings import *
+from src.sprites import *
 
 
 class AI(pygame.sprite.Sprite):

@@ -1,6 +1,5 @@
-import pygame, sys, level, settings
-from sprites import *
-
+import pygame, sys, src.level as level
+from src.sprites import *
 
 class Game:
     def __init__(self):
