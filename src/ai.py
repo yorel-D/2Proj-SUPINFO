@@ -33,8 +33,6 @@ class AI(pygame.sprite.Sprite):
         self.health_text = HealthText(str(int(self.health)), str(self.max_health), self.level, 95*CELL, 58 * CELL)
         now = pygame.time.get_ticks()
         
-        # Log current state and mode for debugging
-        
         if self.mode == "easy":
             if self.state == "satyrs":
                 if now - self.last_update > 6500 or self.last_update == 0:

@@ -18,12 +18,9 @@ class SellButton(pygame.sprite.Sprite):
         m_pos = game.mouse.get_pos()
         if self.clicked == False and self.rect.collidepoint(m_pos) and game.mouse.get_pressed()[0]:
             self.image.set_alpha(128)
-            #print(self.tb1.tower1.rect)
-            #print(m_pos)
             self.clicked = not self.clicked
 
         if self.clicked and self.tb1.tower1.rect.collidepoint(m_pos) and game.mouse.get_pressed()[0]:
-            #print("should sell")
             try:
                 self.tb1.tower1.turret.sell()
             except AttributeError:
@@ -31,7 +28,6 @@ class SellButton(pygame.sprite.Sprite):
             self.tb1.towers[self.tb1.tower1] = "available"
 
         if self.clicked and self.tb1.tower2.rect.collidepoint(m_pos) and game.mouse.get_pressed()[0]:
-            #print("should sell")
             try:
                 self.tb1.tower2.turret.sell()
             except AttributeError:
@@ -39,7 +35,6 @@ class SellButton(pygame.sprite.Sprite):
             self.tb1.towers[self.tb1.tower2] = "available"
 
         if self.clicked and self.tb1.tower3.rect.collidepoint(m_pos) and game.mouse.get_pressed()[0]:
-            #print("should sell")
             try:
                 self.tb1.tower3.turret.sell()
             except AttributeError:
@@ -47,7 +42,6 @@ class SellButton(pygame.sprite.Sprite):
             self.tb1.towers[self.tb1.tower3] = "available"
 
         if self.clicked and self.tb1.tower4.rect.collidepoint(m_pos) and game.mouse.get_pressed()[0]:
-            #print("should sell")
             try:
                 self.tb1.tower4.turret.sell()
             except AttributeError:
@@ -55,7 +49,6 @@ class SellButton(pygame.sprite.Sprite):
             self.tb1.towers[self.tb1.tower4] = "available"
 
         if self.clicked and self.tb2.tower1.rect.collidepoint(m_pos) and game.mouse.get_pressed()[0]:
-            #print("should sell")
             try:
                 self.tb2.tower1.turret.sell()
             except AttributeError:

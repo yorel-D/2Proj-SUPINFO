@@ -32,8 +32,6 @@ class HealthBar(pygame.sprite.Sprite):
         self.topleft = self.unit.rect.topleft
         self.rect = self.image.get_rect(topleft=self.topleft)
         self.max = self.unit.health
-        #   self.rect.left = x - 10
-        #   self.rect.centery = y
         self.width = 80
         if self.position == "back":
             self.image.fill((255, 0, 0))
@@ -97,7 +95,6 @@ class EnemyRangedCombatUnit(pygame.sprite.Sprite):
 
         if self.enemy_collisions:
 
-            #   print("Collision")
             self.idle = False
             self.attacking = True
             self.walking = False
@@ -243,7 +240,6 @@ class PlayerCloseCombatUnit(pygame.sprite.Sprite):
         self.enemy_collisions = game.sprite.spritecollide(self, self.level.ai_sprites, False)
 
         if self.enemy_collisions:
-            #   print("Collision")
             self.idle = False
             self.attacking = True
             self.walking = False
@@ -359,7 +355,6 @@ class EnemyCloseCombatUnit(pygame.sprite.Sprite):
 
         if self.enemy_collisions:
 
-            #   print("Collision")
             self.idle = False
             self.attacking = True
             self.walking = False

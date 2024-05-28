@@ -13,7 +13,7 @@ class Player(pygame.sprite.Sprite):
         self.money_text = MoneyText(str(int(self.money)), self.level)
         self.xp_text = ExpText(str(int(self.xp)), self.level)
         self.max_health = 5000
-        self.health = 2000
+        self.health = 5000
         self.health_text = HealthText(str(int(self.health)), str(self.max_health), self.level, 2 * CELL, 58 * CELL)
         self.defense = 100
         self.last_money = 0

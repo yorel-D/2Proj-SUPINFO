@@ -53,8 +53,8 @@ class UpgradeButton(pygame.sprite.Sprite):
                                                                                    topright=(85 * CELL, 5 * CELL)))
                         self.action_bar.golem_turret_button.active = True
                         self.state = "golems"
-                        self.action_bar.level.player.state = self.state  # Propagez l'état au joueur
-                        self.action_bar.level.player.update_image()  # Assurez-vous que cette méthode existe dans Player
+                        self.action_bar.level.player.state = self.state
+                        self.action_bar.level.player.update_image()
                 elif self.state == "golems":
                     if self.active and self.rect.collidepoint(m_pos) and pygame.mouse.get_pressed()[0]:
                         self.active = False
@@ -86,8 +86,8 @@ class UpgradeButton(pygame.sprite.Sprite):
                                                                                    topright=(85 * CELL, 5 * CELL)))
                         self.action_bar.elf_turret_button.active = True
                         self.state = "elfs"
-                        self.action_bar.level.player.state = self.state  # Propagez l'état au joueur
-                        self.action_bar.level.player.update_image()  # Assurez-vous que cette méthode existe dans Player
+                        self.action_bar.level.player.state = self.state
+                        self.action_bar.level.player.update_image()
                 elif self.state == "elfs":
                     if self.active and self.rect.collidepoint(m_pos) and pygame.mouse.get_pressed()[0]:
                         self.active = False
@@ -118,12 +118,11 @@ class UpgradeButton(pygame.sprite.Sprite):
                                                                                SPECIAL3_ICON.get_rect(
                                                                                    topright=(85 * CELL, 5 * CELL)))
                         self.state = "angel"
-                        self.action_bar.level.player.state = self.state  # Propagez l'état au joueur
-                        self.action_bar.level.player.update_image()  # Assurez-vous que cette méthode existe dans Player
+                        self.action_bar.level.player.state = self.state
+                        self.action_bar.level.player.update_image()
 
                 elif self.state == "angel":
                     if self.active and self.rect.collidepoint(m_pos) and pygame.mouse.get_pressed()[0]:
-                        #print("clicked")
                         self.active = False
                         self.action_bar.level.player.xp -= 5000
                         self.action_bar.light_unit_button.cooldown_bar.kill()
@@ -152,11 +151,10 @@ class UpgradeButton(pygame.sprite.Sprite):
                                                                                SPECIAL4_ICON.get_rect(
                                                                                    topright=(85 * CELL, 5 * CELL)))
                         self.state = "wraith"
-                        self.action_bar.level.player.state = self.state  # Propagez l'état au joueur
-                        self.action_bar.level.player.update_image()  # Assurez-vous que cette méthode existe dans Player
+                        self.action_bar.level.player.state = self.state
+                        self.action_bar.level.player.update_image()
                 elif self.state == "wraith":
                     if self.active and self.rect.collidepoint(m_pos) and pygame.mouse.get_pressed()[0]:
-                        #print("clicked")
                         self.active = False
                         self.action_bar.level.player.xp -= 5000
                         self.action_bar.light_unit_button.cooldown_bar.kill()
@@ -185,8 +183,8 @@ class UpgradeButton(pygame.sprite.Sprite):
                                                                                SPECIAL5_ICON.get_rect(
                                                                                    topright=(85 * CELL, 5 * CELL)))
                         self.state = "villager"
-                        self.action_bar.level.player.state = self.state  # Propagez l'état au joueur
-                        self.action_bar.level.player.update_image()  # Assurez-vous que cette méthode existe dans Player
+                        self.action_bar.level.player.state = self.state
+                        self.action_bar.level.player.update_image()
 
             if not self.active and not self.rect.collidepoint(m_pos) and pygame.mouse.get_pressed()[0]:
                 self.active = True
@@ -201,5 +199,3 @@ class UpgradeButton(pygame.sprite.Sprite):
             self.image.set_alpha(255)
         else:
             self.image.set_alpha(128)
-        #print(self.active)
-        #print(self.state)

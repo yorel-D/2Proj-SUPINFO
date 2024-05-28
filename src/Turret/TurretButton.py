@@ -5,7 +5,7 @@ from random import randrange
 from src.Turret.CannonBall import *
 
 class TurretButton(pygame.sprite.Sprite):
-    towers = None  # Variable de classe partagée entre toutes les instances de TurretButton
+    towers = None
     tower1 = None
     tower2 = None
     tower3 = None
@@ -23,7 +23,6 @@ class TurretButton(pygame.sprite.Sprite):
         self.level.all_sprites.add(self)
         self.turret = None
 
-        # Initialiser les emplacements de tourelles si ce n'est pas déjà fait
         if not TurretButton.towers:
             TurretButton.tower1 = AvailableTurretSpot(self.level, 55, 270, 40, 40)
             TurretButton.tower2 = AvailableTurretSpot(self.level, 87, 295, 40, 40)
@@ -66,7 +65,6 @@ class TurretButton(pygame.sprite.Sprite):
             self.print_tower_status("Bouton cliqué, état actuel des tours:")
             return
 
-        # Création de tourelles sur les emplacements débloqués
         for tower, status in TurretButton.towers.items():
             if self.is_clicked and tower.rect.collidepoint(m_pos) and mouse_pressed:
                 if status == "available" and self.level.player.money >= self.price:

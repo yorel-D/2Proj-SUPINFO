@@ -4,7 +4,7 @@ from src.sprites import *
 class Game:
     def __init__(self):
         pygame.init()
-        self.screen = game.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+        self.screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
         pygame.display.set_caption("Age Of War - ish")
         self.clock = pygame.time.Clock()
         self.starting = True
@@ -13,48 +13,116 @@ class Game:
         self.game_won = False
         self.game_won_image = pygame.image.load("Resources/game_won.png").convert_alpha()
         self.game_over_image = pygame.image.load("Resources/game_over.png").convert_alpha()
+        self.languages = {
+            "English": ["Easy", "Normal", "Hard", "Impossible", "Settings", "Back", "Music: On", "Music: Off", "Language: English"],
+            "Français": ["Facile", "Normal", "Difficile", "Impossible", "Paramètres", "Retour", "Musique : Activée", "Musique : Désactivée", "Langue : Français"],
+            "Русский": ["Легко", "Нормально", "Трудно", "Невозможно", "Настройки", "Назад", "Музыка: Вкл", "Музыка: Выкл", "Язык: Русский"],
+            "עברית": ["קל", "נורמלי", "קשה", "בלתי אפשרי", "הגדרות", "חזור", "מוזיקה: פועל", "מוזיקה: כבוי", "שפה: עברית"],
+            "العربية": ["سهل", "عادي", "صعب", "مستحيل", "الإعدادات", "عودة", "الموسيقى: تشغيل", "الموسيقى: إيقاف", "اللغة: العربية"],
+            "हिन्दी": ["आसान", "सामान्य", "कठिन", "असंभव", "सेटिंग्स", "वापस", "संगीत: चालू", "संगीत: बंद", "भाषा: हिन्दी"],
+            "中文": ["简单", "普通", "困难", "不可能", "设置", "返回", "音乐：开启", "音乐：关闭", "语言：中文"]
+        }
+        self.language_index = 0
+        self.music_enabled = True
+        self.font = pygame.font.Font("arial-unicode-ms.ttf", 75)
 
     def start_menu(self):
-        font = pygame.font.SysFont(None, 100)
-        easy = font.render("EASY", True, "white")
-        normal = font.render("NORMAL", True, "white")
-        hard = font.render("HARD", True, "white")
-        impossible = font.render("IMPOSSIBLE", True, "white")
-        normal_rect = normal.get_rect(center=(SCREEN_WIDTH/2, SCREEN_HEIGHT/2))
-        easy_rect = easy.get_rect(center = (SCREEN_WIDTH/2, SCREEN_HEIGHT/2 - 100))
-        hard_rect = hard.get_rect(center=(SCREEN_WIDTH/2, SCREEN_HEIGHT/2 + 100))
-        impossible_rect = impossible.get_rect(center=(SCREEN_WIDTH/2, SCREEN_HEIGHT/2 + 200))
         while self.starting:
+            easy_text = self.languages[self.get_current_language()][0]
+            easy = self.font.render(easy_text, True, "white")
+            normal_text = self.languages[self.get_current_language()][1]
+            normal = self.font.render(normal_text, True, "white")
+            hard_text = self.languages[self.get_current_language()][2]
+            hard = self.font.render(hard_text, True, "white")
+            impossible_text = self.languages[self.get_current_language()][3]
+            impossible = self.font.render(impossible_text, True, "white")
+            easy_rect = easy.get_rect(center=(SCREEN_WIDTH/2, SCREEN_HEIGHT/2 - 150))
+            normal_rect = normal.get_rect(center=(SCREEN_WIDTH/2, SCREEN_HEIGHT/2 - 75))
+            hard_rect = hard.get_rect(center=(SCREEN_WIDTH/2, SCREEN_HEIGHT/2))
+            impossible_rect = impossible.get_rect(center=(SCREEN_WIDTH/2, SCREEN_HEIGHT/2 + 75))
+            settings_text = self.languages[self.get_current_language()][4]
+            settings = self.font.render(settings_text, True, "white")
+            settings_rect = settings.get_rect(center=(SCREEN_WIDTH/2, SCREEN_HEIGHT/2 + 150))
+
             m_pos = pygame.mouse.get_pos()
             self.screen.fill("#720E00")
             self.screen.blit(easy, easy_rect)
             self.screen.blit(normal, normal_rect)
             self.screen.blit(hard, hard_rect)
             self.screen.blit(impossible, impossible_rect)
+            self.screen.blit(settings, settings_rect)
+            
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     sys.exit()
-            if easy_rect.collidepoint(m_pos) and pygame.mouse.get_pressed()[0]:
-                self.starting = False
-                self.run("easy")
-            if normal_rect.collidepoint(m_pos) and pygame.mouse.get_pressed()[0]:
-                self.starting = False
-                self.run("normal")
-            if hard_rect.collidepoint(m_pos) and pygame.mouse.get_pressed()[0]:
-                self.starting = False
-                self.run("hard")
-            if impossible_rect.collidepoint(m_pos) and pygame.mouse.get_pressed()[0]:
-                self.starting = False
-                self.run("impossible")
-
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    if easy_rect.collidepoint(m_pos) and pygame.mouse.get_pressed()[0]:
+                        self.starting = False
+                        self.run("easy")
+                    elif normal_rect.collidepoint(m_pos) and pygame.mouse.get_pressed()[0]:
+                        self.starting = False
+                        self.run("normal")
+                    elif hard_rect.collidepoint(m_pos) and pygame.mouse.get_pressed()[0]:
+                        self.starting = False
+                        self.run("hard")
+                    elif impossible_rect.collidepoint(m_pos) and pygame.mouse.get_pressed()[0]:
+                        self.starting = False
+                        self.run("impossible")
+                    elif settings_rect.collidepoint(m_pos) and pygame.mouse.get_pressed()[0]:
+                        self.settings_menu()
 
             pygame.display.update()
+
+    def settings_menu(self):
+        while True:
+            language_keys = list(self.languages.keys())
+            back_text = self.languages[language_keys[self.language_index]][5]
+            music_on_text = self.languages[language_keys[self.language_index]][6]
+            music_off_text = self.languages[language_keys[self.language_index]][7]
+            language_text = self.languages[language_keys[self.language_index]][8]
+            back = self.font.render(back_text, True, "white")
+            music = self.font.render(music_on_text if self.music_enabled else music_off_text, True, "white")
+            language = self.font.render(language_text, True, "white")
+            back_rect = back.get_rect(center=(SCREEN_WIDTH/2, SCREEN_HEIGHT/2 - 75))
+            music_rect = music.get_rect(center=(SCREEN_WIDTH/2, SCREEN_HEIGHT/2))
+            language_rect = language.get_rect(center=(SCREEN_WIDTH/2, SCREEN_HEIGHT/2 + 75))
+
+            self.screen.fill("#720E00")
+            self.screen.blit(back, back_rect)
+            self.screen.blit(music, music_rect)
+            self.screen.blit(language, language_rect)
+
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    sys.exit()
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    if back_rect.collidepoint(event.pos):
+                        return
+                    elif music_rect.collidepoint(event.pos):
+                        self.toggle_music()
+                    elif language_rect.collidepoint(event.pos):
+                        self.cycle_language()
+
+            pygame.display.update()
+
+    def cycle_language(self):
+        self.language_index = (self.language_index + 1) % len(self.languages)
+
+    def get_current_language(self):
+        return list(self.languages.keys())[self.language_index]
+
+    def toggle_music(self):
+        self.music_enabled = not self.music_enabled
+        if self.music_enabled:
+            print("Music Enabled")
+        else:
+            print("Music Disabled")
 
     def run(self, mode):
         self.level = level.Level()
         while True:
             for event in pygame.event.get():
-                if event.type is pygame.QUIT:
+                if event.type == pygame.QUIT:
                     pygame.quit()
                     sys.exit()
             game_outcome = self.level.end_game()
