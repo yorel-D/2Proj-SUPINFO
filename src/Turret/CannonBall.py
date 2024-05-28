@@ -27,7 +27,6 @@ class CannonBall(pygame.sprite.Sprite):
 
         self.x += self.dx * dt
         self.y += self.dy * dt
-        #print(self.x, self.y)
         self.rect.centerx = self.x
         self.rect.centery = self.y
 

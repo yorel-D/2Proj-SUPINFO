@@ -14,13 +14,13 @@ class Game:
         self.game_won_image = pygame.image.load("Resources/game_won.png").convert_alpha()
         self.game_over_image = pygame.image.load("Resources/game_over.png").convert_alpha()
         self.languages = {
-            "English": ["Easy", "Normal", "Hard", "Impossible", "Settings", "Back", "Music: On", "Music: Off", "Language: English"],
-            "Français": ["Facile", "Normal", "Difficile", "Impossible", "Paramètres", "Retour", "Musique : Activée", "Musique : Désactivée", "Langue : Français"],
-            "Русский": ["Легко", "Нормально", "Трудно", "Невозможно", "Настройки", "Назад", "Музыка: Вкл", "Музыка: Выкл", "Язык: Русский"],
-            "עברית": ["קל", "נורמלי", "קשה", "בלתי אפשרי", "הגדרות", "חזור", "מוזיקה: פועל", "מוזיקה: כבוי", "שפה: עברית"],
-            "العربية": ["سهل", "عادي", "صعب", "مستحيل", "الإعدادات", "عودة", "الموسيقى: تشغيل", "الموسيقى: إيقاف", "اللغة: العربية"],
-            "हिन्दी": ["आसान", "सामान्य", "कठिन", "असंभव", "सेटिंग्स", "वापस", "संगीत: चालू", "संगीत: बंद", "भाषा: हिन्दी"],
-            "中文": ["简单", "普通", "困难", "不可能", "设置", "返回", "音乐：开启", "音乐：关闭", "语言：中文"]
+            "English": ["Solo Play", "Multiplayer", "Easy", "Normal", "Hard", "Impossible", "Settings", "Back", "Music: On", "Music: Off", "Language: English"],
+            "Français": ["Jeu Solo", "Multijoueur", "Facile", "Normal", "Difficile", "Impossible", "Paramètres", "Retour", "Musique : Activée", "Musique : Désactivée", "Langue : Français"],
+            "Русский": ["Одиночная игра", "Многопользовательская", "Легко", "Нормально", "Трудно", "Невозможно", "Настройки", "Назад", "Музыка: Вкл", "Музыка: Выкл", "Язык: Русский"],
+            "עברית": ["משחק בודד", "רשת משחקים", "קל", "נורמלי", "קשה", "בלתי אפשרי", "הגדרות", "חזור", "מוזיקה: פועל", "מוזיקה: כבוי", "שפה: עברית"],
+            "العربية": ["لعب فردي", "متعدد اللاعبين", "سهل", "عادي", "صعب", "مستحيل", "الإعدادات", "عودة", "الموسيقى: تشغيل", "الموسيقى: إيقاف", "اللغة: العربية"],
+            "हिन्दी": ["एकल खेल", "बहुप्रयोक्ता", "आसान", "सामान्य", "कठिन", "असंभव", "सेटिंग्स", "वापस", "संगीत: चालू", "संगीत: बंद", "भाषा: हिन्दी"],
+            "中文": ["单人游戏", "多人游戏", "简单", "普通", "困难", "不可能", "设置", "返回", "音乐：开启", "音乐：关闭", "语言：中文"]
         }
         self.language_index = 0
         self.music_enabled = True
@@ -28,21 +28,52 @@ class Game:
 
     def start_menu(self):
         while self.starting:
-            easy_text = self.languages[self.get_current_language()][0]
-            easy = self.font.render(easy_text, True, "white")
-            normal_text = self.languages[self.get_current_language()][1]
-            normal = self.font.render(normal_text, True, "white")
-            hard_text = self.languages[self.get_current_language()][2]
-            hard = self.font.render(hard_text, True, "white")
-            impossible_text = self.languages[self.get_current_language()][3]
-            impossible = self.font.render(impossible_text, True, "white")
-            easy_rect = easy.get_rect(center=(SCREEN_WIDTH/2, SCREEN_HEIGHT/2 - 150))
-            normal_rect = normal.get_rect(center=(SCREEN_WIDTH/2, SCREEN_HEIGHT/2 - 75))
-            hard_rect = hard.get_rect(center=(SCREEN_WIDTH/2, SCREEN_HEIGHT/2))
-            impossible_rect = impossible.get_rect(center=(SCREEN_WIDTH/2, SCREEN_HEIGHT/2 + 75))
-            settings_text = self.languages[self.get_current_language()][4]
+            solo_text = self.languages[self.get_current_language()][0]
+            solo = self.font.render(solo_text, True, "white")
+            solo_rect = solo.get_rect(center=(SCREEN_WIDTH/2, SCREEN_HEIGHT/2 - 75))
+            multi_joueur_text = self.languages[self.get_current_language()][1]
+            multi_joueur = self.font.render(multi_joueur_text, True, "white")
+            multi_joueur_rect = multi_joueur.get_rect(center=(SCREEN_WIDTH/2, SCREEN_HEIGHT/2))
+            settings_text = self.languages[self.get_current_language()][6]
             settings = self.font.render(settings_text, True, "white")
-            settings_rect = settings.get_rect(center=(SCREEN_WIDTH/2, SCREEN_HEIGHT/2 + 150))
+            settings_rect = settings.get_rect(center=(SCREEN_WIDTH/2, SCREEN_HEIGHT/2 + 75))
+
+            m_pos = pygame.mouse.get_pos()
+            self.screen.fill("#720E00")
+            self.screen.blit(solo, solo_rect)
+            self.screen.blit(multi_joueur, multi_joueur_rect)
+            self.screen.blit(settings, settings_rect)
+            
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    sys.exit()
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    if solo_rect.collidepoint(m_pos) and pygame.mouse.get_pressed()[0]:
+                        self.solo_menu()
+                    elif multi_joueur_rect.collidepoint(m_pos) and pygame.mouse.get_pressed()[0]:
+                        self.run("multijoueur")
+                    elif settings_rect.collidepoint(m_pos) and pygame.mouse.get_pressed()[0]:
+                        self.settings_menu()
+
+            pygame.display.update()
+
+    def solo_menu(self):
+        while True:
+            easy_text = self.languages[self.get_current_language()][2]
+            easy = self.font.render(easy_text, True, "white")
+            easy_rect = easy.get_rect(center=(SCREEN_WIDTH/2, SCREEN_HEIGHT/2 - 75))
+            normal_text = self.languages[self.get_current_language()][3]
+            normal = self.font.render(normal_text, True, "white")
+            normal_rect = normal.get_rect(center=(SCREEN_WIDTH/2, SCREEN_HEIGHT/2 - 0))
+            hard_text = self.languages[self.get_current_language()][4]
+            hard = self.font.render(hard_text, True, "white")
+            hard_rect = hard.get_rect(center=(SCREEN_WIDTH/2, SCREEN_HEIGHT/2 + 75))
+            impossible_text = self.languages[self.get_current_language()][5]
+            impossible = self.font.render(impossible_text, True, "white")
+            impossible_rect = impossible.get_rect(center=(SCREEN_WIDTH/2, SCREEN_HEIGHT/2 + 150))
+            back_text = self.languages[self.get_current_language()][7]
+            back = self.font.render(back_text, True, "white")
+            back_rect = back.get_rect(center=(SCREEN_WIDTH/2, SCREEN_HEIGHT/2 -150))
 
             m_pos = pygame.mouse.get_pos()
             self.screen.fill("#720E00")
@@ -50,8 +81,8 @@ class Game:
             self.screen.blit(normal, normal_rect)
             self.screen.blit(hard, hard_rect)
             self.screen.blit(impossible, impossible_rect)
-            self.screen.blit(settings, settings_rect)
-            
+            self.screen.blit(back, back_rect)
+
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     sys.exit()
@@ -68,23 +99,23 @@ class Game:
                     elif impossible_rect.collidepoint(m_pos) and pygame.mouse.get_pressed()[0]:
                         self.starting = False
                         self.run("impossible")
-                    elif settings_rect.collidepoint(m_pos) and pygame.mouse.get_pressed()[0]:
-                        self.settings_menu()
+                    elif back_rect.collidepoint(m_pos) and pygame.mouse.get_pressed()[0]:
+                        return
 
             pygame.display.update()
 
     def settings_menu(self):
         while True:
             language_keys = list(self.languages.keys())
-            back_text = self.languages[language_keys[self.language_index]][5]
-            music_on_text = self.languages[language_keys[self.language_index]][6]
-            music_off_text = self.languages[language_keys[self.language_index]][7]
-            language_text = self.languages[language_keys[self.language_index]][8]
+            back_text = self.languages[language_keys[self.language_index]][7]
+            music_on_text = self.languages[language_keys[self.language_index]][8]
+            music_off_text = self.languages[language_keys[self.language_index]][9]
+            language_text = self.languages[language_keys[self.language_index]][10]
             back = self.font.render(back_text, True, "white")
-            music = self.font.render(music_on_text if self.music_enabled else music_off_text, True, "white")
-            language = self.font.render(language_text, True, "white")
             back_rect = back.get_rect(center=(SCREEN_WIDTH/2, SCREEN_HEIGHT/2 - 75))
+            music = self.font.render(music_on_text if self.music_enabled else music_off_text, True, "white")
             music_rect = music.get_rect(center=(SCREEN_WIDTH/2, SCREEN_HEIGHT/2))
+            language = self.font.render(language_text, True, "white")
             language_rect = language.get_rect(center=(SCREEN_WIDTH/2, SCREEN_HEIGHT/2 + 75))
 
             self.screen.fill("#720E00")
