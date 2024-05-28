@@ -18,7 +18,7 @@ class CannonBall(pygame.sprite.Sprite):
         self.turret.level.all_sprites.add(self)
 
     def update(self, dt):
-        if self.rect.x > self.turret.range_point[0] or self.rect.y > self.turret.range_point[1]:
+        if self.rect.x > self.turret.range_point_X or self.rect.y > self.turret.range_point_Y:
             self.kill()
         enemy_collision = game.sprite.spritecollide(self, self.turret.enemies, False)
         if enemy_collision:
@@ -27,11 +27,12 @@ class CannonBall(pygame.sprite.Sprite):
 
         self.x += self.dx * dt
         self.y += self.dy * dt
+        #print(self.x, self.y)
         self.rect.centerx = self.x
         self.rect.centery = self.y
 
 
-class FairyTurret(pygame.sprite.Sprite):
+class Turret3(pygame.sprite.Sprite):
     def __init__(self, level, topleft):
         super().__init__()
         self.image = PLAYER_ELF_TURRET
@@ -55,7 +56,7 @@ class FairyTurret(pygame.sprite.Sprite):
                 x_dist = self.enemies[0].rect.midbottom[0] - self.rect.centerx
                 y_dist = self.enemies[0].rect.midbottom[1] - self.rect.centery
                 self.angle = math.atan2(y_dist, x_dist)
-                cannonball = FairyCannonBall(self, self.angle)
+                cannonball = CannonBall3(self, self.angle)
 
     def sell(self):
         self.level.player.money += self.price / 2
@@ -66,12 +67,12 @@ class FairyTurret(pygame.sprite.Sprite):
         self.shoot()
 
 
-class FairyCannonBall(CannonBall):
-    def __init__(self, turret, angle):
-        super().__init__(turret, ELF_CANNONBALL, angle, 17, 340)
+class CannonBall3(CannonBall):
+    def __init__(self, turret, angle, damage, speed):
+        super().__init__(turret, ELF_CANNONBALL, angle, damage=damage, speed=speed)
 
 
-class WarriorTurret(pygame.sprite.Sprite):
+class Turret2(pygame.sprite.Sprite):
     def __init__(self, level, topleft):
         super().__init__()
         self.image = PLAYER_GOLEM_TURRET
@@ -95,7 +96,7 @@ class WarriorTurret(pygame.sprite.Sprite):
                 x_dist = self.enemies[0].rect.midbottom[0] - self.rect.centerx
                 y_dist = self.enemies[0].rect.midbottom[1] - self.rect.centery
                 self.angle = math.atan2(y_dist, x_dist)
-                cannonball = WarriorCannonBall(self, self.angle)
+                cannonball = CannonBall2(self, self.angle)
 
     def sell(self):
         self.level.player.money += self.price / 2
@@ -106,12 +107,12 @@ class WarriorTurret(pygame.sprite.Sprite):
         self.shoot()
 
 
-class WarriorCannonBall(CannonBall):
-    def __init__(self, turret, angle):
-        super().__init__(turret, GOLEM_CANNONBALL, angle, 10, 280)
+class CannonBall2(CannonBall):
+    def __init__(self, turret, angle, damage, speed):
+        super().__init__(turret, GOLEM_CANNONBALL, angle, damage=damage, speed=speed)
 
 
-class PirateTurret(pygame.sprite.Sprite):
+class Turret1(pygame.sprite.Sprite):
     def __init__(self, level, topleft):
         super().__init__()
         self.level = level
@@ -135,7 +136,7 @@ class PirateTurret(pygame.sprite.Sprite):
                 x_dist = self.enemies[0].rect.midbottom[0] - self.rect.centerx
                 y_dist = self.enemies[0].rect.midbottom[1] - self.rect.centery
                 self.angle = math.atan2(y_dist, x_dist)
-                cannonball = PirateCannonBall(self, self.angle)
+                cannonball = CannonBall1(self, self.angle)
 
     def sell(self):
         self.level.player.money += self.price / 2
@@ -146,6 +147,6 @@ class PirateTurret(pygame.sprite.Sprite):
         self.shoot()
 
 
-class PirateCannonBall(CannonBall):
-    def __init__(self, turret, angle):
-        super().__init__(turret, SATYR_CANNONBALL, angle, 8, 250)
+class CannonBall1(CannonBall):
+    def __init__(self, turret, angle,damage, speed):
+        super().__init__(turret, SATYR_CANNONBALL, angle, damage=damage, speed=speed)

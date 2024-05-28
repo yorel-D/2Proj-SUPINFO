@@ -68,6 +68,7 @@ class AI(pygame.sprite.Sprite):
                         unit = EnemyRangedFairy(self.level)
                     if num == 3:
                         unit = EnemyHeavyFairy(self.level)
+
             if 60 * 1000 * 8 < now - self.start_time < 60 * 1000 * 16:
                 self.state = "golems"
             elif now - self.start_time >= 60 * 1000 * 16:
