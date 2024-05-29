@@ -68,11 +68,55 @@ class AI(pygame.sprite.Sprite):
                         unit = EnemyRangedFairy(self.level)
                     if num == 3:
                         unit = EnemyHeavyFairy(self.level)
+                    if num == 4:
+                        unit = EnemyHeroFairy(self.level)
+            elif self.state == "angel":
+                if now - self.last_update > 6500 or self.last_update == 0:
+                    self.last_update = now
+                    num = random.choice(self.easy_list)
+                    if num == 1:
+                        unit = EnemyLightAngel(self.level)
+                    if num == 2:
+                        unit = EnemyRangedAngel(self.level)
+                    if num == 3:
+                        unit = EnemyHeavyAngel(self.level)
+                    if num == 4:
+                        unit = EnemyHeroAngel(self.level)
+            elif self.state == "wraith":
+                if now - self.last_update > 6500 or self.last_update == 0:
+                    self.last_update = now
+                    num = random.choice(self.easy_list)
+                    if num == 1:
+                        unit = EnemyLightWraith(self.level)
+                    if num == 2:
+                        unit = EnemyRangedWraith(self.level)
+                    if num == 3:
+                        unit = EnemyHeavyWraith(self.level)
+                    if num == 4:
+                        unit = EnemyHeroWraith(self.level)
+            elif self.state == "villager":
+                if now - self.last_update > 6500 or self.last_update == 0:
+                    self.last_update = now
+                    num = random.choice(self.easy_list)
+                    if num == 1:
+                        unit = EnemyLightVillager(self.level)
+                    if num == 2:
+                        unit = EnemyRangedVillager(self.level)
+                    if num == 3:
+                        unit = EnemyHeavyVillager(self.level)
+                    if num == 4:
+                        unit = EnemyHeroVillager(self.level)
 
-            if 60 * 1000 * 8 < now - self.start_time < 60 * 1000 * 16:
+            if 60 * 1000 * 2 < now - self.start_time < 60 * 1000 * 4:
                 self.state = "golems"
-            elif now - self.start_time >= 60 * 1000 * 16:
+            elif 60 * 1000 * 4 < now - self.start_time < 60 * 1000 * 6:
                 self.state = "elfs"
+            elif 60 * 1000 * 6 < now - self.start_time < 60 * 1000 * 8:
+                self.state = "angel"
+            elif 60 * 1000 * 8 < now - self.start_time < 60 * 1000 * 10:
+                self.state = "wraith"
+            elif now - self.start_time >= 60 * 1000 * 10:
+                self.state = "villager"
         
         elif self.mode == "normal":
             if self.state == "satyrs":
@@ -105,10 +149,52 @@ class AI(pygame.sprite.Sprite):
                         unit = EnemyRangedFairy(self.level)
                     if num == 3:
                         unit = EnemyHeavyFairy(self.level)
-            if 60 * 1000 * 6 < now - self.start_time < 60 * 1000 * 12:
+            elif self.state == "angel":
+                if now - self.last_update > 6500 or self.last_update == 0:
+                    self.last_update = now
+                    num = random.choice(self.easy_list)
+                    if num == 1:
+                        unit = EnemyLightAngel(self.level)
+                    if num == 2:
+                        unit = EnemyRangedAngel(self.level)
+                    if num == 3:
+                        unit = EnemyHeavyAngel(self.level)
+                    if num == 4:
+                        unit = EnemyHeroAngel(self.level)
+            elif self.state == "wraith":
+                if now - self.last_update > 6500 or self.last_update == 0:
+                    self.last_update = now
+                    num = random.choice(self.easy_list)
+                    if num == 1:
+                        unit = EnemyLightWraith(self.level)
+                    if num == 2:
+                        unit = EnemyRangedWraith(self.level)
+                    if num == 3:
+                        unit = EnemyHeavyWraith(self.level)
+                    if num == 4:
+                        unit = EnemyHeroWraith(self.level)
+            elif self.state == "villager":
+                if now - self.last_update > 6500 or self.last_update == 0:
+                    self.last_update = now
+                    num = random.choice(self.easy_list)
+                    if num == 1:
+                        unit = EnemyLightVillager(self.level)
+                    if num == 2:
+                        unit = EnemyRangedVillager(self.level)
+                    if num == 3:
+                        unit = EnemyHeavyVillager(self.level)
+                    if num == 4:
+                        unit = EnemyHeroVillager(self.level)
+            if 60 * 1000 * 2 < now - self.start_time < 60 * 1000 * 4:
                 self.state = "golems"
-            elif now - self.start_time >= 60 * 1000 * 12:
+            elif 60 * 1000 * 4 < now - self.start_time < 60 * 1000 * 6:
                 self.state = "elfs"
+            elif 60 * 1000 * 6 < now - self.start_time < 60 * 1000 * 8:
+                self.state = "angel"
+            elif 60 * 1000 * 8 < now - self.start_time < 60 * 1000 * 10:
+                self.state = "wraith"
+            elif now - self.start_time >= 60 * 1000 * 10:
+                self.state = "villager"
         
         elif self.mode == "hard":
             if self.state == "satyrs":
@@ -141,10 +227,52 @@ class AI(pygame.sprite.Sprite):
                         unit = EnemyRangedFairy(self.level)
                     if num == 3:
                         unit = EnemyHeavyFairy(self.level)
-            if 60 * 1000 * 4 < now - self.start_time < 60 * 1000 * 8:
+            elif self.state == "angel":
+                if now - self.last_update > 6500 or self.last_update == 0:
+                    self.last_update = now
+                    num = random.choice(self.easy_list)
+                    if num == 1:
+                        unit = EnemyLightAngel(self.level)
+                    if num == 2:
+                        unit = EnemyRangedAngel(self.level)
+                    if num == 3:
+                        unit = EnemyHeavyAngel(self.level)
+                    if num == 4:
+                        unit = EnemyHeroAngel(self.level)
+            elif self.state == "wraith":
+                if now - self.last_update > 6500 or self.last_update == 0:
+                    self.last_update = now
+                    num = random.choice(self.easy_list)
+                    if num == 1:
+                        unit = EnemyLightWraith(self.level)
+                    if num == 2:
+                        unit = EnemyRangedWraith(self.level)
+                    if num == 3:
+                        unit = EnemyHeavyWraith(self.level)
+                    if num == 4:
+                        unit = EnemyHeroWraith(self.level)
+            elif self.state == "villager":
+                if now - self.last_update > 6500 or self.last_update == 0:
+                    self.last_update = now
+                    num = random.choice(self.easy_list)
+                    if num == 1:
+                        unit = EnemyLightVillager(self.level)
+                    if num == 2:
+                        unit = EnemyRangedVillager(self.level)
+                    if num == 3:
+                        unit = EnemyHeavyVillager(self.level)
+                    if num == 4:
+                        unit = EnemyHeroVillager(self.level)
+            if 60 * 1000 * 2 < now - self.start_time < 60 * 1000 * 4:
                 self.state = "golems"
-            elif now - self.start_time >= 60 * 1000 * 8:
+            elif 60 * 1000 * 4 < now - self.start_time < 60 * 1000 * 6:
                 self.state = "elfs"
+            elif 60 * 1000 * 6 < now - self.start_time < 60 * 1000 * 8:
+                self.state = "angel"
+            elif 60 * 1000 * 8 < now - self.start_time < 60 * 1000 * 10:
+                self.state = "wraith"
+            elif now - self.start_time >= 60 * 1000 * 10:
+                self.state = "villager"
         
         elif self.mode == "impossible":
             if self.state == "satyrs":
@@ -177,7 +305,49 @@ class AI(pygame.sprite.Sprite):
                         unit = EnemyRangedFairy(self.level)
                     if num == 3:
                         unit = EnemyHeavyFairy(self.level)
+            elif self.state == "angel":
+                if now - self.last_update > 6500 or self.last_update == 0:
+                    self.last_update = now
+                    num = random.choice(self.easy_list)
+                    if num == 1:
+                        unit = EnemyLightAngel(self.level)
+                    if num == 2:
+                        unit = EnemyRangedAngel(self.level)
+                    if num == 3:
+                        unit = EnemyHeavyAngel(self.level)
+                    if num == 4:
+                        unit = EnemyHeroAngel(self.level)
+            elif self.state == "wraith":
+                if now - self.last_update > 6500 or self.last_update == 0:
+                    self.last_update = now
+                    num = random.choice(self.easy_list)
+                    if num == 1:
+                        unit = EnemyLightWraith(self.level)
+                    if num == 2:
+                        unit = EnemyRangedWraith(self.level)
+                    if num == 3:
+                        unit = EnemyHeavyWraith(self.level)
+                    if num == 4:
+                        unit = EnemyHeroWraith(self.level)
+            elif self.state == "villager":
+                if now - self.last_update > 6500 or self.last_update == 0:
+                    self.last_update = now
+                    num = random.choice(self.easy_list)
+                    if num == 1:
+                        unit = EnemyLightVillager(self.level)
+                    if num == 2:
+                        unit = EnemyRangedVillager(self.level)
+                    if num == 3:
+                        unit = EnemyHeavyVillager(self.level)
+                    if num == 4:
+                        unit = EnemyHeroVillager(self.level)
             if 60 * 1000 * 2 < now - self.start_time < 60 * 1000 * 4:
                 self.state = "golems"
-            elif now - self.start_time >= 60 * 1000 * 4:
+            elif 60 * 1000 * 4 < now - self.start_time < 60 * 1000 * 6:
                 self.state = "elfs"
+            elif 60 * 1000 * 6 < now - self.start_time < 60 * 1000 * 8:
+                self.state = "angel"
+            elif 60 * 1000 * 8 < now - self.start_time < 60 * 1000 * 10:
+                self.state = "wraith"
+            elif now - self.start_time >= 60 * 1000 * 10:
+                self.state = "villager"

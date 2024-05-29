@@ -449,16 +449,16 @@ class EnemyHeavyPirate(EnemyCloseCombatUnit):
                          8, 15, 40)
 
 
-class EnemyHeroPirate(EnemyCloseCombatUnit):
+class EnemyHeroPirate(EnemyRangedCombatUnit):
     def __init__(self, level):
         super().__init__(level, ENEMY_HERO_SATYR_WALKING, ENEMY_HERO_SATYR_ATTACKING, ENEMY_HERO_SATYR_IDLE, 190,
-                         13, 15, 40)
+                         13, 15, 40, 3)
 
 
-class EnemyRangedPirate(EnemyRangedCombatUnit):
+class EnemyRangedPirate(EnemyCloseCombatUnit):
     def __init__(self, level):
         super().__init__(level, ENEMY_RANGED_SATYR_WALKING, ENEMY_RANGED_SATYR_ATTACKING, ENEMY_RANGED_SATYR_IDLE,
-                         80, 15, 8, 50, 3)
+                         80, 15, 8, 50)
 
 
 class EnemyLightWarrior(EnemyCloseCombatUnit):
@@ -478,7 +478,7 @@ class EnemyRangedWarrior(EnemyRangedCombatUnit):
         super().__init__(level, ENEMY_RANGED_GOLEM_WALKING, ENEMY_RANGED_GOLEM_ATTACKING,
                          ENEMY_RANGED_GOLEM_IDLE, 100, 18, 10, 55, 3)
 
-class EnemyHeroWarrior(EnemyCloseCombatUnit):
+class EnemyHeroWarrior(EnemyRangedCombatUnit):
     def __init__(self, level):
         super().__init__(level, ENEMY_HERO_GOLEM_WALKING, ENEMY_HERO_GOLEM_ATTACKING,
                          ENEMY_HERO_GOLEM_IDLE, 100, 18, 10, 55, 3)
@@ -500,6 +500,72 @@ class EnemyRangedFairy(EnemyRangedCombatUnit):
     def __init__(self, level):
         super().__init__(level, ENEMY_RANGED_ELF_WALKING, ENEMY_RANGED_ELF_ATTACKING, ENEMY_RANGED_ELF_IDLE, 130, 23,
                          14, 60, 3)
+
+class EnemyHeroFairy(EnemyRangedCombatUnit):
+    def __init__(self, level):
+        super().__init__(level, ENEMY_HERO_ELF_WALKING, ENEMY_HERO_ELF_ATTACKING, ENEMY_HERO_ELF_IDLE, 240, 150,
+                         32, 65, 3)
+
+class EnemyLightAngel(EnemyCloseCombatUnit):
+    def __init__(self, level):
+        super().__init__(level, ENEMY_LIGHT_ANGEL_WALKING, ENEMY_LIGHT_ANGEL_ATTACKING, ENEMY_LIGHT_ANGEL_IDLE, 150, 150,
+                         20, 70)
+        
+class EnemyHeavyAngel(EnemyCloseCombatUnit):
+    def __init__(self, level):
+        super().__init__(level, ENEMY_HEAVY_ANGEL_WALKING, ENEMY_HEAVY_ANGEL_ATTACKING, ENEMY_HEAVY_ANGEL_IDLE, 150, 175,
+                         20, 70)
+
+class EnemyRangedAngel(EnemyCloseCombatUnit):
+    def __init__(self, level):
+        super().__init__(level, ENEMY_RANGED_ANGEL_WALKING, ENEMY_RANGED_ANGEL_ATTACKING, ENEMY_RANGED_ANGEL_IDLE, 150, 200,
+                         20, 70)
+
+class EnemyHeroAngel(EnemyCloseCombatUnit):
+    def __init__(self, level):
+        super().__init__(level, ENEMY_HERO_ANGEL_WALKING, ENEMY_HERO_ANGEL_ATTACKING, ENEMY_HERO_ANGEL_IDLE, 150, 250,
+                         20, 70)
+
+class EnemyLightWraith(EnemyRangedCombatUnit):
+    def __init__(self, level):
+        super().__init__(level, ENEMY_LIGHT_WRAITH_WALKING, ENEMY_LIGHT_WRAITH_ATTACKING, ENEMY_LIGHT_WRAITH_IDLE, 150, 250,
+                         20, 75, 3)
+        
+class EnemyHeavyWraith(EnemyRangedCombatUnit):
+    def __init__(self, level):
+        super().__init__(level, ENEMY_HEAVY_WRAITH_WALKING, ENEMY_HEAVY_WRAITH_ATTACKING, ENEMY_HEAVY_WRAITH_IDLE, 150, 275,
+                         20, 75, 3)
+
+class EnemyRangedWraith(EnemyRangedCombatUnit):
+    def __init__(self, level):
+        super().__init__(level, ENEMY_RANGED_WRAITH_WALKING, ENEMY_RANGED_WRAITH_ATTACKING, ENEMY_RANGED_WRAITH_IDLE, 150, 300,
+                         20, 75, 3)
+
+class EnemyHeroWraith(EnemyRangedCombatUnit):
+    def __init__(self, level):
+        super().__init__(level, ENEMY_HERO_WRAITH_WALKING, ENEMY_HERO_WRAITH_ATTACKING, ENEMY_HERO_WRAITH_IDLE, 150, 350,
+                         20, 75, 3)
+
+
+class EnemyLightVillager(EnemyCloseCombatUnit):
+    def __init__(self, level):
+        super().__init__(level, ENEMY_LIGHT_VILLAGER_WALKING, ENEMY_LIGHT_VILLAGER_ATTACKING, ENEMY_LIGHT_VILLAGER_IDLE, 150, 350,
+                         20, 80)
+        
+class EnemyHeavyVillager(EnemyCloseCombatUnit):
+    def __init__(self, level):
+        super().__init__(level, ENEMY_HEAVY_VILLAGER_WALKING, ENEMY_HEAVY_VILLAGER_ATTACKING, ENEMY_HEAVY_VILLAGER_IDLE, 150, 375,
+                         20, 80)
+
+class EnemyRangedVillager(EnemyCloseCombatUnit):
+    def __init__(self, level):
+        super().__init__(level, ENEMY_RANGED_VILLAGER_WALKING, ENEMY_RANGED_VILLAGER_ATTACKING, ENEMY_RANGED_VILLAGER_IDLE, 150, 400,
+                         20, 80)
+
+class EnemyHeroVillager(EnemyCloseCombatUnit):
+    def __init__(self, level):
+        super().__init__(level, ENEMY_HERO_VILLAGER_WALKING, ENEMY_HERO_VILLAGER_ATTACKING, ENEMY_HERO_VILLAGER_IDLE, 150, 500,
+                         20, 80)
 
 
 class RangeBox(game.sprite.Sprite):

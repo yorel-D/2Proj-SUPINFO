@@ -284,6 +284,58 @@ ENEMY_RANGED_ELF_WALKING = [game.transform.flip(image, True, False) for image in
 ENEMY_RANGED_ELF_ATTACKING = [game.transform.flip(image, True, False) for image in PLAYER_RANGED_ELF_ATTACKING]
 ENEMY_RANGED_ELF_IDLE = [game.transform.flip(image, True, False) for image in PLAYER_RANGED_ELF_IDLE]
 
+ENEMY_HERO_ELF_WALKING = [game.transform.flip(image, True, False) for image in PLAYER_HERO_ELF_WALKING]
+ENEMY_HERO_ELF_ATTACKING = [game.transform.flip(image, True, False) for image in PLAYER_HERO_ELF_ATTACKING]
+ENEMY_HERO_ELF_IDLE = [game.transform.flip(image, True, False) for image in PLAYER_HERO_ELF_IDLE]
+
+ENEMY_LIGHT_ANGEL_WALKING = [game.transform.flip(image, True, False) for image in PLAYER_LIGHT_ANGEL_WALKING]
+ENEMY_LIGHT_ANGEL_ATTACKING = [game.transform.flip(image, True, False) for image in PLAYER_LIGHT_ANGEL_ATTACKING]
+ENEMY_LIGHT_ANGEL_IDLE = [game.transform.flip(image, True, False) for image in PLAYER_LIGHT_ANGEL_IDLE]
+
+ENEMY_HEAVY_ANGEL_WALKING = [game.transform.flip(image, True, False) for image in PLAYER_HEAVY_ANGEL_WALKING]
+ENEMY_HEAVY_ANGEL_ATTACKING = [game.transform.flip(image, True, False) for image in PLAYER_HEAVY_ANGEL_ATTACKING]
+ENEMY_HEAVY_ANGEL_IDLE = [game.transform.flip(image, True, False) for image in PLAYER_HEAVY_ANGEL_IDLE]
+
+ENEMY_RANGED_ANGEL_WALKING = [game.transform.flip(image, True, False) for image in PLAYER_RANGED_ANGEL_WALKING]
+ENEMY_RANGED_ANGEL_ATTACKING = [game.transform.flip(image, True, False) for image in PLAYER_RANGED_ANGEL_ATTACKING]
+ENEMY_RANGED_ANGEL_IDLE = [game.transform.flip(image, True, False) for image in PLAYER_RANGED_ANGEL_IDLE]
+
+ENEMY_HERO_ANGEL_WALKING = [game.transform.flip(image, True, False) for image in PLAYER_HERO_ANGEL_WALKING]
+ENEMY_HERO_ANGEL_ATTACKING = [game.transform.flip(image, True, False) for image in PLAYER_HERO_ANGEL_ATTACKING]
+ENEMY_HERO_ANGEL_IDLE = [game.transform.flip(image, True, False) for image in PLAYER_HERO_ANGEL_IDLE]
+
+ENEMY_LIGHT_WRAITH_WALKING = [game.transform.flip(image, True, False) for image in PLAYER_LIGHT_WRAITH_WALKING]
+ENEMY_LIGHT_WRAITH_ATTACKING = [game.transform.flip(image, True, False) for image in PLAYER_LIGHT_WRAITH_ATTACKING]
+ENEMY_LIGHT_WRAITH_IDLE = [game.transform.flip(image, True, False) for image in PLAYER_LIGHT_WRAITH_IDLE]
+
+ENEMY_HEAVY_WRAITH_WALKING = [game.transform.flip(image, True, False) for image in PLAYER_HEAVY_WRAITH_WALKING]
+ENEMY_HEAVY_WRAITH_ATTACKING = [game.transform.flip(image, True, False) for image in PLAYER_HEAVY_WRAITH_ATTACKING]
+ENEMY_HEAVY_WRAITH_IDLE = [game.transform.flip(image, True, False) for image in PLAYER_HEAVY_WRAITH_IDLE]
+
+ENEMY_RANGED_WRAITH_WALKING = [game.transform.flip(image, True, False) for image in PLAYER_RANGED_WRAITH_WALKING]
+ENEMY_RANGED_WRAITH_ATTACKING = [game.transform.flip(image, True, False) for image in PLAYER_RANGED_WRAITH_ATTACKING]
+ENEMY_RANGED_WRAITH_IDLE = [game.transform.flip(image, True, False) for image in PLAYER_RANGED_WRAITH_IDLE]
+
+ENEMY_HERO_WRAITH_WALKING = [game.transform.flip(image, True, False) for image in PLAYER_HERO_WRAITH_WALKING]
+ENEMY_HERO_WRAITH_ATTACKING = [game.transform.flip(image, True, False) for image in PLAYER_HERO_WRAITH_ATTACKING]
+ENEMY_HERO_WRAITH_IDLE = [game.transform.flip(image, True, False) for image in PLAYER_HERO_WRAITH_IDLE]
+
+ENEMY_LIGHT_VILLAGER_WALKING = [game.transform.flip(image, True, False) for image in PLAYER_LIGHT_VILLAGER_WALKING]
+ENEMY_LIGHT_VILLAGER_ATTACKING = [game.transform.flip(image, True, False) for image in PLAYER_LIGHT_VILLAGER_ATTACKING]
+ENEMY_LIGHT_VILLAGER_IDLE = [game.transform.flip(image, True, False) for image in PLAYER_LIGHT_VILLAGER_IDLE]
+
+ENEMY_HEAVY_VILLAGER_WALKING = [game.transform.flip(image, True, False) for image in PLAYER_HEAVY_VILLAGER_WALKING]
+ENEMY_HEAVY_VILLAGER_ATTACKING = [game.transform.flip(image, True, False) for image in PLAYER_HEAVY_VILLAGER_ATTACKING]
+ENEMY_HEAVY_VILLAGER_IDLE = [game.transform.flip(image, True, False) for image in PLAYER_HEAVY_VILLAGER_IDLE]
+
+ENEMY_RANGED_VILLAGER_WALKING = [game.transform.flip(image, True, False) for image in PLAYER_RANGED_VILLAGER_WALKING]
+ENEMY_RANGED_VILLAGER_ATTACKING = [game.transform.flip(image, True, False) for image in PLAYER_RANGED_VILLAGER_ATTACKING]
+ENEMY_RANGED_VILLAGER_IDLE = [game.transform.flip(image, True, False) for image in PLAYER_RANGED_VILLAGER_IDLE]
+
+ENEMY_HERO_VILLAGER_WALKING = [game.transform.flip(image, True, False) for image in PLAYER_HERO_VILLAGER_WALKING]
+ENEMY_HERO_VILLAGER_ATTACKING = [game.transform.flip(image, True, False) for image in PLAYER_HERO_VILLAGER_ATTACKING]
+ENEMY_HERO_VILLAGER_IDLE = [game.transform.flip(image, True, False) for image in PLAYER_HERO_VILLAGER_IDLE]
+
 LIGHT_SATYR_ICON = game.image.load("Resources/light_Satyr_icon.png").convert_alpha()
 LIGHT_SATYR_ICON = game.transform.scale(LIGHT_SATYR_ICON, (7 * CELL, 7 * CELL))
 RANGED_SATYR_ICON = game.image.load("Resources/ranged_Satyr_icon.png").convert_alpha()
