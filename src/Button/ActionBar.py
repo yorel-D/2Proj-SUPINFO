@@ -19,13 +19,13 @@ class ActionBar(pygame.sprite.Sprite):
                                                              TURRET_UPGRADE_ICON.get_rect(topright=(95 * CELL, 9 * CELL)))
         self.turret_button1 = TurretButton1(SATYR_TURRET_ICON, self.level,
                                                       SATYR_TURRET_ICON.get_rect(topright=(105 * CELL, 9 * CELL)),
-                                                      price=400, race="satyr")
+                                                      price=400, race="satyrs")
         self.turret_button2 = TurretButton2(GOLEM_TURRET_ICON, self.level,
                                                        GOLEM_TURRET_ICON.get_rect(topright=(115 * CELL, 9 * CELL)),
-                                                       price=2000, race="satyr")
+                                                       price=2000, race="satyrs")
         self.turret_button3 = TurretButton3(ELF_TURRET_ICON, self.level,
                                                    ELF_TURRET_ICON.get_rect(topright=(125 * CELL, 9 * CELL)),
-                                                   price=4000, race="satyr")
+                                                   price=4000, race="satyrs")
 
         self.sell_button = SellButton(self.level,self.turret_button1,self.turret_button2,self.turret_button3)
         self.upgrade_button = UpgradeButton(self)

@@ -4,6 +4,7 @@ import pygame
 from random import randrange
 from src.sprites import *
 from src.Button.UnitButton import *
+from src.Turret.TurretButton import *
 
 class UpgradeButton(pygame.sprite.Sprite):
     def __init__(self, action_bar):
@@ -36,6 +37,9 @@ class UpgradeButton(pygame.sprite.Sprite):
                         self.action_bar.heavy_unit_button.kill()
                         self.action_bar.hero_unit_button.kill()
                         self.action_bar.special_button.kill()
+                        self.action_bar.turret_button1.kill()
+                        self.action_bar.turret_button2.kill()
+                        self.action_bar.turret_button3.kill()
                         self.action_bar.light_unit_button = LightWarriorButton(LIGHT_GOLEM_ICON, self.action_bar.level,
                                                                                LIGHT_GOLEM_ICON.get_rect(
                                                                                    topright=(95 * CELL, 1 * CELL)))
@@ -51,6 +55,15 @@ class UpgradeButton(pygame.sprite.Sprite):
                         self.action_bar.special_button = Special1Button(SPECIAL1_ICON, self.action_bar.level,
                                                                                SPECIAL1_ICON.get_rect(
                                                                                    topright=(85 * CELL, 5 * CELL)))
+                        self.action_bar.turret_button1 = TurretButton4(TURRET_ICON, self.action_bar.level,
+                                                                      TURRET_ICON.get_rect(topright=(105 * CELL, 9 * CELL)),
+                                                                      price=400)
+                        self.action_bar.turret_button2 = TurretButton5(TURRET1_ICON, self.action_bar.level,
+                                                                       TURRET1_ICON.get_rect(topright=(115 * CELL, 9 * CELL)),
+                                                                       price=2000)
+                        self.action_bar.turret_button3 = TurretButton6(TURRET2_ICON, self.action_bar.level,
+                                                                   TURRET2_ICON.get_rect(topright=(125 * CELL, 9 * CELL)),
+                                                                   price=4000)
                         self.state = "golems"
                         self.action_bar.level.player.state = self.state
                         self.action_bar.level.player.update_image()
@@ -68,6 +81,9 @@ class UpgradeButton(pygame.sprite.Sprite):
                         self.action_bar.heavy_unit_button.kill()
                         self.action_bar.hero_unit_button.kill()
                         self.action_bar.special_button.kill()
+                        self.action_bar.turret_button1.kill()
+                        self.action_bar.turret_button2.kill()
+                        self.action_bar.turret_button3.kill()
                         self.action_bar.light_unit_button = LightFairyButton(LIGHT_ELF_ICON, self.action_bar.level,
                                                                            LIGHT_ELF_ICON.get_rect(
                                                                                topright=(95 * CELL, 1 * CELL)))
@@ -83,6 +99,15 @@ class UpgradeButton(pygame.sprite.Sprite):
                         self.action_bar.special_button = Special2Button(SPECIAL2_ICON, self.action_bar.level,
                                                                                SPECIAL2_ICON.get_rect(
                                                                                    topright=(85 * CELL, 5 * CELL)))
+                        self.action_bar.turret_button1 = TurretButton7(TURRET3_ICON, self.action_bar.level,
+                                                                       TURRET3_ICON.get_rect(topright=(105 * CELL, 9 * CELL)),
+                                                                       price=400)
+                        self.action_bar.turret_button2 = TurretButton8(TURRET4_ICON, self.action_bar.level,
+                                                                       TURRET4_ICON.get_rect(topright=(115 * CELL, 9 * CELL)),
+                                                                       price=2000)
+                        self.action_bar.turret_button3 = TurretButton9(TURRET5_ICON, self.action_bar.level,
+                                                                       TURRET5_ICON.get_rect(topright=(125 * CELL, 9 * CELL)),
+                                                                       price=4000)
                         self.state = "elfs"
                         self.action_bar.level.player.state = self.state
                         self.action_bar.level.player.update_image()
@@ -100,6 +125,9 @@ class UpgradeButton(pygame.sprite.Sprite):
                         self.action_bar.heavy_unit_button.kill()
                         self.action_bar.hero_unit_button.kill()
                         self.action_bar.special_button.kill()
+                        self.action_bar.turret_button1.kill()
+                        self.action_bar.turret_button2.kill()
+                        self.action_bar.turret_button3.kill()
                         self.action_bar.light_unit_button = LightAngelButton(LIGHT_ANGEL_ICON, self.action_bar.level,
                                                                            LIGHT_ANGEL_ICON.get_rect(
                                                                                topright=(95 * CELL, 1 * CELL)))
@@ -115,6 +143,15 @@ class UpgradeButton(pygame.sprite.Sprite):
                         self.action_bar.special_button = Special3Button(SPECIAL3_ICON, self.action_bar.level,
                                                                                SPECIAL3_ICON.get_rect(
                                                                                    topright=(85 * CELL, 5 * CELL)))
+                        self.action_bar.turret_button1 = TurretButton10(TURRET6_ICON, self.action_bar.level,
+                                                                        TURRET6_ICON.get_rect(topright=(105 * CELL, 9 * CELL)),
+                                                                        price=400)
+                        self.action_bar.turret_button2 = TurretButton11(TURRET7_ICON, self.action_bar.level,
+                                                                        TURRET7_ICON.get_rect(topright=(115 * CELL, 9 * CELL)),
+                                                                        price=2000)
+                        self.action_bar.turret_button3 = TurretButton12(TURRET8_ICON, self.action_bar.level,
+                                                                        TURRET8_ICON.get_rect(topright=(125 * CELL, 9 * CELL)),
+                                                                        price=4000)
                         self.state = "angel"
                         self.action_bar.level.player.state = self.state
                         self.action_bar.level.player.update_image()
@@ -133,6 +170,9 @@ class UpgradeButton(pygame.sprite.Sprite):
                         self.action_bar.heavy_unit_button.kill()
                         self.action_bar.hero_unit_button.kill()
                         self.action_bar.special_button.kill()
+                        self.action_bar.turret_button1.kill()
+                        self.action_bar.turret_button2.kill()
+                        self.action_bar.turret_button3.kill()
                         self.action_bar.light_unit_button = LightWraithButton(LIGHT_WRAITH_ICON, self.action_bar.level,
                                                                            LIGHT_WRAITH_ICON.get_rect(
                                                                                topright=(95 * CELL, 1 * CELL)))
@@ -148,6 +188,15 @@ class UpgradeButton(pygame.sprite.Sprite):
                         self.action_bar.special_button = Special4Button(SPECIAL4_ICON, self.action_bar.level,
                                                                                SPECIAL4_ICON.get_rect(
                                                                                    topright=(85 * CELL, 5 * CELL)))
+                        self.action_bar.turret_button1 = TurretButton13(TURRET9_ICON, self.action_bar.level,
+                                                                        TURRET9_ICON.get_rect(topright=(105 * CELL, 9 * CELL)),
+                                                                        price=400)
+                        self.action_bar.turret_button2 = TurretButton14(TURRET10_ICON, self.action_bar.level,
+                                                                        TURRET10_ICON.get_rect(topright=(115 * CELL, 9 * CELL)),
+                                                                        price=2000)
+                        self.action_bar.turret_button3 = TurretButton15(TURRET11_ICON, self.action_bar.level,
+                                                                        TURRET11_ICON.get_rect(topright=(125 * CELL, 9 * CELL)),
+                                                                        price=4000)
                         self.state = "wraith"
                         self.action_bar.level.player.state = self.state
                         self.action_bar.level.player.update_image()
@@ -165,6 +214,9 @@ class UpgradeButton(pygame.sprite.Sprite):
                         self.action_bar.heavy_unit_button.kill()
                         self.action_bar.hero_unit_button.kill()
                         self.action_bar.special_button.kill()
+                        self.action_bar.turret_button1.kill()
+                        self.action_bar.turret_button2.kill()
+                        self.action_bar.turret_button3.kill()
                         self.action_bar.light_unit_button = LightVillagerButton(LIGHT_VILLAGER_ICON, self.action_bar.level,
                                                                            LIGHT_VILLAGER_ICON.get_rect(
                                                                                topright=(95 * CELL, 1 * CELL)))
@@ -180,6 +232,15 @@ class UpgradeButton(pygame.sprite.Sprite):
                         self.action_bar.special_button = Special5Button(SPECIAL5_ICON, self.action_bar.level,
                                                                                SPECIAL5_ICON.get_rect(
                                                                                    topright=(85 * CELL, 5 * CELL)))
+                        self.action_bar.turret_button1 = TurretButton13(TURRET12_ICON, self.action_bar.level,
+                                                                        TURRET12_ICON.get_rect(topright=(105 * CELL, 9 * CELL)),
+                                                                        price=400)
+                        self.action_bar.turret_button2 = TurretButton14(TURRET13_ICON, self.action_bar.level,
+                                                                        TURRET13_ICON.get_rect(topright=(115 * CELL, 9 * CELL)),
+                                                                        price=2000)
+                        self.action_bar.turret_button3 = TurretButton15(TURRET14_ICON, self.action_bar.level,
+                                                                        TURRET14_ICON.get_rect(topright=(125 * CELL, 9 * CELL)),
+                                                                        price=4000)
                         self.state = "villager"
                         self.action_bar.level.player.state = self.state
                         self.action_bar.level.player.update_image()

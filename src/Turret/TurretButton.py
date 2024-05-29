@@ -3,6 +3,7 @@ from random import randrange
 import pygame
 from random import randrange
 from src.Turret.CannonBall import *
+from src.Button.CooldownBar import CooldownBar
 
 class TurretButton(pygame.sprite.Sprite):
     towers = None
@@ -69,48 +70,48 @@ class TurretButton(pygame.sprite.Sprite):
             if self.is_clicked and tower.rect.collidepoint(m_pos) and mouse_pressed:
                 if status == "available" and self.level.player.money >= self.price:
                     turret = None
-                    if self.race == "satyr":
+                    if self.race == "satyrs":
                         if isinstance(self, TurretButton1):
                             turret = Turret(self.level, tower.rect.topleft, 600, 48, 44, 400, PLAYER_SATYR_TURRET)
                         elif isinstance(self, TurretButton2):
                             turret = Turret(self.level, tower.rect.topleft, 500, 55, 48, 1250, PLAYER_GOLEM_TURRET)
                         elif isinstance(self, TurretButton3):
                             turret = Turret(self.level, tower.rect.topleft, 400, 68, 52, 2500, PLAYER_ELF_TURRET)
-                    elif self.race == "golem":
-                        if isinstance(self, TurretButton1):
-                            turret = Turret(self.level, tower.rect.topleft, 600, 48, 44, 400, PLAYER_SATYR_TURRET)
-                        elif isinstance(self, TurretButton2):
-                            turret = Turret(self.level, tower.rect.topleft, 500, 55, 48, 1250, PLAYER_GOLEM_TURRET)
-                        elif isinstance(self, TurretButton3):
-                            turret = Turret(self.level, tower.rect.topleft, 400, 68, 52, 2500, PLAYER_ELF_TURRET)
-                    elif self.race == "elf":
-                        if isinstance(self, TurretButton1):
-                            turret = Turret(self.level, tower.rect.topleft, 600, 48, 44, 400, PLAYER_SATYR_TURRET)
-                        elif isinstance(self, TurretButton2):
-                            turret = Turret(self.level, tower.rect.topleft, 500, 55, 48, 1250, PLAYER_GOLEM_TURRET)
-                        elif isinstance(self, TurretButton3):
-                            turret = Turret(self.level, tower.rect.topleft, 400, 68, 52, 2500, PLAYER_ELF_TURRET)
+                    elif self.race == "golems":
+                        if isinstance(self, TurretButton4):
+                            turret = Turret(self.level, tower.rect.topleft, 600, 48, 44, 400, PLAYER_TURRET)
+                        elif isinstance(self, TurretButton5):
+                            turret = Turret(self.level, tower.rect.topleft, 500, 55, 48, 1250, PLAYER_TURRET1)
+                        elif isinstance(self, TurretButton6):
+                            turret = Turret(self.level, tower.rect.topleft, 400, 68, 52, 2500, PLAYER_TURRET2)
+                    elif self.race == "elfs":
+                        if isinstance(self, TurretButton7):
+                            turret = Turret(self.level, tower.rect.topleft, 600, 48, 44, 400, PLAYER_TURRET3)
+                        elif isinstance(self, TurretButton8):
+                            turret = Turret(self.level, tower.rect.topleft, 500, 55, 48, 1250, PLAYER_TURRET4)
+                        elif isinstance(self, TurretButton9):
+                            turret = Turret(self.level, tower.rect.topleft, 400, 68, 52, 2500, PLAYER_TURRET5)
                     elif self.race == "angel":
-                        if isinstance(self, TurretButton1):
-                            turret = Turret(self.level, tower.rect.topleft, 600, 48, 44, 400, PLAYER_SATYR_TURRET)
-                        elif isinstance(self, TurretButton2):
-                            turret = Turret(self.level, tower.rect.topleft, 500, 55, 48, 1250, PLAYER_GOLEM_TURRET)
-                        elif isinstance(self, TurretButton3):
-                            turret = Turret(self.level, tower.rect.topleft, 400, 68, 52, 2500, PLAYER_ELF_TURRET)
-                    elif self.race == "wrath":
-                        if isinstance(self, TurretButton1):
-                            turret = Turret(self.level, tower.rect.topleft, 600, 48, 44, 400, PLAYER_SATYR_TURRET)
-                        elif isinstance(self, TurretButton2):
-                            turret = Turret(self.level, tower.rect.topleft, 500, 55, 48, 1250, PLAYER_GOLEM_TURRET)
-                        elif isinstance(self, TurretButton3):
-                            turret = Turret(self.level, tower.rect.topleft, 400, 68, 52, 2500, PLAYER_ELF_TURRET)
+                        if isinstance(self, TurretButton10):
+                            turret = Turret(self.level, tower.rect.topleft, 600, 48, 44, 400, PLAYER_TURRET6)
+                        elif isinstance(self, TurretButton11):
+                            turret = Turret(self.level, tower.rect.topleft, 500, 55, 48, 1250, PLAYER_TURRET7)
+                        elif isinstance(self, TurretButton12):
+                            turret = Turret(self.level, tower.rect.topleft, 400, 68, 52, 2500, PLAYER_TURRET8)
+                    elif self.race == "wraith":
+                        if isinstance(self, TurretButton13):
+                            turret = Turret(self.level, tower.rect.topleft, 600, 48, 44, 400, PLAYER_TURRET9)
+                        elif isinstance(self, TurretButton14):
+                            turret = Turret(self.level, tower.rect.topleft, 500, 55, 48, 1250, PLAYER_TURRET10)
+                        elif isinstance(self, TurretButton15):
+                            turret = Turret(self.level, tower.rect.topleft, 400, 68, 52, 2500, PLAYER_TURRET11)
                     elif self.race == "villager":
-                        if isinstance(self, TurretButton1):
-                            turret = Turret(self.level, tower.rect.topleft, 600, 48, 44, 400, PLAYER_SATYR_TURRET)
-                        elif isinstance(self, TurretButton2):
-                            turret = Turret(self.level, tower.rect.topleft, 500, 55, 48, 1250, PLAYER_GOLEM_TURRET)
-                        elif isinstance(self, TurretButton3):
-                            turret = Turret(self.level, tower.rect.topleft, 400, 68, 52, 2500, PLAYER_ELF_TURRET)
+                        if isinstance(self, TurretButton16):
+                            turret = Turret(self.level, tower.rect.topleft, 600, 48, 44, 400, PLAYER_TURRET12)
+                        elif isinstance(self, TurretButton17):
+                            turret = Turret(self.level, tower.rect.topleft, 500, 55, 48, 1250, PLAYER_TURRET13)
+                        elif isinstance(self, TurretButton18):
+                            turret = Turret(self.level, tower.rect.topleft, 400, 68, 52, 2500, PLAYER_TURRET14)
                     if turret:
                         self.level.player.money -= self.price
                         tower.set_turret(turret)
@@ -150,8 +151,102 @@ class TurretButton(pygame.sprite.Sprite):
                         key.set_invisible()
 
 class TurretButton1(TurretButton):
-    def __init__(self, image, sprite_group, rect,price,race):
+    def __init__(self, image, sprite_group, rect, price,race):
         super().__init__(image, sprite_group, rect,active=True,price=price,race=race)
+
+class TurretButton4(TurretButton):
+    def __init__(self, image, sprite_group, rect, price):
+        super().__init__(image, sprite_group, rect,active=True,price=price)
+        self.race = "golems"
+        self.unit_type = "turret4"
+
+class TurretButton5(TurretButton):
+    def __init__(self, image, sprite_group, rect, price):
+        super().__init__(image, sprite_group, rect,active=True,price=price)
+        self.race = "golems"
+        self.unit_type = "turret5"
+
+class TurretButton6(TurretButton):
+    def __init__(self, image, sprite_group, rect, price):
+        super().__init__(image, sprite_group, rect,active=True,price=price)
+        self.race = "golems"
+        self.unit_type = "turret6"
+
+
+class TurretButton7(TurretButton):
+    def __init__(self, image, sprite_group, rect, price):
+        super().__init__(image, sprite_group, rect,active=True,price=price)
+        self.race = "elfs"
+        self.unit_type = "turret7"
+
+class TurretButton8(TurretButton):
+    def __init__(self, image, sprite_group, rect, price):
+        super().__init__(image, sprite_group, rect,active=True,price=price)
+        self.race = "elfs"
+        self.unit_type = "turret8"
+
+class TurretButton9(TurretButton):
+    def __init__(self, image, sprite_group, rect, price):
+        super().__init__(image, sprite_group, rect,active=True,price=price)
+        self.race = "elfs"
+        self.unit_type = "turret9"
+
+
+class TurretButton10(TurretButton):
+    def __init__(self, image, sprite_group, rect, price):
+        super().__init__(image, sprite_group, rect,active=True,price=price)
+        self.race = "angel"
+        self.unit_type = "turret10"
+
+class TurretButton11(TurretButton):
+    def __init__(self, image, sprite_group, rect, price):
+        super().__init__(image, sprite_group, rect,active=True,price=price)
+        self.race = "angel"
+        self.unit_type = "turret11"
+
+class TurretButton12(TurretButton):
+    def __init__(self, image, sprite_group, rect, price):
+        super().__init__(image, sprite_group, rect,active=True,price=price)
+        self.race = "angel"
+        self.unit_type = "turret12"
+
+
+class TurretButton13(TurretButton):
+    def __init__(self, image, sprite_group, rect, price):
+        super().__init__(image, sprite_group, rect,active=True,price=price)
+        self.race = "wraith"
+        self.unit_type = "turret13"
+
+class TurretButton14(TurretButton):
+    def __init__(self, image, sprite_group, rect, price):
+        super().__init__(image, sprite_group, rect,active=True,price=price)
+        self.race = "wraith"
+        self.unit_type = "turret14"
+
+class TurretButton15(TurretButton):
+    def __init__(self, image, sprite_group, rect, price):
+        super().__init__(image, sprite_group, rect,active=True,price=price)
+        self.race = "wraith"
+        self.unit_type = "turret15"
+
+
+class TurretButton16(TurretButton):
+    def __init__(self, image, sprite_group, rect, price):
+        super().__init__(image, sprite_group, rect,active=True,price=price)
+        self.race = "villager"
+        self.unit_type = "turret16"
+
+class TurretButton17(TurretButton):
+    def __init__(self, image, sprite_group, rect, price):
+        super().__init__(image, sprite_group, rect,active=True,price=price)
+        self.race = "villager"
+        self.unit_type = "turret17"
+
+class TurretButton18(TurretButton):
+    def __init__(self, image, sprite_group, rect, price):
+        super().__init__(image, sprite_group, rect,active=True,price=price)
+        self.race = "villager"
+        self.unit_type = "turret18"
 
 class UnlockTurretPlacemant(TurretButton):
     def __init__(self, image, sprite_group, rect):
@@ -169,22 +264,37 @@ class TurretButton3(TurretButton):
 
 
 class Turret(pygame.sprite.Sprite):
-    def __init__(self, level, topleft,speed,range_X,range_Y,price,image):
+    def __init__(self, level, topleft, speed, range_X, range_Y, price, image):
         super().__init__()
         self.level = level
         self.image = image
         self.rect = self.image.get_rect(topleft=topleft)
         self.range_point_X = range_X * CELL
         self.range_point_Y = range_Y * CELL
-        self.shooting_speed=speed
+        self.shooting_speed = speed
         self.price = price
         self.lastshot = 0
         self.enemies = [sprite for sprite in self.level.ai_sprites if sprite is not self.level.ai]
         self.level.all_sprites.add(self)
+        
+        # State and damage management
+        self.states = {
+            1: {"damage": 40},
+            2: {"damage": 100},
+            3: {"damage": 250}
+        }
+        self.current_state = 1
+        self.damage = self.states[self.current_state]["damage"]
+
+    def change_state(self, new_state):
+        if new_state in self.states:
+            self.current_state = new_state
+            self.damage = self.states[self.current_state]["damage"]
+            print(f"State changed to {self.current_state}, Damage: {self.damage}")
 
     def shoot(self):
         x_dist = self.range_point_X - self.rect.centerx
-        y_dist = self.range_point_Y- self.rect.centery
+        y_dist = self.range_point_Y - self.rect.centery
         self.angle = math.atan2(y_dist, x_dist)
         now = game.time.get_ticks()
         if self.enemies and self.enemies[0].rect.midbottom[0] < 48 * CELL:
@@ -193,7 +303,7 @@ class Turret(pygame.sprite.Sprite):
                 x_dist = self.enemies[0].rect.midbottom[0] - self.rect.centerx
                 y_dist = self.enemies[0].rect.midbottom[1] - self.rect.centery
                 self.angle = math.atan2(y_dist, x_dist)
-                cannonball = CannonBall1(self, self.angle,10,250,)
+                cannonball = CannonBall1(self, self.angle, self.damage, 250)
 
     def sell(self):
         self.level.player.money += self.price / 2
