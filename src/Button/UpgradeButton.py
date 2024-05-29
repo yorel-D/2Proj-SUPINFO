@@ -232,13 +232,13 @@ class UpgradeButton(pygame.sprite.Sprite):
                         self.action_bar.special_button = Special5Button(SPECIAL5_ICON, self.action_bar.level,
                                                                                SPECIAL5_ICON.get_rect(
                                                                                    topright=(85 * CELL, 5 * CELL)))
-                        self.action_bar.turret_button1 = TurretButton13(TURRET12_ICON, self.action_bar.level,
+                        self.action_bar.turret_button1 = TurretButton16(TURRET12_ICON, self.action_bar.level,
                                                                         TURRET12_ICON.get_rect(topright=(105 * CELL, 9 * CELL)),
                                                                         price=400)
-                        self.action_bar.turret_button2 = TurretButton14(TURRET13_ICON, self.action_bar.level,
+                        self.action_bar.turret_button2 = TurretButton17(TURRET13_ICON, self.action_bar.level,
                                                                         TURRET13_ICON.get_rect(topright=(115 * CELL, 9 * CELL)),
                                                                         price=2000)
-                        self.action_bar.turret_button3 = TurretButton15(TURRET14_ICON, self.action_bar.level,
+                        self.action_bar.turret_button3 = TurretButton18(TURRET14_ICON, self.action_bar.level,
                                                                         TURRET14_ICON.get_rect(topright=(125 * CELL, 9 * CELL)),
                                                                         price=4000)
                         self.state = "villager"
