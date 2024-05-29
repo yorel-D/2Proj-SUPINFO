@@ -65,7 +65,6 @@ class TurretButton(pygame.sprite.Sprite):
             self.print_tower_status("Bouton cliqué, état actuel des tours:")
             return
 
-        # Création de tourelles sur les emplacements débloqués
         for tower, status in TurretButton.towers.items():
             if self.is_clicked and tower.rect.collidepoint(m_pos) and mouse_pressed:
                 if status == "available" and self.level.player.money >= self.price:
@@ -140,10 +139,15 @@ class TurretButton(pygame.sprite.Sprite):
                 for key, value in TurretButton.towers.items():
                     if value == "available":
                         key.set_visible()
-            else:
+            elif self.Unclocker:
                 self.image.set_alpha(255)
                 for tower in TurretButton.towers.keys():
-                    tower.set_invisible()
+                        tower.set_invisible()
+            else:
+                self.image.set_alpha(255)
+                for key, value in TurretButton.towers.items():
+                    if value == "unavailable":
+                        key.set_invisible()
 
 class TurretButton1(TurretButton):
     def __init__(self, image, sprite_group, rect,price,race):
@@ -162,6 +166,8 @@ class TurretButton2(TurretButton):
 class TurretButton3(TurretButton):
     def __init__(self, image, sprite_group, rect,price,race):
         super().__init__(image, sprite_group, rect,active=True,price=price,race=race)
+
+
 class Turret(pygame.sprite.Sprite):
     def __init__(self, level, topleft,speed,range_X,range_Y,price,image):
         super().__init__()

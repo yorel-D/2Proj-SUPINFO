@@ -51,7 +51,6 @@ class UpgradeButton(pygame.sprite.Sprite):
                         self.action_bar.special_button = Special1Button(SPECIAL1_ICON, self.action_bar.level,
                                                                                SPECIAL1_ICON.get_rect(
                                                                                    topright=(85 * CELL, 5 * CELL)))
-                        self.action_bar.golem_turret_button.active = True
                         self.state = "golems"
                         self.action_bar.level.player.state = self.state
                         self.action_bar.level.player.update_image()
@@ -84,7 +83,6 @@ class UpgradeButton(pygame.sprite.Sprite):
                         self.action_bar.special_button = Special2Button(SPECIAL2_ICON, self.action_bar.level,
                                                                                SPECIAL2_ICON.get_rect(
                                                                                    topright=(85 * CELL, 5 * CELL)))
-                        self.action_bar.elf_turret_button.active = True
                         self.state = "elfs"
                         self.action_bar.level.player.state = self.state
                         self.action_bar.level.player.update_image()
