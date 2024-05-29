@@ -4,6 +4,7 @@ import pygame
 from random import randrange
 from src.Turret.CannonBall import *
 from src.Button.CooldownBar import CooldownBar
+from src.Turret.CannonBall import CannonBall1, CannonBall2, CannonBall3, CannonBall4, CannonBall5, CannonBall6
 
 class TurretButton(pygame.sprite.Sprite):
     towers = None
@@ -276,34 +277,44 @@ class Turret(pygame.sprite.Sprite):
         self.lastshot = 0
         self.enemies = [sprite for sprite in self.level.ai_sprites if sprite is not self.level.ai]
         self.level.all_sprites.add(self)
-        
-        # State and damage management
+
         self.states = {
             1: {"damage": 40},
             2: {"damage": 100},
             3: {"damage": 250}
         }
         self.current_state = 1
-        self.damage = self.states[self.current_state]["damage"]
 
     def change_state(self, new_state):
         if new_state in self.states:
             self.current_state = new_state
-            self.damage = self.states[self.current_state]["damage"]
-            print(f"State changed to {self.current_state}, Damage: {self.damage}")
 
     def shoot(self):
         x_dist = self.range_point_X - self.rect.centerx
         y_dist = self.range_point_Y - self.rect.centery
         self.angle = math.atan2(y_dist, x_dist)
-        now = game.time.get_ticks()
+        now = pygame.time.get_ticks()
         if self.enemies and self.enemies[0].rect.midbottom[0] < 48 * CELL:
             if now - self.lastshot > self.shooting_speed:
                 self.lastshot = now
                 x_dist = self.enemies[0].rect.midbottom[0] - self.rect.centerx
                 y_dist = self.enemies[0].rect.midbottom[1] - self.rect.centery
                 self.angle = math.atan2(y_dist, x_dist)
-                cannonball = CannonBall1(self, self.angle, self.damage, 250)
+
+                if self.level.player.state == "satyrs":
+                    cannonball = CannonBall1(self, self.angle, 100, 250)
+                elif self.level.player.state == "golems":
+                    cannonball = CannonBall2(self, self.angle, 200, 250)
+                elif self.level.player.state == "elfs":
+                    cannonball = CannonBall3(self, self.angle, 300, 250)
+                elif self.level.player.state == "angel":
+                    cannonball = CannonBall4(self, self.angle, 400, 250)
+                elif self.level.player.state == "wraith":
+                    cannonball = CannonBall5(self, self.angle, 500, 250)
+                elif self.level.player.state == "villager":
+                    cannonball = CannonBall6(self, self.angle, 600, 250)
+
+                self.level.all_sprites.add(cannonball)
 
     def sell(self):
         self.level.player.money += self.price / 2

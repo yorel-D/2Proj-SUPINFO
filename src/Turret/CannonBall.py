@@ -149,3 +149,28 @@ class Turret1(pygame.sprite.Sprite):
 class CannonBall1(CannonBall):
     def __init__(self, turret, angle,damage, speed):
         super().__init__(turret, SATYR_CANNONBALL, angle, damage=damage, speed=speed)
+
+
+class CannonBall2(CannonBall):
+    def __init__(self, turret, angle,damage, speed):
+        super().__init__(turret, CANNONBALL1, angle, damage=damage, speed=speed)
+
+
+class CannonBall3(CannonBall):
+    def __init__(self, turret, angle,damage, speed):
+        super().__init__(turret, CANNONBALL2, angle, damage=damage, speed=speed)
+
+
+class CannonBall4(CannonBall):
+    def __init__(self, turret, angle,damage, speed):
+        super().__init__(turret, CANNONBALL3, angle, damage=damage, speed=speed)
+
+
+class CannonBall5(CannonBall):
+    def __init__(self, turret, angle,damage, speed):
+        super().__init__(turret, CANNONBALL4, angle, damage=damage, speed=speed)
+
+
+class CannonBall6(CannonBall):
+    def __init__(self, turret, angle,damage, speed):
+        super().__init__(turret, CANNONBALL5, angle, damage=damage, speed=speed)

@@ -490,6 +490,18 @@ GAME_OVER = game.image.load("Resources/game_over.png").convert_alpha()
 GAME_WON = game.image.load("Resources/game_won.png").convert_alpha()
 
 
+CANNONBALL1 = game.image.load("Resources/cannonball2.png").convert_alpha()
+CANNONBALL1 = game.transform.scale(CANNONBALL1, (1 * CELL, 1 * CELL))
+CANNONBALL2 = game.image.load("Resources/cannonball5.png").convert_alpha()
+CANNONBALL2 = game.transform.scale(CANNONBALL2, (1 * CELL, 1 * CELL))
+CANNONBALL3 = game.image.load("Resources/cannonball1.png").convert_alpha()
+CANNONBALL3 = game.transform.scale(CANNONBALL3, (1 * CELL, 1 * CELL))
+CANNONBALL4 = game.image.load("Resources/cannonball3.png").convert_alpha()
+CANNONBALL4 = game.transform.scale(CANNONBALL4, (1 * CELL, 1 * CELL))
+CANNONBALL5 = game.image.load("Resources/cannonball4.png").convert_alpha()
+CANNONBALL5 = game.transform.scale(CANNONBALL5, (1 * CELL, 1 * CELL))
+
+
 SPECIAL_ICON = game.image.load("Resources/special.png").convert_alpha()
 SPECIAL_ICON = game.transform.scale(SPECIAL_ICON, (11 * CELL, 7 * CELL))
 SPECIAL1_ICON = game.image.load("Resources/special1.jpg").convert_alpha()
