@@ -17,15 +17,17 @@ class ActionBar(pygame.sprite.Sprite):
         self.level.all_sprites.add(self)
         self.unlock_turret_placemant = UnlockTurretPlacemant(TURRET_UPGRADE_ICON, self.level,
                                                              TURRET_UPGRADE_ICON.get_rect(topright=(95 * CELL, 9 * CELL)))
-        self.satyr_turret_button = TurretButton1(SATYR_TURRET_ICON, self.level,
-                                                       SATYR_TURRET_ICON.get_rect(topright=(105 * CELL, 9 * CELL)))
-        self.golem_turret_button = TurretButton2(GOLEM_TURRET_ICON, self.level,
-                                                         GOLEM_TURRET_ICON.get_rect(topright=(115 * CELL, 9 * CELL)))
-        self.elf_turret_button = TurretButton3(ELF_TURRET_ICON, self.level,
-                                                 ELF_TURRET_ICON.get_rect(topright=(125 * CELL, 9 * CELL)))
+        self.turret_button1 = TurretButton1(SATYR_TURRET_ICON, self.level,
+                                                      SATYR_TURRET_ICON.get_rect(topright=(105 * CELL, 9 * CELL)),
+                                                      price=400, race="satyr")
+        self.turret_button2 = TurretButton2(GOLEM_TURRET_ICON, self.level,
+                                                       GOLEM_TURRET_ICON.get_rect(topright=(115 * CELL, 9 * CELL)),
+                                                       price=2000, race="satyr")
+        self.turret_button3 = TurretButton3(ELF_TURRET_ICON, self.level,
+                                                   ELF_TURRET_ICON.get_rect(topright=(125 * CELL, 9 * CELL)),
+                                                   price=4000, race="satyr")
 
-        self.sell_button = SellButton(self.level, self.satyr_turret_button, self.golem_turret_button,
-                                      self.elf_turret_button)
+        self.sell_button = SellButton(self.level,self.turret_button1,self.turret_button2,self.turret_button3)
         self.upgrade_button = UpgradeButton(self)
         if self.state == "satyrs":
             self.light_unit_button = LightPirateButton(LIGHT_SATYR_ICON, self.level,

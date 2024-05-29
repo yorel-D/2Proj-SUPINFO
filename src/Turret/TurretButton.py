@@ -146,8 +146,8 @@ class TurretButton(pygame.sprite.Sprite):
                     tower.set_invisible()
 
 class TurretButton1(TurretButton):
-    def __init__(self, image, sprite_group, rect):
-        super().__init__(image, sprite_group, rect, race="satyr", active=True, price=400)
+    def __init__(self, image, sprite_group, rect,price,race):
+        super().__init__(image, sprite_group, rect,active=True,price=price,race=race)
 
 class UnlockTurretPlacemant(TurretButton):
     def __init__(self, image, sprite_group, rect):
@@ -155,13 +155,13 @@ class UnlockTurretPlacemant(TurretButton):
 
 
 class TurretButton2(TurretButton):
-    def __init__(self, image, sprite_group, rect):
-        super().__init__(image, sprite_group, rect, race="golem", price=1500)
+    def __init__(self, image, sprite_group, rect,price,race):
+        super().__init__(image, sprite_group, rect,active=True,price=price,race=race)
 
 
 class TurretButton3(TurretButton):
-    def __init__(self, image, sprite_group, rect):
-        super().__init__(image, sprite_group, rect, race="elf", price=2400)
+    def __init__(self, image, sprite_group, rect,price,race):
+        super().__init__(image, sprite_group, rect,active=True,price=price,race=race)
 class Turret(pygame.sprite.Sprite):
     def __init__(self, level, topleft,speed,range_X,range_Y,price,image):
         super().__init__()
