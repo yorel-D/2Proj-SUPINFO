@@ -458,7 +458,7 @@ class EnemyHeroPirate(EnemyRangedCombatUnit):
 class EnemyRangedPirate(EnemyCloseCombatUnit):
     def __init__(self, level):
         super().__init__(level, ENEMY_RANGED_SATYR_WALKING, ENEMY_RANGED_SATYR_ATTACKING, ENEMY_RANGED_SATYR_IDLE,
-                         180, 15, 15, 550)
+                         180, 15, 15, 55)
 
 
 class EnemyLightWarrior(EnemyCloseCombatUnit):
