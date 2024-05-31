@@ -25,6 +25,15 @@ class Game:
         self.language_index = 0
         self.music_enabled = True
         self.font = pygame.font.Font("arial-unicode-ms.ttf", 75)
+        
+        # Initialize music
+        self.init_music()
+
+    def init_music(self):
+        self.music_file = "Resources/01. Age of War - Theme Song.mp3"
+        pygame.mixer.music.load(self.music_file)
+        if self.music_enabled:
+            pygame.mixer.music.play(-1)  # Loop the music
 
     def start_menu(self):
         while self.starting:
@@ -145,8 +154,10 @@ class Game:
     def toggle_music(self):
         self.music_enabled = not self.music_enabled
         if self.music_enabled:
+            pygame.mixer.music.play(-1)  # Loop the music
             print("Music Enabled")
         else:
+            pygame.mixer.music.stop()
             print("Music Disabled")
 
     def run(self, mode):
