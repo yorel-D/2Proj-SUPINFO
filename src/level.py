@@ -1,10 +1,9 @@
-import pygame
+import pygame, sys
 from src.settings import *
 from src.sprites import *
 from src.player import Player
 from src.ai import AI
 from src.Button.ActionBar import ActionBar
-
 
 class Level:
     def __init__(self, state="satyrs"):
@@ -22,16 +21,55 @@ class Level:
         self.ai_sprites.add(self.ai)
         self.all_sprites.add(self.player, self.ai)
         self.action_bar = ActionBar(self, state)
-
+        
+        # Speed control
+        self.speed_multiplier = 1
+        self.speed_options = [1, 2, 4]  # Speed options: normal, x2, x4
+        self.current_speed_index = 0  # Index of the current speed option
+        self.font = pygame.font.Font("arial-unicode-ms.ttf", 25)
+        self.speed_button_rect = pygame.Rect(10, 10, 40, 40)  # Positioned at the left
+        self.speed_button_pressed = False  # Flag to track button press
+        
+    def draw_speed_button(self):
+        button_text = f"x{self.speed_options[self.current_speed_index]}"
+        if self.speed_multiplier == 4:  # Change color if speed x4
+            button_color = (0, 0, 255)  # Blue color
+        else:
+            button_color = (255, 0, 0) if self.speed_multiplier > 1 else (0, 255, 0)
+        pygame.draw.rect(self.display_surface, button_color, self.speed_button_rect)
+        text_surface = self.font.render(button_text, True, (255, 255, 255))
+        text_rect = text_surface.get_rect(center=self.speed_button_rect.center)
+        self.display_surface.blit(text_surface, text_rect)
+        
+    def toggle_speed(self):
+        self.current_speed_index = (self.current_speed_index + 1) % len(self.speed_options)
+        self.speed_multiplier = self.speed_options[self.current_speed_index]
+        
+    def handle_events(self):
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                if event.button == 1 and self.speed_button_rect.collidepoint(event.pos):
+                    self.toggle_speed()
+    
     def run(self, dt, mode):
         self.mode = mode
         self.ai.set_mode(mode)
-        m_pos = pygame.mouse.get_pos()
+        self.handle_events()
         self.display_surface.blit(self.background, self.background_rect)
         self.ai.update(dt)
         self.all_sprites.draw(self.display_surface)
-        self.all_sprites.update(dt)
         
+        # Adjust dt based on speed multiplier
+        adjusted_dt = dt * self.speed_multiplier
+        
+        self.all_sprites.update(adjusted_dt)
+        
+        # Draw speed button
+        self.draw_speed_button()
+            
     def end_game(self):
         if self.ai.health <= 0:
             return "win"
