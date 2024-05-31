@@ -21,6 +21,7 @@ class Player(pygame.sprite.Sprite):
         self.update_image()
         self.rect = self.image.get_rect(midleft=(-8 * CELL, SCREEN_HEIGHT / 2))
 
+
     def update_image(self):
         if self.state == "satyrs":
             self.image = PLAYER_CASTLE_IMAGE

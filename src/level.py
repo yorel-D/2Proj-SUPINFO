@@ -17,7 +17,7 @@ class Level:
         self.ai_sprites = pygame.sprite.Group()
         self.player = Player(self, state)
         self.player_sprites.add(self.player)
-        self.ai = AI(self)
+        self.ai = AI(self, state)
         self.ai_sprites.add(self.ai)
         self.all_sprites.add(self.player, self.ai)
         self.action_bar = ActionBar(self, state)

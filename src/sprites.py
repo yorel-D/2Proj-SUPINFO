@@ -100,7 +100,7 @@ class EnemyRangedCombatUnit(pygame.sprite.Sprite):
             self.walking = False
             if self.current == 6:
                 closest_enemy = self.enemy_collisions[0]
-                closest_enemy.health -= (self.damage + 2) / (closest_enemy.defense + 2) * randrange(10, 13)
+                closest_enemy.health -= self.damage
                 self.current = 0
         else:
             self.idle = False
@@ -360,7 +360,7 @@ class EnemyCloseCombatUnit(pygame.sprite.Sprite):
             self.walking = False
             if self.current == 6:
                 closest_enemy = self.enemy_collisions[0]
-                closest_enemy.health -= (self.damage + 2) / (closest_enemy.defense + 2) * randrange(10, 13)
+                closest_enemy.health -= self.damage
                 self.current = 0
         else:
             self.idle = False
@@ -440,66 +440,66 @@ class EnemyCloseCombatUnit(pygame.sprite.Sprite):
 class EnemyLightPirate(EnemyCloseCombatUnit):
     def __init__(self, level):
         super().__init__(level, ENEMY_LIGHT_SATYR_WALKING, ENEMY_LIGHT_SATYR_ATTACKING, ENEMY_LIGHT_SATYR_IDLE, 100,
-                         10, 10, 60)
+                         8, 8, 55)
 
 
 class EnemyHeavyPirate(EnemyCloseCombatUnit):
     def __init__(self, level):
         super().__init__(level, ENEMY_HEAVY_SATYR_WALKING, ENEMY_HEAVY_SATYR_ATTACKING, ENEMY_HEAVY_SATYR_IDLE, 160,
-                         8, 15, 40)
+                         10, 10, 55)
 
 
 class EnemyHeroPirate(EnemyRangedCombatUnit):
     def __init__(self, level):
         super().__init__(level, ENEMY_HERO_SATYR_WALKING, ENEMY_HERO_SATYR_ATTACKING, ENEMY_HERO_SATYR_IDLE, 190,
-                         13, 15, 40, 3)
+                         20, 20, 55, 3)
 
 
 class EnemyRangedPirate(EnemyCloseCombatUnit):
     def __init__(self, level):
         super().__init__(level, ENEMY_RANGED_SATYR_WALKING, ENEMY_RANGED_SATYR_ATTACKING, ENEMY_RANGED_SATYR_IDLE,
-                         80, 15, 8, 50)
+                         180, 15, 15, 550)
 
 
 class EnemyLightWarrior(EnemyCloseCombatUnit):
     def __init__(self, level):
         super().__init__(level, ENEMY_LIGHT_GOLEM_WALKING, ENEMY_LIGHT_GOLEM_ATTACKING, ENEMY_LIGHT_GOLEM_IDLE,
-                         130, 13, 15, 65)
+                         130, 20, 15, 60)
 
 
 class EnemyHeavyWarrior(EnemyCloseCombatUnit):
     def __init__(self, level):
         super().__init__(level, ENEMY_HEAVY_GOLEM_WALKING, ENEMY_HEAVY_GOLEM_ATTACKING, ENEMY_HEAVY_GOLEM_IDLE,
-                         190, 11, 20, 40)
+                         190, 35, 20, 60)
 
 
-class EnemyRangedWarrior(EnemyRangedCombatUnit):
+class EnemyRangedWarrior(EnemyCloseCombatUnit):
     def __init__(self, level):
         super().__init__(level, ENEMY_RANGED_GOLEM_WALKING, ENEMY_RANGED_GOLEM_ATTACKING,
-                         ENEMY_RANGED_GOLEM_IDLE, 100, 18, 10, 55, 3)
+                         ENEMY_RANGED_GOLEM_IDLE, 200, 40, 10, 60)
 
 class EnemyHeroWarrior(EnemyRangedCombatUnit):
     def __init__(self, level):
         super().__init__(level, ENEMY_HERO_GOLEM_WALKING, ENEMY_HERO_GOLEM_ATTACKING,
-                         ENEMY_HERO_GOLEM_IDLE, 100, 18, 10, 55, 3)
+                         ENEMY_HERO_GOLEM_IDLE, 220, 50, 20, 60, 3)
 
 
 class EnemyLightFairy(EnemyCloseCombatUnit):
     def __init__(self, level):
-        super().__init__(level, ENEMY_LIGHT_ELF_WALKING, ENEMY_LIGHT_ELF_ATTACKING, ENEMY_LIGHT_ELF_IDLE, 150, 18,
-                         20, 70)
+        super().__init__(level, ENEMY_LIGHT_ELF_WALKING, ENEMY_LIGHT_ELF_ATTACKING, ENEMY_LIGHT_ELF_IDLE, 150, 50,
+                         20, 65)
 
 
 class EnemyHeavyFairy(EnemyCloseCombatUnit):
     def __init__(self, level):
-        super().__init__(level, ENEMY_HEAVY_ELF_WALKING, ENEMY_HEAVY_ELF_ATTACKING, ENEMY_HEAVY_ELF_IDLE, 240, 14,
-                         28, 44)
+        super().__init__(level, ENEMY_HEAVY_ELF_WALKING, ENEMY_HEAVY_ELF_ATTACKING, ENEMY_HEAVY_ELF_IDLE, 240, 75,
+                         28, 65)
 
 
 class EnemyRangedFairy(EnemyRangedCombatUnit):
     def __init__(self, level):
-        super().__init__(level, ENEMY_RANGED_ELF_WALKING, ENEMY_RANGED_ELF_ATTACKING, ENEMY_RANGED_ELF_IDLE, 130, 23,
-                         14, 60, 3)
+        super().__init__(level, ENEMY_RANGED_ELF_WALKING, ENEMY_RANGED_ELF_ATTACKING, ENEMY_RANGED_ELF_IDLE, 130, 100,
+                         14, 65, 3)
 
 class EnemyHeroFairy(EnemyRangedCombatUnit):
     def __init__(self, level):
@@ -640,7 +640,7 @@ class PlayerRangedCombatUnit(pygame.sprite.Sprite):
             self.walking = False
             if self.current == 6:
                 closest_enemy = self.enemy_collisions[0]
-                closest_enemy.health -= (self.damage + 2) / (closest_enemy.defense + 2) * randrange(10, 13)
+                closest_enemy.health -= self.damage
                 self.current = 0
         else:
             self.idle = False
@@ -763,7 +763,7 @@ class PlayerHeavyPirate(PlayerCloseCombatUnit):
 class PlayerRangedPirate(PlayerCloseCombatUnit):
     def __init__(self, level):
         super().__init__(level, PLAYER_RANGED_SATYR_WALKING, PLAYER_RANGED_SATYR_ATTACKING, PLAYER_RANGED_SATYR_IDLE,
-                         80, 15, 15, 55)
+                         180, 15, 15, 55)
 
 class PlayerHeroPirate(PlayerRangedCombatUnit):
     def __init__(self, level):
@@ -786,7 +786,7 @@ class PlayerHeavyWarrior(PlayerCloseCombatUnit):
 class PlayerRangedWarrior(PlayerCloseCombatUnit):
     def __init__(self, level):
         super().__init__(level, PLAYER_RANGED_GOLEM_WALIKNG, PLAYER_RANGED_GOLEM_ATTACKING,
-                         PLAYER_RANGED_GOLEM_IDLE, 100, 40, 10, 60)
+                         PLAYER_RANGED_GOLEM_IDLE, 200, 40, 10, 60)
         
         
 class PlayerHeroWarrior(PlayerRangedCombatUnit):
@@ -809,7 +809,7 @@ class PlayerHeavyFairy(PlayerCloseCombatUnit):
 
 class PlayerRangedFairy(PlayerRangedCombatUnit):
     def __init__(self, level):
-        super().__init__(level, PLAYER_RANGED_ELF_WALKING, PLAYER_RANGED_ELF_ATTACKING, PLAYER_RANGED_ELF_IDLE, 130, 100,
+        super().__init__(level, PLAYER_RANGED_ELF_WALKING, PLAYER_RANGED_ELF_ATTACKING, PLAYER_RANGED_ELF_IDLE, 230, 100,
                          14, 65, 3)
 
 class PlayerHeroFairy(PlayerRangedCombatUnit):
