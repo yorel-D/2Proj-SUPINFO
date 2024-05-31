@@ -22,18 +22,17 @@ class Level:
         self.all_sprites.add(self.player, self.ai)
         self.action_bar = ActionBar(self, state)
         
-        # Speed control
         self.speed_multiplier = 1
-        self.speed_options = [1, 2, 4]  # Speed options: normal, x2, x4
-        self.current_speed_index = 0  # Index of the current speed option
+        self.speed_options = [1, 2, 4]
+        self.current_speed_index = 0
         self.font = pygame.font.Font("arial-unicode-ms.ttf", 25)
-        self.speed_button_rect = pygame.Rect(10, 10, 40, 40)  # Positioned at the left
-        self.speed_button_pressed = False  # Flag to track button press
+        self.speed_button_rect = pygame.Rect(10, 10, 40, 40)
+        self.speed_button_pressed = False
         
     def draw_speed_button(self):
         button_text = f"x{self.speed_options[self.current_speed_index]}"
-        if self.speed_multiplier == 4:  # Change color if speed x4
-            button_color = (0, 0, 255)  # Blue color
+        if self.speed_multiplier == 4:
+            button_color = (0, 0, 255)
         else:
             button_color = (255, 0, 0) if self.speed_multiplier > 1 else (0, 255, 0)
         pygame.draw.rect(self.display_surface, button_color, self.speed_button_rect)
@@ -62,12 +61,10 @@ class Level:
         self.ai.update(dt)
         self.all_sprites.draw(self.display_surface)
         
-        # Adjust dt based on speed multiplier
         adjusted_dt = dt * self.speed_multiplier
         
         self.all_sprites.update(adjusted_dt)
         
-        # Draw speed button
         self.draw_speed_button()
             
     def end_game(self):
